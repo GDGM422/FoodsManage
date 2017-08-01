@@ -82,9 +82,9 @@
             var  par = JSON.parse(JSON.stringify(this.ruleForm)) ;
                 console.log('登陆成功即将跳转--------')
                 store.dispatch('setUserInfo',par);//vuex传参数据
-                if(window.localStorage){
-                  localStorage.setItem('user','par');
-                }
+                // if(window.localStorage){
+                //   localStorage.setItem('user','par');
+                // }
                 setTimeout(() => {
                   this.fullscreenLoading = false;
                   this.$router.push({ path: '/index/message' });
@@ -101,7 +101,6 @@
     },
     mounted:function(){
       console.log( store.state.user.userInfo)
-
     }        
     
   }

@@ -2,8 +2,8 @@
 const user = {
   state: {
     userInfo:{
-      username:"111",
-      pass:"00"
+      username:"admin",
+      pass:"123456"
     }
   },
 
