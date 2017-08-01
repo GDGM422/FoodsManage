@@ -1,0 +1,29 @@
+index---首页(message个人信息、index.vue是导航跟头部)
+
+Foods--商品管理 /foods(index)、/foods/index
+
+Vip---会员管理  /vip(index)
+
+Order---订单管理  /order(index)
+
+Staff--人事管理  /staff(index)
+
+Stock--库存管理  /staock(index)
+
+Cost--成本管理  /cost(index)
+
+
+这样你的路由就要这样写:
+统一父组件都写成是:component:Index,
+父组件路径可改成自己对应的/foods、/vip、/order.....
+
+ {
+      path:'/order',component:Index,
+      children:[
+        {
+          path:'index',
+          component:Order
+        }
+      ]
+ }
+
