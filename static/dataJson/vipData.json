@@ -1,0 +1,197 @@
+{
+	"vipData": [
+		{
+			"vipID": "001",
+			"vipName": "张三",
+			"vipPhone": "13716515156",
+			"vipJoinDate": "2017-09-22",
+			"vipScore": "330",
+			"vipGrade": "铜",
+			"vipDiscount": "9折"
+		},{
+			"vipID": "002",
+			"vipName": "张三",
+			"vipPhone": "13826468745",
+			"vipJoinDate": "2016-08-15",
+			"vipScore": "365",
+			"vipGrade": "铜",
+			"vipDiscount": "9折"
+		},{
+			"vipID": "003",
+			"vipName": "张三",
+			"vipPhone": "13906547485",
+			"vipJoinDate": "2010-02-26",
+			"vipScore": "580",
+			"vipGrade": "铜",
+			"vipDiscount": "9折"
+		},{
+			"vipID": "604",
+			"vipName": "张三",
+			"vipPhone": "13526484565",
+			"vipJoinDate": "2013-06-28",
+			"vipScore": "760",
+			"vipGrade": "银",
+			"vipDiscount": "8折"
+		},{
+			"vipID": "205",
+			"vipName": "张三",
+			"vipPhone": "13357896952",
+			"vipJoinDate": "2010-05-16",
+			"vipScore": "1339",
+			"vipGrade": "金",
+			"vipDiscount": "7折"
+		},{
+			"vipID": "006",
+			"vipName": "张三",
+			"vipPhone": "13985296325",
+			"vipJoinDate": "2011-04-23",
+			"vipScore": "610",
+			"vipGrade": "铜",
+			"vipDiscount": "9折"
+		},{
+			"vipID": "007",
+			"vipName": "张三",
+			"vipPhone": "13718515156",
+			"vipJoinDate": "2017-05-22",
+			"vipScore": "820",
+			"vipGrade": "银",
+			"vipDiscount": "8折"
+		},{
+			"vipID": "008",
+			"vipName": "张三",
+			"vipPhone": "13526468745",
+			"vipJoinDate": "1996-08-15",
+			"vipScore": "625",
+			"vipGrade": "铜",
+			"vipDiscount": "9折"
+		},{
+			"vipID": "009",
+			"vipName": "张三5",
+			"vipPhone": "13306547485",
+			"vipJoinDate": "2015-02-26",
+			"vipScore": "360",
+			"vipGrade": "铜",
+			"vipDiscount": "9折"
+		},{
+			"vipID": "010",
+			"vipName": "张三",
+			"vipPhone": "13626484565",
+			"vipJoinDate": "2013-06-18",
+			"vipScore": "366",
+			"vipGrade": "铜",
+			"vipDiscount": "9折"
+		},{
+			"vipID": "011",
+			"vipName": "张三",
+			"vipPhone": "13957896952",
+			"vipJoinDate": "2016-05-16",
+			"vipScore": "1930",
+			"vipGrade": "金",
+			"vipDiscount": "7折"
+		},{
+			"vipID": "012",
+			"vipName": "张三",
+			"vipPhone": "13885996325",
+			"vipJoinDate": "2011-09-23",
+			"vipScore": "452",
+			"vipGrade": "铜",
+			"vipDiscount": "9折"
+		},{
+			"vipID": "013",
+			"vipName": "张三",
+			"vipPhone": "13766515156",
+			"vipJoinDate": "1999-09-22",
+			"vipScore": "336",
+			"vipGrade": "铜",
+			"vipDiscount": "9折"
+		},{
+			"vipID": "014",
+			"vipName": "张三",
+			"vipPhone": "13526468845",
+			"vipJoinDate": "2014-08-15",
+			"vipScore": "365",
+			"vipGrade": "铜",
+			"vipDiscount": "9折"
+		},{
+			"vipID": "015",
+			"vipName": "张三",
+			"vipPhone": "13606547485",
+			"vipJoinDate": "2010-02-16",
+			"vipScore": "550",
+			"vipGrade": "铜",
+			"vipDiscount": "9折"
+		},{
+			"vipID": "016",
+			"vipName": "张三",
+			"vipPhone": "13726485565",
+			"vipJoinDate": "2014-06-28",
+			"vipScore": "766",
+			"vipGrade": "银",
+			"vipDiscount": "8折"
+		},{
+			"vipID": "017",
+			"vipName": "张三",
+			"vipPhone": "13857896852",
+			"vipJoinDate": "2010-04-16",
+			"vipScore": "1325",
+			"vipGrade": "金",
+			"vipDiscount": "7折"
+		},{
+			"vipID": "066",
+			"vipName": "张三",
+			"vipPhone": "13785296625",
+			"vipJoinDate": "2011-09-13",
+			"vipScore": "619",
+			"vipGrade": "铜",
+			"vipDiscount": "9折"
+		},{
+			"vipID": "077",
+			"vipName": "张三",
+			"vipPhone": "13518514156",
+			"vipJoinDate": "2017-05-12",
+			"vipScore": "720",
+			"vipGrade": "银",
+			"vipDiscount": "8折"
+		},{
+			"vipID": "088",
+			"vipName": "张三",
+			"vipPhone": "13426468545",
+			"vipJoinDate": "1998-08-15",
+			"vipScore": "625",
+			"vipGrade": "铜",
+			"vipDiscount": "9折"
+		},{
+			"vipID": "099",
+			"vipName": "张三",
+			"vipPhone": "13308547485",
+			"vipJoinDate": "2015-12-26",
+			"vipScore": "360",
+			"vipGrade": "铜",
+			"vipDiscount": "9折"
+		},{
+			"vipID": "106",
+			"vipName": "张三",
+			"vipPhone": "13926484565",
+			"vipJoinDate": "2013-06-28",
+			"vipScore": "366",
+			"vipGrade": "铜",
+			"vipDiscount": "9折"
+		},{
+			"vipID": "111",
+			"vipName": "张三",
+			"vipPhone": "13957896952",
+			"vipJoinDate": "2014-05-16",
+			"vipScore": "1230",
+			"vipGrade": "金",
+			"vipDiscount": "7折"
+		},{
+			"vipID": "212",
+			"vipName": "张三",
+			"vipPhone": "13785296325",
+			"vipJoinDate": "2011-04-23",
+			"vipScore": "462",
+			"vipGrade": "铜",
+			"vipDiscount": "9折"
+		} 
+	]
+}

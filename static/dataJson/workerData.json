@@ -1,0 +1,17 @@
+{
+	"worker":[
+		{ "rs_number": "1", "name": "王小虎", "rs_sex": "男","rs_id":"01", "rs_post":"经理","rs_limit":"高级"},
+		{"rs_number": "2", "name": "王虎","rs_sex": "男","rs_id":"02", "rs_post":"经理", "rs_limit":"高级"}, 
+		{ "rs_number": "3","name": "王小虎","rs_sex": "女","rs_id":"03", "rs_post":"店长","rs_limit":"中级"},
+		{"rs_number": "4","name": "王小虎","rs_sex": "男","rs_id":"04", "rs_post":"店长","rs_limit":"中级"},
+		{"rs_number": "5", "name": "王小虎", "rs_sex": "女","rs_id":"05", "rs_post":"收营员","rs_limit":"初级"}, 
+		{"rs_number": "6","name": "王小虎", "rs_sex": "女","rs_id":"06", "rs_post":"收银员","rs_limit":"初级"}, 
+		{ "rs_number": "7","name": "王小虎","rs_sex": "男","rs_id":"07", "rs_post":"收银员", "rs_limit":"初级"},
+		{"rs_number": "8","name": "王小虎","rs_sex": "女","rs_id":"08",  "rs_post":"收银员","rs_limit":"初级"}, 
+		{"rs_number": "9", "name": "王小虎","rs_sex": "女","rs_id":"09",  "rs_post":"服务员","rs_limit":"初级" },
+		{"rs_number": "10", "name": "王小虎", "rs_sex": "女","rs_id":"10", "rs_post":"服务员","rs_limit":"初级" },
+		{"rs_number": "11","name": "王小虎","rs_sex": "男","rs_id":"11", "rs_post":"服务员", "rs_limit":"初级"},
+		{"rs_number": "12","name": "王小虎","rs_sex": "男","rs_id":"12", "rs_post":"服务员", "rs_limit":"初级"}, 
+		{"rs_number": "13", "name": "王小虎","rs_sex": "女", "rs_id":"13", "rs_post":"保洁员", "rs_limit":"初级"} 
+	] 
+}

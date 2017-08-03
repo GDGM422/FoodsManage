@@ -10,7 +10,9 @@ import store from './store/index'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
 import './assets/css/cssreset.css'
+import './assets/css/goods.css'
 
+Vue.config.silent = true
 Vue.config.productionTip = false
 Vue.use(Vuex);
 Vue.use(ElementUI)

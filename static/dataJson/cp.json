@@ -1,0 +1,15 @@
+{
+	"cp":[
+		{ "cp_num":"1","cp_name": "虾饺","cp_type": "小吃","cp_price": "10"}, 
+		{ "cp_num":"2","cp_name": "虾饺","cp_type": "小吃","cp_price": "10"}, 
+		{ "cp_num":"3","cp_name": "虾饺","cp_type": "小吃","cp_price": "10"}, 
+		{ "cp_num":"4","cp_name": "虾饺","cp_type": "小吃","cp_price": "10"}, 
+		{ "cp_num":"5","cp_name": "虾饺","cp_type": "小吃","cp_price": "10"}, 
+		{ "cp_num":"6","cp_name": "凤爪","cp_type": "小吃","cp_price": "15"}, 
+		{ "cp_num":"7","cp_name": "凤爪","cp_type": "小吃","cp_price": "15"}, 
+		{ "cp_num":"8","cp_name": "凤爪","cp_type": "小吃","cp_price": "15"}, 
+		{ "cp_num":"9","cp_name": "凤爪","cp_type": "小吃","cp_price": "15"}, 
+		{ "cp_num":"10","cp_name": "凤爪","cp_type": "小吃","cp_price": "15"}
+		]
+}
+	

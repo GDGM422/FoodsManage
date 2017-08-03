@@ -3,6 +3,7 @@
 		<h1>系统说明</h1>
 		11111111111111111111111111111111111111
 		<div>用户信息:{{ personalInfo }}</div>
+		
 	</div>
 </template>
 
@@ -10,9 +11,12 @@
 import Vue from 'vue'
 import store from '../../store/index';
 export default {
+	
 	data() {
 		return{
-			personalInfo : store.state.user.userInfo
+			personalInfo : store.state.user.userInfo,
+			// title: '',  // 页面标题
+        	brumblist: '' // 路由集合
 		}
 	},
 
@@ -22,3 +26,7 @@ export default {
     } 
 }
 </script>
+
+<style>
+	
+</style>

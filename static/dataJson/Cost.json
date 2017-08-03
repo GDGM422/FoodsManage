@@ -1,0 +1,34 @@
+{
+	"staff":[
+		{"name":"许浩林","job":"店长","pay":"15000","overtime":"500","award":"300"},
+		{"name":"springs","job":"二厨师","pay":"5000","overtime":"500","award":"300"},
+		{"name":"xsprings","job":"大厨师","pay":"7500","overtime":"0","award":"700"},
+		{"name":"xspring","job":"小厨师","pay":"3500","overtime":"500","award":"300"},
+		{"name":"薛之谦","job":"保洁员","pay":"2500","overtime":"500","award":"100"},
+		{"name":"陈冠希","job":"前台","pay":"2000","overtime":"500","award":"300"},
+		{"name":"吴彦祖","job":"服务生","pay":"2500","overtime":"300","award":"100"},
+		{"name":"陈伟霆","job":"服务生","pay":"2500","overtime":"300","award":"100"},
+		{"name":"吴亦凡","job":"服务生","pay":"2500","overtime":"300","award":"100"},
+		{"name":"鹿晗","job":"服务生","pay":"2500","overtime":"300","award":"100"},
+		{"name":"王祖蓝","job":"服务生","pay":"2500","overtime":"300","award":"100"},
+		{"name":"权志龙","job":"保安","pay":"1500","overtime":"800","award":"500"}
+	],
+	"pay":[
+		{"thing":"水费","money":"500"},
+		{"thing":"电费","money":"1500"},
+		{"thing":"天然气","money":"800"},
+		{"thing":"房租","money":"8500"}
+	],
+	"kitchen":[
+		{"thing":"米","count":"50","price":"100","money":"5000"},
+		{"thing":"油","count":"30","price":"80","money":"2400"},
+		{"thing":"盐","count":"10","price":"2","money":"20"},
+		{"thing":"酱","count":"10","price":"10","money":"100"},
+		{"thing":"醋","count":"5","price":"5","money":"25"},
+		{"thing":"味精","count":"5","price":"20","money":"100"}
+	],
+	"other":[
+		{"thing":"装修","money":"20000"}
+
+	]
+}

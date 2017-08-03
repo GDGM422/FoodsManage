@@ -87,7 +87,7 @@
                 // }
                 setTimeout(() => {
                   this.fullscreenLoading = false;
-                  this.$router.push({ path: '/index/message' });
+                  this.$router.push({ path: '/index/readme' });
                 }, 3000);
           } else {
             console.log('error submit!!');

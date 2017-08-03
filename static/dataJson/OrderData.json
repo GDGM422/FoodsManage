@@ -1,0 +1,21 @@
+﻿{
+   "order":[
+   		{"id":"1132400001","buyname":"王小虎","buytel":"13078697877","orderdate":"2017-07-01","orderprice":"210","shiji":"123","goodsinfo":[{"goodsid":"1","count":"2"},
+			   {"goodsid":"2","count":"1"}]	
+		   },
+   		{"id":"1132400002","buyname":"王小虎","buytel":"13078697877","orderdate":"2017-07-02","orderprice":"220","shiji":"103","goodsinfo":[{"goodsid":"1","count":"2"},
+			   {"goodsid":"2","count":"1"}]	
+		   },
+   		{"id":"1132400003","buyname":"王小虎","buytel":"13078697877","orderdate":"2017-07-03","orderprice":"230","shiji":"120","goodsinfo":[{"goodsid":"1","count":"2"},
+			   {"goodsid":"2","count":"1"}]	
+		   },
+   		{"id":"1132400004","buyname":"王小虎","buytel":"13078697877","orderdate":"2017-07-04","orderprice":"240","shiji":"100","goodsinfo":[{"goodsid":"1","count":"2"},
+			   {"goodsid":"2","count":"1"}]	
+		   }
+   	],
+   "onegoodsinfo":[
+      {"id":"1132400001","goodsid":"1","count":"2"},{"id":"1132400001","goodsid":"2","count":"1"}
+   ]
+      
+	
+}
