@@ -375,7 +375,7 @@
 
     getData:function(){
     	let that = this;
-    	that.$http.get('../../static/Cost.json').then(
+    	that.$http.get('../../static/dataJson/Cost.json').then(
     	function(response){
     		console.log(response);
             // alert("请求成功！")
