@@ -1,4 +1,5 @@
 <template>
+<div>
 <el-collapse >
 	<el-collapse-item title="员工薪水" name="1">
 	    <el-table :data="form0.staff" >
@@ -56,7 +57,7 @@
 
 	          </el-table-column>
 
-			  <el-table-column align="center" label="金额" width="" prop="money">
+			  <el-table-column align="center" label="金额(元/月) " width="" prop="money">
 	            
 	          </el-table-column>
 				<el-table-column align="center"  label="操作" >
@@ -100,7 +101,7 @@
 			<el-table-column align="center" label="单价" width="" prop="price">    
 	        </el-table-column>
 			  
-			<el-table-column align="center" label="总额" width="" prop="money">   
+			<el-table-column align="center" label="总额" width=""> 
 	        </el-table-column>
 			<el-table-column align="center"  label="操作" >
 		        <template scope="kitchen">
@@ -180,7 +181,8 @@
       <p>总支出：{{ totalother }}</p>
 	</el-collapse-item>
 </el-collapse>
-<!-- <p>本月总支出：{{ total }}</p> -->
+<p>本月总支出：{{ totalstaff+totalpay+totalkitchen+totalother }}</p>
+</div>
 </template>
 <script>
   export default {
@@ -191,9 +193,7 @@
     		pay:[],
     		kitchen:[],
     		other:[]
-			},
-      	list:null,
-      	a:2,
+			}, 
       	
         activeNames: ['1'],
 
@@ -228,8 +228,19 @@
     },
     mounted:function(){
     	this.getData();
+        this.add1();
     },
     computed:{
+        totalstaff:function(){
+            let staff=0;
+            for(let i=0;i<this.form0.staff.length;i++){
+                let p=this.form0.staff[i].pay;
+                let p2=parseInt(p)
+                staff+=p2;
+                //console.log(this.form0.staff[i].pay)
+            } 
+            return staff
+        },
     	totalpay:function(){
     		let pay=0;
     		for(let i=0;i<this.form0.pay.length;i++){
@@ -240,16 +251,6 @@
     		} 
     		return pay
     	},
-    	totalstaff:function(){
-    		let staff=0;
-    		for(let i=0;i<this.form0.staff.length;i++){
-    			let p=this.form0.staff[i].pay;
-    			let p2=parseInt(p)
-    			staff+=p2;
-    			//console.log(this.form0.staff[i].pay)
-    		} 
-    		return staff
-    	},
         totalkitchen:function(){
             let kitchen=0;
             for(let i=0;i<this.form0.kitchen.length;i++){
@@ -259,6 +260,19 @@
                 //console.log(this.form0.staff[i].pay)
             } 
             return kitchen
+        },
+        add:function(){
+            // let sum=0;
+            for(let i=0;i<this.form0.kitchen.length;i++){
+                let c=this.form0.kitchen[i].count;
+                let p=this.form0.kitchen[i].price;
+                var s=this.form0.kitchen[i].money;
+                sum= c*p;
+                s=sum;
+                console.log(s)
+                alert(sum)
+            }
+            return sum
         },
         totalother:function(){
             let other=0;
@@ -361,7 +375,7 @@
 
     getData:function(){
     	let that = this;
-    	that.$http.get('../../static/dataJson/Cost.json').then(
+    	that.$http.get('../../static/Cost.json').then(
     	function(response){
     		console.log(response);
             // alert("请求成功！")
@@ -370,7 +384,8 @@
     	},function(response){
     		alert("请求失败")
     	})
-    }
+    },
+    
 
   }
   }
