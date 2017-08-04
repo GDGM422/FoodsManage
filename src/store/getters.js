@@ -7,6 +7,9 @@ const getters = {
 	// 员工信息
 	staffIn:state => {
 		return state.staff.staffManagment
+	},
+	personIn:state => {
+		return state.person.personInfo
 	}
 };
 export default getters

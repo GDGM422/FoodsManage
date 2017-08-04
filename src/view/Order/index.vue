@@ -18,32 +18,34 @@
 			<!-- :default-sort = "{prop: 'orderdate', order: 'descending'}" -->
 			<el-table :data="tableData1.order" border style="width: 100%" :default-sort = "{prop: 'id', order: 'descending'}" >
 			  		
-				    <el-table-column label="订单编号" prop="id" width="120" header-align="center">
+				    <el-table-column label="订单编号"  width="120" header-align="center">
 				    	<template scope="scope">
 				    	    <span>{{ scope.row.id }}</span>
 				    	</template>
 				    </el-table-column>
-					<el-table-column label="买家姓名" width="100" prop="buyname" header-align="center">
+
+					<el-table-column label="买家姓名" width="100"  header-align="center">
 						<template scope="scope">
 				    	    <span>{{ scope.row.buyname }}</span>
 				    	</template>
 					</el-table-column>
-					<el-table-column label="买家手机号" width="140" prop="buytel" header-align="center">
+
+					<el-table-column label="买家手机号" width="140"  header-align="center">
 						<template scope="scope">
 				    	    <span>{{ scope.row.buytel }}</span>
 				    	</template>
 					</el-table-column>
-					<el-table-column label="下单时间" width="160" prop="orderdate" sortable header-align="center">
+					<el-table-column label="下单时间" width="160"  sortable header-align="center">
 						<template scope="scope">
 				    	    <span>{{ scope.row.orderdate }}</span>
 				    	</template>
 					</el-table-column>
-				    <el-table-column label="订单总价" prop="orderprice"  sortable width="120" header-align="center">
+				    <el-table-column label="订单总价"  sortable width="120" header-align="center">
 				    	<template scope="scope">
 				    	    <span>{{ scope.row.orderprice }}</span>
 				    	</template>
 				    </el-table-column>
-				    <el-table-column label="实际支付" prop="shiji"  sortable width="120" header-align="center"> 
+				    <el-table-column label="实际支付"  sortable width="120" header-align="center"> 
 				    	<template scope="scope">
 				    	    <span>{{ scope.row.shiji }}</span>
 				    	</template>
@@ -110,7 +112,7 @@ export default {
 		this.getlistData();
 	},
 	methods: {
- 
+ 		//获取列表数据
 	    getlistData:function(){
 	    	let me = this;
 	    	this.$http.get('../../static/dataJson/OrderData.json').then(function(response){
@@ -137,9 +139,7 @@ export default {
 	    },
 	    //查看
 	    handleClick(index, row) {
-
 	    	this.dialogTableVisible=true;
-
 	    	this.detailsData = row;
 	        console.log(index, row);
 	    }

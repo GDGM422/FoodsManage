@@ -13,7 +13,7 @@
           </el-form-item>
          
           <el-form-item label="密码" prop="pass"  style="color:#fff;">
-            <el-input type="password" v-model="ruleForm.pass"></el-input>
+            <el-input type="password" v-model="ruleForm.pass" @keyup.enter.native="submitForm('ruleForm')"></el-input>
           </el-form-item>
           <el-form-item>
               <el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
