@@ -101,7 +101,10 @@
 			<el-table-column align="center" label="单价" width="" prop="price">    
 	        </el-table-column>
 			  
-			<el-table-column align="center" label="总额" width=""> 
+			<el-table-column align="center" label="总额" width="" >
+                <template scope="scope">
+                   {{ scope.row.count * scope.row.price}}
+                </template>
 	        </el-table-column>
 			<el-table-column align="center"  label="操作" >
 		        <template scope="kitchen">
@@ -123,10 +126,6 @@
 
 	            <el-form-item label="单价">
 	              <el-input v-model="form3.price"></el-input>
-	            </el-form-item>
-				
-				<el-form-item label="总额">
-	              <el-input v-model="form3.money"></el-input>
 	            </el-form-item>
 
 	          </el-form>
@@ -151,11 +150,30 @@
 	          </el-table-column>
 			<el-table-column align="center"  label="操作" >
 	                <template scope="other">
-	                   <el-button icon="edit" size="small" @click="handleEdit(other.$index, other.row)">编辑</el-button><!--  -->
+	                   <el-button icon="edit" size="small" @click="edit(other.$index,other.row)">编辑</el-button><!--  -->
 	                   <el-button icon="delete" size="small" type="danger" @click="Delete4(other.$index, other.row)">删除</el-button><!--  -->
 	                </template>
 	    	</el-table-column>
 	    </el-table> 
+            <el-dialog title="其他" :visible.sync="editVisible">
+              <el-form :model="form4" class="small-space" label-position="left" label-width="70px" style='width: 400px; margin-left:50px;'>
+
+                <el-form-item label="名称">
+                  <el-input v-model="edit4.editThing"></el-input><!-- v-model="roleTemp.roleName" -->
+                </el-form-item>
+                
+                <el-form-item label="金额">
+                  <el-input v-model="edit4.editMoney"></el-input>
+                </el-form-item>
+
+              </el-form>
+
+              <div slot="footer" class="dialog-footer">
+                <el-button @click="editVisible = false">取 消</el-button><!--  -->
+               
+                <el-button type="primary" @click="editCommit4">确 定</el-button>
+              </div>
+            </el-dialog>
 
 
 	  	    <el-dialog title="新增其他" :visible.sync="dialogFormVisible4">
@@ -224,11 +242,17 @@
           thing: '',
           money: ''
         },
+        editVisible:false,
+        edit4:{
+            editThing:'',
+            editMoney:''
+        },
+        index4:'',
       };
     },
     mounted:function(){
     	this.getData();
-        this.add1();
+        this.add;
     },
     computed:{
         totalstaff:function(){
@@ -253,26 +277,27 @@
     	},
         totalkitchen:function(){
             let kitchen=0;
+            let kitchenAll=0;
             for(let i=0;i<this.form0.kitchen.length;i++){
-                let k=this.form0.kitchen[i].money;
-                let k2=parseInt(k)
-                kitchen+=k2;
+                let k=this.form0.kitchen[i].count;
+                let k1=this.form0.kitchen[i].price;
+                /*let k2=parseInt(k)*/
+                kitchen=k*k1;
+                kitchenAll+=kitchen;
                 //console.log(this.form0.staff[i].pay)
             } 
-            return kitchen
+            return kitchenAll
         },
         add:function(){
-            // let sum=0;
+            let sum=0;
             for(let i=0;i<this.form0.kitchen.length;i++){
                 let c=this.form0.kitchen[i].count;
                 let p=this.form0.kitchen[i].price;
                 var s=this.form0.kitchen[i].money;
                 sum= c*p;
                 s=sum;
-                console.log(s)
-                alert(sum)
             }
-            return sum
+            return s
         },
         totalother:function(){
             let other=0;
@@ -287,104 +312,119 @@
     },
     methods:{
 
-    Submit1(){
-        var that = this;
-        console.log('新增入参：',that.form1)
+        Submit1(){
+            var that = this;
+            console.log('新增入参：',that.form1)
 
-        that.form0.staff.push(that.form1)
+            that.form0.staff.push(that.form1)
+            
+            console.log('新增后',that.form1)
+            
+            that.dialogFormVisible1 = false;
+            that.form1={
+            	name: '',
+              	job: '',
+              	pay: ''
+            }
+        },
         
-        console.log('新增后',that.form1)
-        
-        that.dialogFormVisible1 = false;
-        that.form1={
-        	name: '',
-          	job: '',
-          	pay: ''
-        }
-    },
-    Submit2(){
-        var that = this;
-        console.log('新增入参：',that.form2)
+        Submit2(){
+            var that = this;
+            console.log('新增入参：',that.form2)
 
-        that.form0.pay.push(that.form2)
-        console.log('新增后',that.form2)
-        
-        that.dialogFormVisible2 = false;
-        that.form2={
-        	thing: '',
-          	money: ''
-        }
-    },
-    Submit3(){
-        var that = this;
-        console.log('新增入参：',that.form3)
+            that.form0.pay.push(that.form2)
+            console.log('新增后',that.form2)
+            
+            that.dialogFormVisible2 = false;
+            that.form2={
+            	thing: '',
+              	money: ''
+            }
+        },
+        Submit3(){
+            var that = this;
+            console.log('新增入参：',that.form3)
 
-        that.form0.kitchen.push(that.form3)
-        console.log('新增后',that.form3)
-        
-        that.dialogFormVisible3 = false;
-        that.form3={
-        	thing: '',
-          	count: '',
-          	price: '',
-          	money: ''
-        }
-    },
-    Submit4(){
-        var that = this;
-        console.log('新增入参：',that.form4)
+            that.form0.kitchen.push(that.form3)
+            console.log('新增后',that.form3)
+            
+            that.dialogFormVisible3 = false;
+            that.form3={
+            	thing: '',
+              	count: '',
+              	price: '',
+              	money: ''
+            }
+        },
+        Submit4(){
+            var that = this;
+            console.log('新增入参：',that.form4)
 
-        that.form0.other.push(that.form4)
-        console.log('新增后',that.form4)
-        
-        that.dialogFormVisible4 = false;
-        that.form1={
-        	thing: '',
-          	money: ''
-        }
-    },
-    //删除
-    Delete1(index,row){
-        var that = this;
-        console.log('单个删除选择的row：',index,'-----',row);
-        //前端删除。
-        console.log()
-        that.form0.staff.splice(index,1)
-    },
-    Delete2(index,row){
-        var that = this;
-        console.log('单个删除选择的row：',index,'-----',row);
-        //前端删除。
-        console.log()
-        that.form0.pay.splice(index,1)
-    },
-    Delete3(index,row){
-        var that = this;
-        console.log('单个删除选择的row：',index,'-----',row);
-        //前端删除。
-        console.log()
-        that.form0.kitchen.splice(index,1)
-    },
-    Delete4(index,row){
-        var that = this;
-        console.log('单个删除选择的row：',index,'-----',row);
-        //前端删除。
-        console.log()
-        that.form0.other.splice(index,1)
-    },
-
-    getData:function(){
-    	let that = this;
-    	that.$http.get('../../static/dataJson/Cost.json').then(
-    	function(response){
-    		console.log(response);
-            // alert("请求成功！")
-    		console.log("json数据",response.data)
-    		that.form0 = response.data;
-    	},function(response){
-    		alert("请求失败")
-    	})
-    },
+            that.form0.other.push(that.form4)
+            console.log('新增后',that.form4)
+            
+            that.dialogFormVisible4 = false;
+            that.form1={
+            	thing: '',
+              	money: ''
+            }
+        },
+        //删除
+        Delete1(index,row){
+            var that = this;
+            console.log('单个删除选择的row：',index,'-----',row);
+            //前端删除。
+            console.log()
+            that.form0.staff.splice(index,1)
+        },
+        Delete2(index,row){
+            var that = this;
+            console.log('单个删除选择的row：',index,'-----',row);
+            //前端删除。
+            console.log()
+            that.form0.pay.splice(index,1)
+        },
+        Delete3(index,row){
+            var that = this;
+            console.log('单个删除选择的row：',index,'-----',row);
+            //前端删除。
+            console.log()
+            that.form0.kitchen.splice(index,1)
+        },
+        Delete4(index,row){
+            var that = this;
+            console.log('单个删除选择的row：',index,'-----',row);
+            //前端删除。
+            console.log()
+            that.form0.other.splice(index,1)
+        },
+        edit(index,row){
+            var that=this;
+            that.editVisible=true;
+           
+            that.edit4.editThing=row.thing;
+            that.edit4.editMoney=row.money;
+            //赋予下标
+            that.index4=index;
+            editThing=that.form0.other.thing;
+            console.log(editThing);
+            /*console.log('单个删除选择的row：',index,'-----',row);*/
+        },
+        editCommit4(){
+            
+        },
+        getData:function(){
+        	let that = this;
+        	that.$http.get('../../static/dataJson/Cost.json').then(
+        	function(response){
+        		console.log(response);
+                // alert("请求成功！")
+        		console.log("json数据",response.data)
+        		that.form0 = response.data;
+        	},function(response){
+        		alert("请求失败")
+        	})
+        },
     
 
   }
