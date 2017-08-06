@@ -7,10 +7,12 @@ import App from './App'
 import router from './router'
 import store from './store/index'
 
+
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
 import './assets/css/cssreset.css'
 import './assets/css/goods.css'
+import './assets/icon/iconfont.css'
 
 Vue.config.silent = true
 Vue.config.productionTip = false
