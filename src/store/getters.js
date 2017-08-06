@@ -13,6 +13,9 @@ const getters = {
 	},
 	goodsIn:state=>{
 		return state.goods.goodslist
+	},
+	vipIn:state => {
+		return state.vip.vipData
 	}
 };
 export default getters
