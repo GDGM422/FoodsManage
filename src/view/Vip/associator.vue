@@ -122,14 +122,18 @@
 			<el-button type="primary" @click="v_EditSubmit">修 改</el-button>
 		</div>
 	</el-dialog>
+	{{ OrderData }}
 </div>
 </template>
 
 <script>
+import store from '../../store/index';
+
 export default {
     data() {
     	return {
     		vipTableData:{ vipData:[] },
+			viplist:store.state.vip.vipData,
 			vcurrentPage: 1, 
 			searchV: "",
 			v_dialogFormVisible: false,
@@ -154,12 +158,14 @@ export default {
 				"vipGrade": "",
 				"vipDiscount": ""
 			},
-			editIndexV: ""
+			editIndexV: "",
+			OrderDataArray: []
     	}
     },
 	// 页面加载完后自动调用方法
 	mounted: function(){
 		this.getData();
+		this.getddData();
 	},
 	// 页面加载时加载
 	methods: {
@@ -168,6 +174,38 @@ export default {
 			let that = this;
 			this.$http.get('../../static/dataJson/vipData.json').then(function(response){
 				that.vipTableData = response.data
+				that.vipTableData.vipData = that.viplist
+			},function(response){
+				console.log("请求失败")
+			})
+		},
+		//获取 订单管理 数据的方法,再根据 订单数 跟新 积分数,之间用电话号码链接
+		getddData: function(){
+			let that = this;
+			this.$http.get('../../static/dataJson/OrderData.json').then(function(response){
+				that.OrderDataArray = response.data.order
+				for(let i=0 ; i < that.vipTableData.vipData.length ; i++){
+					let iVP = that.vipTableData.vipData[i].vipPhone;
+					for(let j=0 ; j < that.OrderDataArray.length ; j++){
+						let jOP = that.OrderDataArray[j].buytel;
+						if( iVP == jOP){
+							console.log("积分前",that.vipTableData.vipData[i].vipScore)
+							that.vipTableData.vipData[i].vipScore = parseInt(that.vipTableData.vipData[i].vipScore)+10
+							console.log("积分后",that.vipTableData.vipData[i].vipScore)
+						}
+					}
+					let vs = parseInt(that.vipTableData.vipData[i].vipScore);
+					if( vs<660 ){
+						that.vipTableData.vipData[i].vipGrade = "铜";
+						that.vipTableData.vipData[i].vipDiscount = "9折";
+					}else if( vs<1200 ){
+						that.vipTableData.vipData[i].vipGrade = "银";
+						that.vipTableData.vipData[i].vipDiscount = "8折";
+					}else{
+						that.vipTableData.vipData[i].vipGrade = "金";
+						that.vipTableData.vipData[i].vipDiscount = "7折";
+					}
+				}
 			},function(response){
 			})
 		},
@@ -238,13 +276,16 @@ export default {
 		vipEdit(index, row) {
 			this.v_dialogEdit = true;
 			// 获取点击行的数据显示到弹出框里
-			this.editV.vipID = row.vipID;
-			this.editV.vipName = row.vipName;
-			this.editV.vipPhone = row.vipPhone;
-			this.editV.vipJoinDate = row.vipJoinDate;
-			this.editV.vipScore = row.vipScore;
-			this.editV.vipGrade = row.vipGrade;
-			this.editV.vipDiscount = row.vipDiscount;
+				// 写法一
+				/*this.editV.vipID = row.vipID;
+				this.editV.vipName = row.vipName;
+				this.editV.vipPhone = row.vipPhone;
+				this.editV.vipJoinDate = row.vipJoinDate;
+				this.editV.vipScore = row.vipScore;
+				this.editV.vipGrade = row.vipGrade;
+				this.editV.vipDiscount = row.vipDiscount;*/
+				// 写法二：把对象转为字符串 再 转为对象，借此解决vue双向绑定问题
+				this.editV = JSON.parse(JSON.stringify(row))
 			// 赋予下标值
 			this.editIndexV = index;
 		},
