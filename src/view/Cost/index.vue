@@ -1,25 +1,25 @@
 <template>
 <div>
 <el-collapse >
-	<el-collapse-item title="员工薪水" name="1">
-	    <el-table :data="form0.staff" >
-	          <el-table-column align="center" label='员工姓名' width="100" prop="name">
-	          </el-table-column>
-			  <el-table-column align="center" label="职位" width="" prop="job">	            
-	          </el-table-column>
-	          <el-table-column align="center" label="基本工资/元" width="" prop="pay">	           
-	          </el-table-column>
-	          <el-table-column align="center" label="加班费/元/月" width="" prop="overtime"> 
-	          </el-table-column>
-	          <el-table-column align="center" label="奖励/元/月" width="" prop="award">	            
-	          </el-table-column>
-	            <el-table-column align="center"  label="操作" >
-	                <template scope="staff">
-	                   <el-button icon="edit" size="small" @click="editStaff(staff.$index, staff.row)">编辑</el-button><!--  -->
-	                   <el-button icon="delete" size="small" type="danger" @click="Delete1(staff.$index, staff.row)" >删除</el-button><!--  -->
-	                </template>
-	            </el-table-column>
-	    </el-table> 
+  <el-collapse-item title="员工薪水" name="1">
+      <el-table :data="form0.staff" >
+            <el-table-column align="center" label='员工姓名' width="100" prop="name">
+            </el-table-column>
+        <el-table-column align="center" label="职位" width="" prop="job">             
+            </el-table-column>
+            <el-table-column align="center" label="基本工资/元" width="" prop="pay">            
+            </el-table-column>
+            <el-table-column align="center" label="加班费/元/月" width="" prop="overtime"> 
+            </el-table-column>
+            <el-table-column align="center" label="奖励/元/月" width="" prop="award">             
+            </el-table-column>
+              <el-table-column align="center"  label="操作" >
+                  <template scope="staff">
+                     <el-button icon="edit" size="small" @click="editStaff(staff.$index, staff.row)" type="primary">编辑</el-button><!--  -->
+                     <el-button icon="delete" size="small" type="danger" @click="Delete1(staff.$index, staff.row)" >删除</el-button><!--  -->
+                  </template>
+              </el-table-column>
+      </el-table> 
             <!-- 编辑弹框============================================================================= -->
             <el-dialog title="编辑员工" :visible.sync="editVisible1">
               <el-form :model="form1" label-position="left" label-width="70px" style='width: 400px; margin-left:50px;'>
@@ -45,41 +45,41 @@
               </div>
             </el-dialog>
             <!-- 新增弹框=========================================================================== -->
-			<el-dialog title="新增员工" :visible.sync="dialogFormVisible1">
-			  <el-form :model="form1" label-position="left" label-width="70px" style='width: 400px; margin-left:50px;'>
-			    <el-form-item label="员工姓名" >
-			      <el-input v-model="form1.name" auto-complete="off"></el-input>
-			    </el-form-item>
-			    <el-form-item label="职位" >
-			      <el-input v-model="form1.job" ></el-input>
-			    </el-form-item>
-			    <el-form-item label="基本工资">
-	              <el-input v-model="form1.pay"></el-input>
-	            </el-form-item>
-			  </el-form>
+      <el-dialog title="新增员工" :visible.sync="dialogFormVisible1">
+        <el-form :model="form1" label-position="left" label-width="70px" style='width: 400px; margin-left:50px;'>
+          <el-form-item label="员工姓名" >
+            <el-input v-model="form1.name" auto-complete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="职位" >
+            <el-input v-model="form1.job" ></el-input>
+          </el-form-item>
+          <el-form-item label="基本工资">
+                <el-input v-model="form1.pay"></el-input>
+              </el-form-item>
+        </el-form>
 
-			  <div slot="footer" class="dialog-footer">
-			    <el-button @click="dialogFormVisible1 = false">取 消</el-button>
-			    <el-button type="primary" @click="Submit1">确 定</el-button>
-			  </div>
-			</el-dialog>
-		<el-button type="primary" icon="edit" @click="dialogFormVisible1 = true">新增员工</el-button>
-		<p>总支出：{{ totalstaff }}  </p>
-	</el-collapse-item>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="dialogFormVisible1 = false">取 消</el-button>
+          <el-button type="primary" @click="Submit1">确 定</el-button>
+        </div>
+      </el-dialog>
+      <el-button type="primary" icon="edit" @click="dialogFormVisible1 = true">新增员工</el-button>
+      <p>总支出：{{ totalstaff }}  </p>
+  </el-collapse-item>
 
-	<el-collapse-item title="各大支出" name="2">
-	    <el-table :data="form0.pay" >
-	          <el-table-column align="center" label='开销' width="100" prop="thing">
-	          </el-table-column>
-			  <el-table-column align="center" label="金额(元/月) " width="" prop="money">	            
-	          </el-table-column>
-				<el-table-column align="center"  label="操作" >
-		                <template scope="pay">
-		                   <el-button icon="edit" size="small" @click="editPay(pay.$index, pay.row)">编辑</el-button><!--  -->
-		                   <el-button icon="delete" size="small" type="danger" @click="Delete2(pay.$index, pay.row)">删除</el-button><!--  -->
-		                </template>
-		    	</el-table-column>
-	    </el-table> 
+  <el-collapse-item title="各大支出" name="2">
+      <el-table :data="form0.pay" >
+            <el-table-column align="center" label='开销' width="100" prop="thing">
+            </el-table-column>
+        <el-table-column align="center" label="金额(元/月) " width="" prop="money">             
+            </el-table-column>
+        <el-table-column align="center"  label="操作" >
+                    <template scope="pay">
+                       <el-button icon="edit" size="small" @click="editPay(pay.$index, pay.row)">编辑</el-button><!--  -->
+                       <el-button icon="delete" size="small" type="danger" @click="Delete2(pay.$index, pay.row)">删除</el-button><!--  -->
+                    </template>
+          </el-table-column>
+      </el-table> 
         <!-- 编辑弹框============================================================================ -->
         <el-dialog title="编辑支出"  :visible.sync="editVisible2">
               <el-form :model="form2" class="small-space" label-position="left" label-width="70px" style='width: 400px; margin-left:50px;'>
@@ -97,45 +97,45 @@
               </div>
         </el-dialog>
         <!-- 新增弹框============================================================================== -->
-	    <el-dialog title="新增支出"  :visible.sync="dialogFormVisible2">
-	          <el-form :model="form2" class="small-space" label-position="left" label-width="70px" style='width: 400px; margin-left:50px;'>
-	            <el-form-item label="开销">
-	              <el-input v-model="form2.thing"></el-input><!-- v-model="roleTemp.roleName" -->
-	            </el-form-item>
-	            <el-form-item label="金额">
-	              <el-input v-model="form2.money"></el-input>
-	            </el-form-item>
-	          </el-form>
+      <el-dialog title="新增支出"  :visible.sync="dialogFormVisible2">
+            <el-form :model="form2" class="small-space" label-position="left" label-width="70px" style='width: 400px; margin-left:50px;'>
+              <el-form-item label="开销">
+                <el-input v-model="form2.thing"></el-input><!-- v-model="roleTemp.roleName" -->
+              </el-form-item>
+              <el-form-item label="金额">
+                <el-input v-model="form2.money"></el-input>
+              </el-form-item>
+            </el-form>
 
-	          <div slot="footer" class="dialog-footer">
-	            <el-button @click="dialogFormVisible2 = false">取 消</el-button>	           
-	            <el-button type="primary" @click="Submit2">确 定</el-button>
-	          </div>
-	    </el-dialog>
-	  <el-button class="filter-item" type="primary" @click="dialogFormVisible2 = true" icon="edit" >新增支出</el-button>
-	  <p>总支出：{{ totalpay }}  </p>
-	</el-collapse-item>
+            <div slot="footer" class="dialog-footer">
+              <el-button @click="dialogFormVisible2 = false">取 消</el-button>             
+              <el-button type="primary" @click="Submit2">确 定</el-button>
+            </div>
+      </el-dialog>
+      <el-button class="filter-item" type="primary" @click="dialogFormVisible2 = true" icon="edit" >新增支出</el-button>
+      <p>总支出：{{ totalpay }}  </p>
+  </el-collapse-item>
 
-	<el-collapse-item title="厨房用品" name="3">
-	    <el-table :data="form0.kitchen" >
-	        <el-table-column align="center" label='用品' width="100" prop="thing">
-	        </el-table-column>
-			<el-table-column align="center" label="数量" width="" prop="count">   
-	        </el-table-column>
-			<el-table-column align="center" label="单价" width="" prop="price">    
-	        </el-table-column>
-			<el-table-column align="center" label="总额" width="" >
+  <el-collapse-item title="厨房用品" name="3">
+      <el-table :data="form0.kitchen" >
+          <el-table-column align="center" label='用品' width="100" prop="thing">
+          </el-table-column>
+      <el-table-column align="center" label="数量" width="" prop="count">   
+          </el-table-column>
+      <el-table-column align="center" label="单价" width="" prop="price">    
+          </el-table-column>
+      <el-table-column align="center" label="总额" width="" >
                 <template scope="scope">
                    {{ scope.row.count * scope.row.price}}
                 </template>
-	        </el-table-column>
-			<el-table-column align="center"  label="操作" >
-		        <template scope="kitchen">
-		            <el-button icon="edit" size="small" @click="editKitchen(kitchen.$index, kitchen.row)">编辑</el-button><!--  -->
-		            <el-button icon="delete" size="small" type="danger" @click="Delete3(kitchen.$index, kitchen.row)">删除</el-button><!--  -->
-		        </template>
-		    </el-table-column>
-	    </el-table> 
+          </el-table-column>
+      <el-table-column align="center"  label="操作" >
+            <template scope="kitchen">
+                <el-button icon="edit" size="small" @click="editKitchen(kitchen.$index, kitchen.row)">编辑</el-button><!--  -->
+                <el-button icon="delete" size="small" type="danger" @click="Delete3(kitchen.$index, kitchen.row)">删除</el-button><!--  -->
+            </template>
+        </el-table-column>
+      </el-table> 
         <!-- 编辑弹框============================================================================ -->
         <el-dialog title="编辑用品"  :visible.sync="editVisible3">
               <el-form :model="form3" class="small-space" label-position="left" label-width="70px" style='width: 400px; margin-left:50px;'>                
@@ -156,41 +156,41 @@
               </div>
         </el-dialog>
         <!-- 新增弹框==================================================================================== -->
-	    <el-dialog title="新增用品"  :visible.sync="dialogFormVisible3">
-	          <el-form :model="form3" class="small-space" label-position="left" label-width="70px" style='width: 400px; margin-left:50px;'>
-	            <el-form-item label="用品">
-	              <el-input v-model="form3.thing"></el-input><!--  -->
-	            </el-form-item>
-				<el-form-item label="数量">
-	              <el-input v-model="form3.count"></el-input>
-	            </el-form-item>
-	            <el-form-item label="单价">
-	              <el-input v-model="form3.price"></el-input>
-	            </el-form-item>
-	          </el-form>
+      <el-dialog title="新增用品"  :visible.sync="dialogFormVisible3">
+            <el-form :model="form3" class="small-space" label-position="left" label-width="70px" style='width: 400px; margin-left:50px;'>
+              <el-form-item label="用品">
+                <el-input v-model="form3.thing"></el-input><!--  -->
+              </el-form-item>
+        <el-form-item label="数量">
+                <el-input v-model="form3.count"></el-input>
+              </el-form-item>
+              <el-form-item label="单价">
+                <el-input v-model="form3.price"></el-input>
+              </el-form-item>
+            </el-form>
 
-	          <div slot="footer" class="dialog-footer">
-	            <el-button @click="dialogFormVisible3 = false">取 消</el-button><!--  -->
-	            <el-button type="primary" @click="Submit3">确 定</el-button>
-	          </div>
-	    </el-dialog>
-	  		<el-button class="filter-item" type="primary" @click="dialogFormVisible3 = true" icon="edit" >新增用品</el-button>
+            <div slot="footer" class="dialog-footer">
+              <el-button @click="dialogFormVisible3 = false">取 消</el-button><!--  -->
+              <el-button type="primary" @click="Submit3">确 定</el-button>
+            </div>
+      </el-dialog>
+        <el-button class="filter-item" type="primary" @click="dialogFormVisible3 = true" icon="edit" >新增用品</el-button>
             <p>总支出：{{ totalkitchen }}</p>
-	</el-collapse-item>
+  </el-collapse-item>
 
-	<el-collapse-item title="其他" name="4">
-		<el-table :data="form0.other" >
-	          <el-table-column align="center" label='其他' width="100" prop="thing">
-	          </el-table-column>			  
-			  <el-table-column align="center" label="金额" width="" prop="money">
-	          </el-table-column>
-			<el-table-column align="center"  label="操作" >
-	                <template scope="other">
-	                   <el-button icon="edit" size="small" @click="editOther(other.$index,other.row)">编辑</el-button><!--  -->
-	                   <el-button icon="delete" size="small" type="danger" @click="Delete4(other.$index, other.row)">删除</el-button><!--  -->
-	                </template>
-	    	</el-table-column>
-	    </el-table> 
+  <el-collapse-item title="其他" name="4">
+    <el-table :data="form0.other" >
+            <el-table-column align="center" label='其他' width="100" prop="thing">
+            </el-table-column>        
+        <el-table-column align="center" label="金额" width="" prop="money">
+            </el-table-column>
+      <el-table-column align="center"  label="操作" >
+                  <template scope="other">
+                     <el-button icon="edit" size="small" @click="editOther(other.$index,other.row)">编辑</el-button><!--  -->
+                     <el-button icon="delete" size="small" type="danger" @click="Delete4(other.$index, other.row)">删除</el-button><!--  -->
+                  </template>
+        </el-table-column>
+      </el-table> 
         <!--  编辑弹框====================================================================== -->
             <el-dialog title="其他" :visible.sync="editVisible4">
               <el-form :model="form4" class="small-space" label-position="left" label-width="70px" style='width: 400px; margin-left:50px;'>
@@ -208,24 +208,69 @@
               </div>
             </el-dialog>
             <!--  新增弹框====================================================================== -->
-	  	    <el-dialog title="新增其他" :visible.sync="dialogFormVisible4">
-	          <el-form :model="form4" class="small-space" label-position="left" label-width="70px" style='width: 400px; margin-left:50px;'>
-	            <el-form-item label="其他">
-	              <el-input v-model="form4.thing"></el-input><!-- v-model="roleTemp.roleName" -->
-	            </el-form-item>				
-				<el-form-item label="金额">
-	              <el-input v-model="form4.money"></el-input>
-	            </el-form-item>
-	          </el-form>
+          <el-dialog title="新增其他" :visible.sync="dialogFormVisible4">
+            <el-form :model="form4" class="small-space" label-position="left" label-width="70px" style='width: 400px; margin-left:50px;'>
+              <el-form-item label="其他">
+                <el-input v-model="form4.thing"></el-input><!-- v-model="roleTemp.roleName" -->
+              </el-form-item>       
+        <el-form-item label="金额">
+                <el-input v-model="form4.money"></el-input>
+              </el-form-item>
+            </el-form>
 
-	          <div slot="footer" class="dialog-footer">
-	            <el-button @click="dialogFormVisible4 = false">取 消</el-button><!--  -->	           
-	            <el-button type="primary" @click="Submit4">确 定</el-button>
-	          </div>
-	    </el-dialog>
-	  <el-button class="filter-item" type="primary" @click="dialogFormVisible4 = true"  icon="edit" >新增其他</el-button>
+            <div slot="footer" class="dialog-footer">
+              <el-button @click="dialogFormVisible4 = false">取 消</el-button><!--  -->            
+              <el-button type="primary" @click="Submit4">确 定</el-button>
+            </div>
+      </el-dialog>
+    <el-button class="filter-item" type="primary" @click="dialogFormVisible4 = true"  icon="edit" >新增其他</el-button>
       <p>总支出：{{ totalother }}</p>
-	</el-collapse-item>
+  </el-collapse-item>
+
+
+<!-- 测试区============================================================================================ -->
+
+  <!-- 把绑定都移到template中 -->
+  <el-collapse-item title="测试项" name="5">
+    <el-table :data="form0.other">  
+
+            <el-table-column align="center" label='其他' width="100" > <!-- prop="thing" -->
+
+            <!-- 这里开始是移除了prop而添加的templa================================== -->
+              <template scope="scope"> 
+                <span>{{scope.row.thing}}<i class="fs iconfont icon-accessory"></i></span>
+              </template> 
+            <!-- 结束============================ -->
+            </el-table-column>        
+            <el-table-column align="center" label="金额" width="" >
+
+            <!-- 这波操作只是添加了template============================== -->
+                <template scope="scope">
+                  <el-input v-show="scope.row.edit" size="small" v-model="scope.row.money"></el-input>
+                  <span v-show="!scope.row.edit">{{ scope.row.money }}</span>
+                </template>
+            <!-- 操作完毕============================== -->
+
+            </el-table-column>
+            <el-table-column align="center"  label="操作" >
+                
+                <!-- 删除了自己的编辑按钮，使用它写的====== -->
+                  <template scope="scope">
+                  <el-button v-show='!scope.row.edit' type="primary" v-on:click="scope.row.edit=true" size="small" icon="edit">编辑</el-button>
+                  <el-button v-show='scope.row.edit' type="success" @click="scope.row.edit=false" size="small" icon="check">完成</el-button>
+                <!-- 操作完毕============================== -->
+
+                     <el-button icon="delete" size="small" type="danger" @click="Delete4(other.$index, other.row)">删除</el-button><!--  -->
+                  </template>
+            </el-table-column>
+    </el-table> 
+        
+      
+    <el-button class="filter-item" type="primary" @click="dialogFormVisible4 = true"  icon="edit" >新增其他</el-button>
+      <p>总支出：{{ totalother }}</p>
+  </el-collapse-item>
+<!-- 测试区============================================================================================ -->
+
 </el-collapse>
                 <p>本月总支出：{{ totalstaff+totalpay+totalkitchen+totalother }}</p>
 </div>
@@ -511,3 +556,8 @@
   }
   }
 </script>
+<style>
+  .fs{
+    font-size: 18px;
+  }
+</style>
