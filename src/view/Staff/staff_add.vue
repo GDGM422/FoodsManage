@@ -3,7 +3,7 @@
 	<p>新增员工</p>
 	<el-form ref="form" :model="form" label-width="50px" style="text-align:left">
 	  <el-form-item label="姓名">
-	    <el-input v-model="form.name"></el-input>
+	    <el-input v-model="form.rs_name"></el-input>
 	  </el-form-item>
 	   <el-form-item label="性别">
 	    <el-radio-group v-model="form.rs_sex">
@@ -12,7 +12,7 @@
 	    </el-radio-group>
 	  </el-form-item>
 	  <el-form-item label="工号">
-	    <el-input v-model="form.rs_number"></el-input>
+	    <el-input v-model="form.rs_id"></el-input>
 	  </el-form-item>
 	  <el-form-item label="职位">
 	    <el-select v-model="form.rs_post" placeholder="请选择职位">
@@ -44,29 +44,25 @@
 <script>
   import store from '../../store/index';
      export default {
-     	name: 'staff_add',
 	    data() {
 	      return {
 	      	add:[],
-	        form: {
-	         rs_number: "", 
-		     name: "", 
+	        form: { 
+		     rs_name: "", 
 		     rs_sex: "",
 		     rs_id:"", 
 		     rs_post:"",
 		     rs_limit:"",
 		     rs_desc:""
 	        }
-
 	      }
 	    },
 	    methods: {
 	      onSubmit() {
-	      	var s=JSON.parse(JSON.stringify(this.form))
-	        console.log('submit!');
-	        this.add.push(s)
-	        store.dispatch('setstaff',this.add);
-	        // this.$store.commit('newstaff',this.form)  //将填入的值赋值给newstaff方法
+	      	var s=JSON.parse(JSON.stringify(this.form));
+	        this.add.push(s);
+	        store.dispatch('setstaff',this.add);//分发action
+	        store.dispatch('commitCost',this.add);
 	        this.$router.push({path:'/renshi/worker'})
 	      }
 	    }

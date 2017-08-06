@@ -16,6 +16,9 @@ const getters = {
 	},
 	vipIn:state => {
 		return state.vip.vipData
-	}
+	},
+	costIn:state=>{
+    	return state.staffCost.staffCostState
+    }
 };
 export default getters
