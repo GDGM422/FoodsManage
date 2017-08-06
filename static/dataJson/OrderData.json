@@ -1,21 +1,49 @@
 ﻿{
    "order":[
-   		{"id":"1132400001","buyname":"王小虎","buytel":"13078697877","orderdate":"2017-07-01","orderprice":"210","shiji":"123","goodsinfo":[{"goodsid":"1","count":"2"},
-			   {"goodsid":"2","count":"1"}]	
+   		{"id":"1100001","buyname":"王小虎","buytel":"13716515156","orderdate":"2017-07-01","orderprice":"210","shiji":"123","goodsinfo":[{"goodsid":"3","count":"2","goodsname":"","gPrice":"","sumprice":""},
+			   {"goodsid":"2","count":"1","goodsname":"","gPrice":"","sumprice":""}]	
 		   },
-   		{"id":"1132400002","buyname":"王小虎","buytel":"13078697877","orderdate":"2017-07-02","orderprice":"220","shiji":"103","goodsinfo":[{"goodsid":"1","count":"2"},
-			   {"goodsid":"2","count":"1"}]	
+   		{"id":"1100002","buyname":"王小虎","buytel":"13826468745","orderdate":"2017-07-02","orderprice":"220","shiji":"103","goodsinfo":[{"goodsid":"5","count":"2","goodsname":"","gPrice":"","sumprice":""},
+			   {"goodsid":"4","count":"1","goodsname":"","gPrice":"","sumprice":""}]	
 		   },
-   		{"id":"1132400003","buyname":"王小虎","buytel":"13078697877","orderdate":"2017-07-03","orderprice":"230","shiji":"120","goodsinfo":[{"goodsid":"1","count":"2"},
-			   {"goodsid":"2","count":"1"}]	
+   		{"id":"1100003","buyname":"王小虎","buytel":"13906547485","orderdate":"2017-07-03","orderprice":"230","shiji":"120","goodsinfo":[{"goodsid":"7","count":"2","goodsname":"","gPrice":"","sumprice":""},
+			   {"goodsid":"6","count":"1","goodsname":"","gPrice":"","sumprice":""}]	
 		   },
-   		{"id":"1132400004","buyname":"王小虎","buytel":"13078697877","orderdate":"2017-07-04","orderprice":"240","shiji":"100","goodsinfo":[{"goodsid":"1","count":"2"},
-			   {"goodsid":"2","count":"1"}]	
+   		{"id":"1100004","buyname":"王小虎","buytel":"13526484565","orderdate":"2017-07-04","orderprice":"240","shiji":"100","goodsinfo":[{"goodsid":"9","count":"2","goodsname":"","gPrice":"","sumprice":""},
+			   {"goodsid":"8","count":"1","goodsname":"","gPrice":"","sumprice":""}]	
+		   },
+		{"id":"1100005","buyname":"王小虎","buytel":"13357896952","orderdate":"2017-07-04","orderprice":"240","shiji":"100","goodsinfo":[{"goodsid":"1","count":"2","goodsname":"","gPrice":"","sumprice":""},
+			   {"goodsid":"10","count":"1","goodsname":"","gPrice":"","sumprice":""}]	
+		   },
+		{"id":"1100006","buyname":"王小虎","buytel":"13985296325","orderdate":"2017-07-04","orderprice":"240","shiji":"100","goodsinfo":[{"goodsid":"1","count":"2","goodsname":"","gPrice":"","sumprice":""},
+			   {"goodsid":"2","count":"1","goodsname":"","gPrice":"","sumprice":""}]	
+		   },
+		{"id":"1100007","buyname":"王小虎","buytel":"13718515156","orderdate":"2017-07-04","orderprice":"240","shiji":"100","goodsinfo":[{"goodsid":"3","count":"2","goodsname":"","gPrice":"","sumprice":""},
+			   {"goodsid":"4","count":"1","goodsname":"","gPrice":"","sumprice":""}]	
+		   },
+		{"id":"1100008","buyname":"王小虎","buytel":"13526468745","orderdate":"2017-07-04","orderprice":"240","shiji":"100","goodsinfo":[{"goodsid":"5","count":"2","goodsname":"","gPrice":"","sumprice":""},
+			   {"goodsid":"6","count":"1","goodsname":"","gPrice":"","sumprice":""}]	
+		   },
+		{"id":"1100009","buyname":"王小虎","buytel":"13306547485","orderdate":"2017-07-04","orderprice":"240","shiji":"100","goodsinfo":[{"goodsid":"7","count":"2","goodsname":"","gPrice":"","sumprice":""},
+			   {"goodsid":"8","count":"1","goodsname":"","gPrice":"","sumprice":""}]	
+		   },
+		{"id":"1100010","buyname":"王小虎","buytel":"13626484565","orderdate":"2017-07-04","orderprice":"240","shiji":"100","goodsinfo":[{"goodsid":"9","count":"2","goodsname":"","gPrice":"","sumprice":""},
+			   {"goodsid":"10","count":"1","goodsname":"","gPrice":"","sumprice":""}]	
+		   },
+		{"id":"1100011","buyname":"王小虎","buytel":"13716515156","orderdate":"2017-07-01","orderprice":"210","shiji":"123","goodsinfo":[{"goodsid":"1","count":"2","goodsname":"","gPrice":"","sumprice":""},
+			   {"goodsid":"2","count":"1","goodsname":"","gPrice":"","sumprice":""}]	
+		   },
+   		{"id":"1100012","buyname":"王小虎","buytel":"13826468745","orderdate":"2017-07-02","orderprice":"220","shiji":"103","goodsinfo":[{"goodsid":"3","count":"2","goodsname":"","gPrice":"","sumprice":""},
+			   {"goodsid":"4","count":"1","goodsname":"","gPrice":"","sumprice":""}]	
+		   },
+   		{"id":"1100013","buyname":"王小虎","buytel":"13906547485","orderdate":"2017-07-03","orderprice":"230","shiji":"120","goodsinfo":[{"goodsid":"5","count":"2","goodsname":"","gPrice":"","sumprice":""},
+			   {"goodsid":"6","count":"1","goodsname":"","gPrice":"","sumprice":""}]	
+		   },
+   		{"id":"1100014","buyname":"王小虎","buytel":"13526484565","orderdate":"2017-07-04","orderprice":"240","shiji":"100","goodsinfo":[{"goodsid":"7","count":"2","goodsname":"","gPrice":"","sumprice":""},
+			   {"goodsid":"8","count":"1","goodsname":"","gPrice":"","sumprice":""}]	
 		   }
-   	],
-   "onegoodsinfo":[
-      {"id":"1132400001","goodsid":"1","count":"2"},{"id":"1132400001","goodsid":"2","count":"1"}
-   ]
+
+   	]
       
 	
 }

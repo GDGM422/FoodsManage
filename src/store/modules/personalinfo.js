@@ -1,8 +1,8 @@
 /*
 * @Author: admin
 * @Date:   2017-08-04 10:26:18
-* @Last Modified by:   admin
-* @Last Modified time: 2017-08-04 10:28:18
+* @Last Modified by:   lenovo
+* @Last Modified time: 2017-08-05 14:13:17
 */
 
 'use strict';
@@ -24,14 +24,14 @@ const person = {
       //newUserInfo是触发SET_USERINFO方法时的入参
       SET_PERSONINFO: (state, newPersonInfo) => {
         state.personInfo = newPersonInfo;
-        console.log('新信息为:',state.personInfo)
+        console.log('个人新信息为:',state.personInfo)
       },
     },
     //Action 通过 store.dispatch 方法触发
     actions: {
       //newUserInfo为自己的传参
       setPersonInfo({ dispatch,commit, state},newPersonInfo){
-        console.log('入参：',newPersonInfo)
+        console.log('个人信息入参：',newPersonInfo)
         commit('SET_PERSONINFO',newPersonInfo)
       }
     } 

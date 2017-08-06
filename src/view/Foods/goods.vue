@@ -30,8 +30,7 @@
 			          <template scope="scope">
 			            <el-button
 			              size="small"
-			              @click="handleEdit(scope.$index, scope.row)"
-			              v-if="$index!=nowEditCol">编辑</el-button>
+			              @click="handleEdit(scope.$index, scope.row)" >编辑</el-button>
 			            <el-button
 			              size="small"
 			              type="danger"
@@ -43,18 +42,18 @@
 
 		<!-- 添加菜品 -->
 		<el-dialog title="添加菜品" :visible.sync="dialogFormVisible">
-		    <el-form :model="formCP">
+		    <el-form :model="formAdd">
 		    	<el-form-item label="菜品编号" :label-width="formLabelWidth">
-			      	<el-input v-model="formCP.cp_num" auto-complete="off" ></el-input>
+			      	<el-input v-model="formAdd.cp_num" auto-complete="off" ></el-input>
 			    </el-form-item>
 			    <el-form-item label="菜品名称" :label-width="formLabelWidth">
-			      	<el-input v-model="formCP.cp_name" auto-complete="off" ></el-input>
+			      	<el-input v-model="formAdd.cp_name" auto-complete="off" ></el-input>
 			    </el-form-item>
 			    <el-form-item label="菜品类别" :label-width="formLabelWidth">
-			      	<el-input v-model="formCP.cp_type" auto-complete="off" ></el-input>
+			      	<el-input v-model="formAdd.cp_type" auto-complete="off" ></el-input>
 			    </el-form-item>
 			    <el-form-item label="菜品单价" :label-width="formLabelWidth">
-			      	<el-input v-model="formCP.cp_price" auto-complete="off" ></el-input>
+			      	<el-input v-model="formAdd.cp_price" auto-complete="off" ></el-input>
 			    </el-form-item>		    
 		  	</el-form>
 		    <div slot="footer" class="dialog-footer">
@@ -63,76 +62,113 @@
 		  </div>
 		</el-dialog>
 
+		<!-- 编辑菜品 -->
+		<el-dialog title="编辑菜品" :visible.sync="dialogEditVisible">
+		    <el-form :model="formEdit">
+		    	<el-form-item label="菜品编号" :label-width="formLabelWidth">
+			      	<el-input v-model="formEdit.cp_num" auto-complete="off" ></el-input>
+			    </el-form-item>
+			    <el-form-item label="菜品名称" :label-width="formLabelWidth">
+			      	<el-input v-model="formEdit.cp_name" auto-complete="off" ></el-input>
+			    </el-form-item>
+			    <el-form-item label="菜品类别" :label-width="formLabelWidth">
+			      	<el-input v-model="formEdit.cp_type" auto-complete="off" ></el-input>
+			    </el-form-item>
+			    <el-form-item label="菜品单价" :label-width="formLabelWidth">
+			      	<el-input v-model="formEdit.cp_price" auto-complete="off" ></el-input>
+			    </el-form-item>		    
+		  	</el-form>
+		    <div slot="footer" class="dialog-footer">
+			    <el-button @click="dialogEditVisible = false">取 消</el-button>
+			    <el-button type="primary" @click="editCP" :loading="addLoading">确 定</el-button>
+		  </div>
+		</el-dialog>
 		
 
 	</div>
 </template>
 
 <script>
+import store from '../../store/index'
 	export default {
 	    data() {
 	    	return {
 	      		input: '',
-	      		nowEditCol:-1,//当前编辑的行 
-	      		isActive: false,
-            	selected: -1, 
 		      	tableData3:{
 		      		cp:[]   //调用json数据
 		      	},
 		      	multipleSelection: [],
 		            dialogFormVisible: false, //添加对话框的显示状态
 		            addLoading: false,
+		            dialogEditVisible:false,
 		            editLoading:false,
-		            formCP: {	
+		            editSelected:-1,
+		            formAdd: {	
+		            	cp_num:'',	
+		                cp_name: '',
+		                cp_type: '',
+		                cp_price: ''
+		            },
+		            formEdit: {	
 		            	cp_num:'',	
 		                cp_name: '',
 		                cp_type: '',
 		                cp_price: ''
 		            },
 		            formLabelWidth: '80px',
+		        	xiugailist:store.state.goods.goodslist
 		            
 	    	}
 	  	},
 	  	mounted:function(){
 	  		this.getData();
+	  		
 	  	},
 	  	methods: {
-	        handleSelectionChange(val) {
-	          this.multipleSelection = val;
-	        },
-	        handleEdit(index, row) {
-	          console.log(index, row);
-	        },
-	        handleDelete(index, row) {
-	          console.log(index, row);
-	        },
 	        getData:function(){
 	            let _this=this;
 	            this.$http.get('../../static/dataJson/cp.json').then(function(response){
 	                _this.tableData3=response.data;
+	                this.tableData3.cp=this.xiugailist
+	                // store.dispatch('setGoods',_this.tableData3);
 	            },function(response){
 	            	alert("出现错误！")
 	            });
 	        },
-	        //添加事件
 	        addCP(){
 	        	let this_add=this;
-	        	this_add.tableData3.cp.push(this_add.formCP);
-	        	this_add.dialogFormVisible=false
+	        	this_add.tableData3.cp.push(this_add.formAdd);
+	        	this_add.dialogFormVisible=false;
+	        	store.dispatch('setGoods',this_add.tableData3.cp);
+
 	        },
-	        //删除事件
 	        handleDelete($index){
 	        	let this_del=this;
 	        	this_del.tableData3.cp.splice($index,1);
+	        	store.dispatch('setGoods',this_del.tableData3.cp);
 	        },
-	        //编辑事件
-	        /*editCP(){
+	        handleEdit($index){
 	        	let this_edit=this;
-	        	this_edit.formCP=this_edit.tableData3.cp[$index];
-	        }*/
+	        	this_edit.dialogEditVisible=true;//弹框是否显示
+	        	console.log('弹框显示', this_edit.dialogEditVisible)	
+
+	        	this_edit.editSelected=$index;//修改数据的位置
+	        	console.log('修改数据的位置',this_edit.editSelected)
+
+	        	this_edit.formEdit=JSON.parse(JSON.stringify(this_edit.tableData3.cp[$index]));//传值
+	        	console.log('this_edit.formEdit',this_edit.formEdit);
+	        	  	    	
+	        },
+	        editCP(){
+	        	let this_edit=this;
+	        	//数据保存到index位置上
+	        	// this_edit.tableData3.cp.$set(this_edit.tableData3.cp,this_edit.editSelected,this_edit.formEdit);//data,key,value
+	        	this_edit.tableData3.cp.splice(this_edit.editSelected, 1, this_edit.formEdit)
+	        	this_edit.dialogEditVisible = false;
+	        	store.dispatch('setGoods',this_edit.tableData3.cp);
+	        }
+	        	
 	        
-
-
 	    }
 	}
 </script>

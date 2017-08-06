@@ -12,14 +12,14 @@ const user = {
       //newUserInfo是触发SET_USERINFO方法时的入参
       SET_USERINFO: (state, newUserInfo) => {
         state.userInfo = newUserInfo;
-        console.log('新信息为:',state.userInfo)
+        console.log('用户信息为:',state.userInfo)
       },
     },
     //Action 通过 store.dispatch 方法触发
     actions: {
       //newUserInfo为自己的传参
       setUserInfo({ dispatch,commit, state},newUserInfo){
-        console.log('入参：',newUserInfo)
+        console.log('用户数据入参：',newUserInfo)
         commit('SET_USERINFO',newUserInfo)
       }
     } 

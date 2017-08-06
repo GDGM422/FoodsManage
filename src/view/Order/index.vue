@@ -15,37 +15,36 @@
   		</div> 
 
 		<div class="dd_table">
-			<!-- :default-sort = "{prop: 'orderdate', order: 'descending'}" -->
 			<el-table :data="tableData1.order" border style="width: 100%" :default-sort = "{prop: 'id', order: 'descending'}" >
 			  		
-				    <el-table-column label="订单编号"  width="120" header-align="center">
+				    <el-table-column label="订单编号"  width="140" header-align="center">
 				    	<template scope="scope">
 				    	    <span>{{ scope.row.id }}</span>
 				    	</template>
 				    </el-table-column>
 
-					<el-table-column label="买家姓名" width="100"  header-align="center">
+					<el-table-column label="买家姓名" width="120"  header-align="center">
 						<template scope="scope">
 				    	    <span>{{ scope.row.buyname }}</span>
 				    	</template>
 					</el-table-column>
 
-					<el-table-column label="买家手机号" width="140"  header-align="center">
+					<el-table-column label="买家手机号" width="180"  header-align="center">
 						<template scope="scope">
 				    	    <span>{{ scope.row.buytel }}</span>
 				    	</template>
 					</el-table-column>
-					<el-table-column label="下单时间" width="160"  sortable header-align="center">
+					<el-table-column label="下单时间" prop="orderdate" width="160"  sortable header-align="center">
 						<template scope="scope">
 				    	    <span>{{ scope.row.orderdate }}</span>
 				    	</template>
 					</el-table-column>
-				    <el-table-column label="订单总价"  sortable width="120" header-align="center">
+				    <el-table-column label="订单总价"  sortable width="140" prop="orderprice" header-align="center">
 				    	<template scope="scope">
 				    	    <span>{{ scope.row.orderprice }}</span>
 				    	</template>
 				    </el-table-column>
-				    <el-table-column label="实际支付"  sortable width="120" header-align="center"> 
+				    <el-table-column label="实际支付"  sortable width="140" prop="shiji"  header-align="center"> 
 				    	<template scope="scope">
 				    	    <span>{{ scope.row.shiji }}</span>
 				    	</template>
@@ -68,10 +67,10 @@
 			<span></span>
 			  <el-table border :data="detailsData.goodsinfo" >
 					<el-table-column property="goodsid" label="商品编号" width="100" header-align="center"></el-table-column>
-					<el-table-column property="count" label="商品名称" width="150" header-align="center"></el-table-column>
+					<el-table-column property="goodsname" label="商品名称" width="150" header-align="center"></el-table-column>
 					<el-table-column property="count" label="数量" width="100" header-align="center"></el-table-column>
-				    <el-table-column property="id" width="120" label="商品单价" header-align="center"></el-table-column>
-				    <el-table-column  property="id" label="商品总价" header-align="center"></el-table-column>
+				    <el-table-column property="gPrice" width="120" label="商品单价" header-align="center"></el-table-column>
+				    <el-table-column  property="sumprice" label="商品总价" header-align="center"></el-table-column>
 			  </el-table>
 		</el-dialog>
 				
@@ -84,13 +83,15 @@
 			      </el-pagination>
 		    </div>
 		</div>
-
+		{{goodslist}}
 		
 	
 	</div>
 </template>
 <script>
+import store from '../../store/index'
 export default {
+	name: 'index',
 	data() {
 		return {
 			ddlistQuery:{
@@ -104,8 +105,10 @@ export default {
    				goodsinfo:[]
    			},
    			dialogTableVisible: false,
-   			detailsData: {goodsinfo :[]}
-   			
+   			detailsData: {
+   				goodsinfo :[]
+   			},
+   			goodslist:store.state.goods.goodslist
 	    }	
 	},
 	mounted:function(){
@@ -142,7 +145,23 @@ export default {
 	    	this.dialogTableVisible=true;
 	    	this.detailsData = row;
 	        console.log(index, row);
-	    }
+	        // let that=this;
+	        for(let i=0;i<this.detailsData.goodsinfo.length;i++){
+	        	let iDD=this.detailsData.goodsinfo;
+	        	let jGoods=this.goodslist;
+	        	for(let j=0;j<jGoods.length;j++){
+	        		if(jGoods[j].cp_num==iDD[i].goodsid){
+	        			iDD[i].goodsname = jGoods[j].cp_name
+	        			
+	        			iDD[i].gPrice = jGoods[j].cp_price
+	        			
+	        			iDD[i].sumprice=iDD[i].gPrice * iDD[i].count;
+	        			console.log("1",iDD[i].sumprice)
+	        		}
+	        	}
+	        }
+	    },
+	    
 	   
 	}
 }
@@ -163,8 +182,9 @@ export default {
 		margin: 20px 0 20px 10px;
 	}
 	.dd_table{
-		width: 90%;
+		width: 98%;
 		text-align: center;
+		margin: auto;
 	}
 	.dd_page{
 		margin-top: 20px;

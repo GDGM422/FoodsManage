@@ -155,6 +155,7 @@
 <script>
 /*import Datepicker from 'vue-bulma-datepicker'*/
 export default {
+	name:'stock',
   	data() {
     	return {
       		input_stock_name: '',

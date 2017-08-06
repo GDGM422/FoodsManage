@@ -57,7 +57,7 @@
       return {
        
         ruleForm: {
-          username: '',
+          username:store.state.user.userInfo.username ,
           pass: ''
         },
         fullscreenLoading: false,
@@ -90,7 +90,8 @@
                   this.$router.push({ path: '/index/readme' });
                 }, 3000);
           } else {
-            console.log('error submit!!');
+            // this.$message.error('登录失败!用户名或密码错误!');
+            console.log('登录失败!用户名或密码错误!!');
             return false;
           }
         });
