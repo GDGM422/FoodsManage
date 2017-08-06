@@ -33,6 +33,7 @@
 <script>
   import store from '../../store/index';
 	export default {
+		name: 'worker',
 	    data() {
 	      return {
 	        tableData3:{
@@ -66,7 +67,7 @@
          	  for(let i=0;i<arr.length;i++){
          	  	staff.tableData3.worker.push(arr[i])
          	  }
-
+         	  // store.dispatch("",staff.tableData3.worker)
 	   			
          	  
          	},function(response){

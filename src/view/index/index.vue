@@ -51,9 +51,6 @@
 			                  <router-link to="/stock/stock"><el-menu-item index="6-1">查看库存</el-menu-item></router-link>	
 			                  <router-link to="/stock/operatingStock"><el-menu-item index="6-2">操作库存</el-menu-item></router-link>	
 			            </el-submenu>
-			           <!--  <router-link to="/index">
-			            	<el-menu-item index="6"><i class="el-icon-menu"></i>库存管理</el-menu-item>
-			            </router-link> -->
 
 		              	<router-link to="/Cost/index">
 		              		<el-menu-item index="7"><i class="el-icon-date"></i>成本管理</el-menu-item>
@@ -65,12 +62,8 @@
 		    </div>
 		 	<div class="right">
 		 		<div class="crumbs">
-			 		<el-breadcrumb separator="/">
-				 		<el-breadcrumb-item v-for="(item,index) in brumblist" :key="index">
-					 		  	<router-link :to="item.path">{{item.meta.breadcrumbName}}</router-link>
-					        	<router-link class="separator" v-if="index !== brumblist.length-1">{{separator}}</router-link>
-				 		</el-breadcrumb-item>
-			 		</el-breadcrumb>
+		 			<lv></lv>
+			 		
 		 		</div>
 		 		<router-view></router-view>
 		 	</div>
@@ -80,15 +73,16 @@
 </template>
 <script>
 import store from '../../store/index';
+import lv from './levelbar.vue'
 	export default {
 		name: 'index',
-		created() {
-	        this.getBreadcrumb()
-	    },
+		components:{
+			lv
+		},
+		
 		data() {
 			return{
-				personalInfo : store.state.user.userInfo,
-				brumblist: '' // 路由集合
+				personalInfo : store.state.user.userInfo
 			}
 		},
 
@@ -99,21 +93,7 @@ import store from '../../store/index';
 	    methods:{
 	    	editlogin:function(){
 	    		this.$router.push({ path: '/' });
-	    	},
-	    	getBreadcrumb () {
-	    	    this.brumblist = this.$route.matched;
-	    	    this.$route.matched.forEach((item, index) => {
-	    	      // 判断父级路由是否为空字符串或者meta是否为首页,直接复写路径到根目录
-	    	      // 后面的就是判断路由和当前遍历的项目是否一致,是的话把标题的值给上
-	    	      item.meta.breadcrumbName === '首页' ? item.path = '/index/readme' : this.$route.path === item.path ? this.title = item.meta.breadcrumbName : '';
-	    	    })
-	    	}
-	    },
-		props: ['separator'], 
-	    watch: {
-	        $route () {
-	            this.getBreadcrumb();
-	        }
+	    	}	
 	    }
 	}
 </script>

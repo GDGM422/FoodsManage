@@ -277,6 +277,7 @@
 </template>
 <script>
   export default {
+    name: 'index',
     data() {
       return {
         //从json获取数据

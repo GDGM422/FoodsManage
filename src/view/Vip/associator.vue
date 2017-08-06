@@ -3,9 +3,9 @@
 	<!-- 查询 -->
 	<div>
 		<div class="btn_plsc">
-			<el-input placeholder="请输入 名称/手机号" style="width: 200px;" icon="edit" v-model="search">
+			<el-input placeholder="请输入 名称/手机号" style="width: 200px;" icon="edit" v-model="searchV">
 			</el-input>
-			<el-button type="primary" icon="search">搜索</el-button>
+			<el-button type="primary" icon="search" @click="vipSearch">搜索</el-button>
 		</div>
 		<el-button type="primary" class="page" icon="plus" @click="vipCreate">添加</el-button>
 	</div>
@@ -47,23 +47,27 @@
 		<el-button type="warning" class="btn_plsc" icon="circle-cross">批量删除</el-button>
 		<!-- 页码数 -->
 		<div class="page">
-			<el-pagination @size-change="vipSizeChange" @current-change="vipCurrentChange"
-			:current-page.sync="vcurrentPage" :page-size="12"
-			layout="total, prev, pager, next, jumper" :total="400">
+			<el-pagination @current-change="vipCurrentChange"
+			 :page-size="8" :current-page.sync="vcurrentPage"
+			layout="total, prev, pager, next, jumper" :total="vipTableData.vipData.length">
 			</el-pagination>
+			<!-- https://segmentfault.com/q/1010000010284670 -->
 		</div>
 	</div>
 	<!-- 添加会员弹窗 -->
-	<el-dialog :visible.sync="v_dialogFormVisible" title="添加会员" custom-class="addvip">
+	<el-dialog :visible.sync="v_dialogFormVisible" title="添加会员" custom-class="addvip" @close="v_dialogClose">
 		<el-form :model="addnewV" label-width="83px">
 			<el-form-item label="会员编号：">
 				<el-input v-model="addnewV.vipID" style="width: 220px"></el-input>
+				<el-alert title="请输入数字" type="error" v-show="showEroll_v1" class="showE" @close="v_erollClose"></el-alert>
 			</el-form-item>
 			<el-form-item label="会员姓名：">
 				<el-input v-model="addnewV.vipName" style="width: 220px"></el-input>
 			</el-form-item>
 			<el-form-item label="手机号码：">
 				<el-input v-model="addnewV.vipPhone" style="width: 220px"></el-input>
+				<el-alert title="请输入数字" type="error" v-show="showEroll_v1" class="showE" @close="v_erollClose"></el-alert>
+				<el-alert title="请输入11位数字" type="error" v-show="showEroll_v2" class="showE" @close="v_erollClose"></el-alert>
 			</el-form-item>
 			<el-form-item label="注册时间：">
 				<el-date-picker type="date" placeholder="选择注册时间" v-model="addnewV.vipJoinDate"  style="width: 220px">
@@ -84,6 +88,40 @@
 			<el-button type="primary"  @click="v_CreateSubmit">提 交</el-button>
 		</div>
 	</el-dialog>
+	<!-- 编辑会员弹窗 -->
+	<el-dialog :visible.sync="v_dialogEdit" title="修改会员信息" custom-class="addvip">
+		<el-form :model="editV" label-width="83px">
+			<el-form-item label="会员编号：">
+				<el-input v-model="editV.vipID" style="width: 220px"></el-input>
+				<el-alert title="请输入数字" type="error" v-show="showEroll_v1" class="showE" @close="v_erollClose"></el-alert>
+			</el-form-item>
+			<el-form-item label="会员姓名：">
+				<el-input v-model="editV.vipName" style="width: 220px"></el-input>
+			</el-form-item>
+			<el-form-item label="手机号码：">
+				<el-input v-model="editV.vipPhone" style="width: 220px"></el-input>
+				<el-alert title="请输入数字" type="error" v-show="showEroll_v1" class="showE" @close="v_erollClose"></el-alert>
+				<el-alert title="请输入11位数字" type="error" v-show="showEroll_v2" class="showE" @close="v_erollClose"></el-alert>
+			</el-form-item>
+			<el-form-item label="注册时间：">
+				<el-date-picker type="date" placeholder="选择注册时间" v-model="editV.vipJoinDate"  style="width: 220px">
+				</el-date-picker>
+			</el-form-item>
+			<el-form-item label="初始积分：">
+				<el-input v-model="editV.vipScore" style="width: 220px"></el-input>
+			</el-form-item>
+			<el-form-item label="等级：">
+				<el-input v-model="editV.vipGrade" style="width: 220px"></el-input>
+			</el-form-item>
+			<el-form-item label="折扣：">
+				<el-input v-model="editV.vipDiscount" style="width: 220px"></el-input>
+			</el-form-item>
+		</el-form>
+		<div slot="footer" class="dialog-footer">
+			<el-button @click="v_dialogEdit = false">取 消</el-button>
+			<el-button type="primary" @click="v_EditSubmit">修 改</el-button>
+		</div>
+	</el-dialog>
 </div>
 </template>
 
@@ -93,7 +131,7 @@ export default {
     	return {
     		vipTableData:{ vipData:[] },
 			vcurrentPage: 1, 
-			search: "",
+			searchV: "",
 			v_dialogFormVisible: false,
 			addnewV: {
 				"vipID": "",
@@ -103,7 +141,20 @@ export default {
 				"vipScore": "330",
 				"vipGrade": "铜",
 				"vipDiscount": "9折"
-			}
+			},
+			showEroll_v1: false,
+			showEroll_v2: false,
+			v_dialogEdit: false,
+			editV: {
+				"vipID": "",
+				"vipName": "",
+				"vipPhone": "",
+				"vipJoinDate": "",
+				"vipScore": "",
+				"vipGrade": "",
+				"vipDiscount": ""
+			},
+			editIndexV: ""
     	}
     },
 	// 页面加载完后自动调用方法
@@ -116,7 +167,6 @@ export default {
 		getData: function(){
 			let that = this;
 			this.$http.get('../../static/dataJson/vipData.json').then(function(response){
-				console.log(response.data)
 				that.vipTableData = response.data
 			},function(response){
 			})
@@ -125,23 +175,14 @@ export default {
 		vipfilterTag(value, row) {
 			return row.vipGrade === value;
 		},
-		// 分页-pageSize 改变时触发
-		vipSizeChange(val) {
-			console.log(`每页 ${val} 条`);
-		},
 		// 分页-currentPage 改变时触发
 		vipCurrentChange(val) {
 			console.log(`当前页: ${val}`);
 		},
 		// 单个删除
 		viphandleDelete(index, row) {
-			// console.log(index, row);
 			// 前端删除
 			this.vipTableData.vipData.splice(index,1)
-		},
-		// 跳转编辑
-		vipEdit(index, row) {
-			console.log(index, row);
 		},
 		//新增
 	    vipCreate() {
@@ -149,12 +190,93 @@ export default {
 	    },
 	    //新增提交
 	    v_CreateSubmit(){
-	        var vm = this;
-	        console.log('新增会员：' , vm.addnewV , vm.vipTableData.vipData)
-	        vm.vipTableData.vipData.push(vm.addnewV)
-	        console.log('新增后',vm.vipTableData.vipData)
-	        this.v_dialogFormVisible = false;
-	    }	
+	        let vm = this;
+	        // 修改日期格式
+	        let oldDate = vm.addnewV.vipJoinDate;
+	        let year = new Date(oldDate).getFullYear();
+	        let month = new Date(oldDate).getMonth()+1;
+	        let day = new Date(oldDate).getDate();
+	        if (month < 10) { month = "0" + month};
+	        if (day < 10) { day = "0" + day};
+	        vm.addnewV.vipJoinDate = year + "-" + month + "-" + day;
+
+	        // 检测会员编号和手机号码需为数字
+	        let re = /^[0-9]+.?[0-9]*$/; //正则表达式判断字符串是否为数字
+	        let id = vm.addnewV.vipID;
+	        let phone = vm.addnewV.vipPhone;
+	        if ( !re.test(id) || !re.test(phone) ) {
+	        	vm.showEroll_v1 = true;
+	        }else if( phone.length != 11) {
+	        	vm.showEroll_v2 = true;
+	        }else{
+	        	//console.log('新增会员：' , vm.addnewV , vm.vipTableData.vipData)
+		        vm.vipTableData.vipData.push(vm.addnewV)
+		        //console.log('新增会员后',vm.vipTableData.vipData)
+
+				// 成功提交后关闭弹出框
+		        this.v_dialogFormVisible = false;
+	        }
+	    },
+	    // 关闭 错误信息提示框 时触发
+	    v_erollClose(){
+	    	this.showEroll_v1 = false
+			this.showEroll_v2 = false
+	    },
+	    // 关闭 新增会员弹出框 时触发：再次打开清零
+	    v_dialogClose(){
+	    	this.addnewV = {
+				"vipID": "",
+				"vipName": "",
+				"vipPhone": "",
+				"vipJoinDate": "",
+				"vipScore": "330",
+				"vipGrade": "铜",
+				"vipDiscount": "9折"
+			};
+	    },
+		// 跳转编辑修改
+		vipEdit(index, row) {
+			this.v_dialogEdit = true;
+			// 获取点击行的数据显示到弹出框里
+			this.editV.vipID = row.vipID;
+			this.editV.vipName = row.vipName;
+			this.editV.vipPhone = row.vipPhone;
+			this.editV.vipJoinDate = row.vipJoinDate;
+			this.editV.vipScore = row.vipScore;
+			this.editV.vipGrade = row.vipGrade;
+			this.editV.vipDiscount = row.vipDiscount;
+			// 赋予下标值
+			this.editIndexV = index;
+		},
+		// 点击 编辑框内修改按钮 触发
+		v_EditSubmit(){
+			// 定义获取下标值
+			let idx = this.editIndexV;
+			// 修改日期格式
+	        let oldDate = this.editV.vipJoinDate;
+	        let year = new Date(oldDate).getFullYear();
+	        let month = new Date(oldDate).getMonth()+1;
+	        let day = new Date(oldDate).getDate();
+	        if (month < 10) { month = "0" + month};
+	        if (day < 10) { day = "0" + day};
+	        this.editV.vipJoinDate = year + "-" + month + "-" + day;
+			// 根据下标值替换
+			this.vipTableData.vipData.splice(idx,1,this.editV);
+			this.v_dialogEdit = false;
+			this.editV = {
+				"vipID": "",
+				"vipName": "",
+				"vipPhone": "",
+				"vipJoinDate": "",
+				"vipScore": "",
+				"vipGrade": "",
+				"vipDiscount": ""
+			}
+		},
+		// 点击搜索按钮触发
+		vipSearch(){
+			console.log(this.searchV)
+		}
 	}
 }
 </script>
@@ -175,5 +297,9 @@ export default {
 		width: 420px;
 		padding: 35px;
 		border-radius: 6px;
+	}
+	.showE{
+		width: 228px;
+		line-height: 12px;
 	}
 </style>

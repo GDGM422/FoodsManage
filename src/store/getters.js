@@ -10,6 +10,9 @@ const getters = {
 	},
 	personIn:state => {
 		return state.person.personInfo
+	},
+	goodsIn:state=>{
+		return state.goods.goodslist
 	}
 };
 export default getters

@@ -44,6 +44,7 @@
 <script>
   import store from '../../store/index';
      export default {
+     	name: 'staff_add',
 	    data() {
 	      return {
 	      	add:[],
