@@ -76,7 +76,7 @@
 	        padding:20px;
 	        margin: auto;
 	    }
-	  .rs_addfooter{text-align: center}
+	.rs_addfooter{text-align: center}
    p{
    	font-size: 20px;
    	font-weight:bold;
