@@ -1,0 +1,311 @@
+<script>
+  import store from '../../store/index'
+  import t from './test'
+  import other from './other'
+  import kitchen from './kitchen'
+  import pay from './pay'
+  import staff from './staff'
+  export default {
+    name: 'index',
+    components:{
+        t,
+        other,
+        kitchen,
+        pay,
+        staff
+    },
+    data() {
+      return {
+        //从json获取数据
+      	form0:{ 
+        		staff:[],
+        		pay:[],
+        		kitchen:[],
+        		other:[],
+            test:[]  
+			 },
+      CostList:store.state.staffCost.staffCostState,
+      storecostlist:store.state.cost.costlist,
+        //折叠属性       	
+        activeNames: ['1'],
+        //新增弹框条件
+
+        dialogFormVisible2: false,
+        //第二行
+        form2: {
+          thing: '',
+          money: ''
+        },
+        dialogFormVisible3: false,
+        //第三行
+        form3: {
+          thing: '',
+          count: '',
+          price: '',
+          money: ''
+        },
+        dialogFormVisible4: false,
+        //第四行
+        form4: {
+          thing: '',
+          money: ''
+        },
+        //测试弹框
+        dialogFormVisible5: false,
+        form5: {
+          thing: '',
+          money: ''
+        },
+        //用来存储修改后的数据
+        edit1:{},
+        edit2:{},
+        edit3:{},
+        edit4:{},
+        //获取编辑下标
+        editIndex1:'',
+        editIndex2:'',
+        editIndex3:'',
+        editIndex4:'',
+        editIndex5:'',
+        //编辑input
+        inputTest:{
+          money:""
+        }
+      };
+    },
+    
+    mounted:function(){
+    	this.getData();
+        this.add;
+       
+    },
+    computed:{
+        //计算员工工资
+        totalstaff:function(){
+            let staff=0;
+            for(let i=0;i<this.form0.staff.length;i++){
+                let p=this.form0.staff[i].pay;
+                let p2=parseInt(p)
+                staff+=p2;
+                //console.log(this.form0.staff[i].pay)
+            } 
+            return staff
+        },
+        //计算支出金额
+      	totalpay:function(){
+      		let pay=0;
+      		for(let i=0;i<this.form0.pay.length;i++){
+      			let m=this.form0.pay[i].money;
+      			let m2=parseInt(m)
+      			pay+=m2;
+      			//console.log(this.form0.pay[i].money)
+      		} 
+      		return pay
+      	},
+        //计算厨房用品金额
+        totalkitchen:function(){
+            let kitchen=0;
+            let kitchenAll=0;
+            for(let i=0;i<this.form0.kitchen.length;i++){
+                let k=this.form0.kitchen[i].count;
+                let k1=this.form0.kitchen[i].price;
+                /*let k2=parseInt(k)*/
+                kitchen=k*k1;
+                kitchenAll+=kitchen;
+                //console.log(this.form0.staff[i].pay)
+            } 
+            return kitchenAll
+        },
+        //计算厨房用品单价*数量
+        add:function(){
+            let sum=0;
+            for(let i=0;i<this.form0.kitchen.length;i++){
+                let c=this.form0.kitchen[i].count;
+                let p=this.form0.kitchen[i].price;
+                var s=this.form0.kitchen[i].money;
+                sum= c*p;
+                s=sum;
+            }
+            return s
+        },
+        //计算其他金额
+        totalother:function(){
+            let other=0;
+            for(let i=0;i<this.form0.other.length;i++){
+                let o=this.form0.other[i].money;
+                let o2=parseInt(o)
+                other+=o2;
+                //console.log(this.form0.staff[i].pay)
+            } 
+            return other
+        },
+        totaltest:function(){
+            let test=0;
+            for(let i=0;i<this.form0.test.length;i++){
+                let t=this.form0.test[i].money;
+                let t2=parseInt(t)
+                test+=t2;
+                //console.log(this.form0.staff[i].pay)
+            } 
+            return test
+        },
+    },
+    methods:{
+  
+        //第二行的新增      
+        Submit2(){
+            var that = this;
+            console.log('新增入参：',that.form2)
+            that.form0.pay.push(that.form2)
+            console.log('新增后',that.form2)            
+            that.dialogFormVisible2 = false;
+            that.form2={
+            	thing: '',
+              	money: ''
+            }
+        },
+        //第三行的新增
+        Submit3(){
+            var that = this;
+            console.log('新增入参：',that.form3)
+            that.form0.kitchen.push(that.form3)
+            console.log('新增后',that.form3)            
+            that.dialogFormVisible3 = false;
+            that.form3={
+            	thing: '',
+              	count: '',
+              	price: '',
+              	money: ''
+            }
+        },
+        //第四行的新增
+        Submit4(){
+            var that = this;
+            console.log('新增入参：',that.form4)
+            that.form0.other.push(that.form4)
+            console.log('新增后',that.form4)             
+            that.dialogFormVisible4 = false;
+            that.form4={
+            	thing: '',
+              	money: ''
+            }
+        },
+        //测试新增
+        Submit5(){
+            var that = this;
+            console.log('新增入参：',that.form5)
+            that.form0.test.push(that.form5)
+            console.log('新增后',that.form5)             
+            that.dialogFormVisible5 = false;
+            that.form5={
+              thing: '',
+                money: ''
+            }
+        },
+        //删除，数字代表第几行
+        Delete1(index,row){
+            var that = this;
+            console.log('单个删除选择的row：',index,'-----',row);
+            //前端删除。
+            console.log()
+            that.form0.staff.splice(index,1)
+        },
+        Delete2(index,row){
+            var that = this;
+            console.log('单个删除选择的row：',index,'-----',row);
+            //前端删除。
+            console.log()
+            that.form0.pay.splice(index,1)
+        },
+        Delete3(index,row){
+            var that = this;
+            console.log('单个删除选择的row：',index,'-----',row);
+            //前端删除。
+            console.log()
+            that.form0.kitchen.splice(index,1)
+        },
+        Delete4(index,row){
+            var that = this;
+            console.log('单个删除选择的row：',index,'-----',row);
+            //前端删除。
+            console.log()
+            that.form0.other.splice(index,1)
+        },
+        //测试删除
+        Delete5(index,row){
+            var that = this;
+            console.log('单个删除选择的row：',index,'-----',row);
+            //前端删除。
+            console.log()
+            that.form0.test.splice(index,1)
+        },
+        //编辑员工
+        editStaff(index){
+          this.editIndex1=index;
+
+        },
+        //编辑支出
+        editPay(index){
+          this.editIndex2=index;
+        },
+        //编辑厨房
+        editKitchen(index){
+          this.editIndex3=index;
+        },
+        //编辑其他
+        editOther(index){
+          this.editIndex4=index;
+        },
+        //编辑测试
+        editTest(index,row){
+          this.editIndex5=index;
+          this.inputTest=JSON.parse(JSON.stringify(row))
+          console.log(this.inputTest)
+        },
+        // 编辑测试完成
+        finshTest(index){
+          this.editIndex5=null
+          this.form0.test[index].money=this.inputTest.money
+          console.log(this.form0.test[index].money)
+        },
+        
+        
+        //重置
+        reset(){
+          
+        },
+        //获取json
+        getData:function(){
+        	let that = this;
+        	that.$http.get('../../static/dataJson/Cost.json').then(
+        	function(response){
+        		console.log(response);
+                // alert("请求成功！")
+        		console.log("json数据",response.data)
+        		that.form0 = response.data;
+            this.form0 =this.storecostlist
+            //根据工号获取人事管理的数据
+            for(let i=0;i<this.form0.staff.length;i++){
+                let Cid=this.form0.staff[i].id;
+                //console.log("cid===",Cid)
+                for(let j=0;j<this.CostList.length;j++){
+                  let Sid=this.CostList[j].rs_id
+                  if(Cid==Sid){
+                    this.form0.staff[i].name=this.CostList[j].rs_name
+                    this.form0.staff[i].job=this.CostList[j].rs_post
+                    this.form0.staff[i].pay=this.CostList[j].rs_price
+                    // console.log("name===",this.form0.staff[i].name)
+                    // console.log("job===",this.form0.staff[i].job)
+                    // console.log("pay===",this.form0.staff[i].pay)
+                  }
+                }
+            }
+            
+            
+        	},function(response){
+        		alert("请求失败")
+        	})
+        },    
+  }
+  }
+</script>

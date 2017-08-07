@@ -6,6 +6,7 @@
 	        餐饮后台管理系统
 	      </div>
 	      <div class="content-right">
+	      	<el-button type="text" @click="dialogVisible = true">切换主题</el-button>
 	      	<i class="fa fa-user-o" aria-hidden="true" style="font-size:25px"></i>
 	      	<span v-if="">
 	      		{{ personalInfo.username}}
@@ -18,7 +19,7 @@
 		  <div class="nav">               
 		       <el-row class="tac">
 		        <el-col :span="26">
-		            <el-menu default-active="2" class="el-menu-vertical-demo"  theme="dark">
+		            <el-menu default-active="2" class="el-menu-vertical-demo"  theme="dark" style="position:fixed;top:50px; bottom: 0px;left:0;right: 0;width:200px;">
 		            	<router-link to="/index/message">
 		            		<el-menu-item index="1"><i class="fa fa-home" aria-hidden="true" style="font-size:20px;margin-right: 5px; "></i>首页</el-menu-item>
 		            	</router-link>
@@ -68,11 +69,31 @@
 		 		<router-view></router-view>
 		 	</div>
 		</div>
+
+
+		<!-- 换肤弹窗 -->
+		<el-dialog title="更改主题颜色" :visible.sync="dialogVisible" >
+		      <el-form class="small-space" label-position="left" label-width="130px" style='width: 400px; margin-left:50px;'>		     
+		        <el-form-item label="请选择主题颜色：" prop="resource">
+		           <el-radio-group v-model="themeValue">
+		                <el-radio label="blue">蓝色</el-radio>
+		                <el-radio label="green">绿色</el-radio>
+		                <el-radio label="orange">橙色</el-radio>
+		           </el-radio-group>
+		         </el-form-item>	       
+		      </el-form>
+
+		      <div slot="footer" class="dialog-footer">
+		        <el-button @click="dialogVisible = false">取 消</el-button>		       
+		        <el-button type="primary" @click="handleChangeTheme">确 定</el-button>
+		      </div>
+		</el-dialog>
 	</div>
 	
 </template>
 <script>
 import store from '../../store/index';
+import {global} from '../../global/global';
 import lv from './levelbar.vue'
 	export default {
 		name: 'index',
@@ -82,7 +103,9 @@ import lv from './levelbar.vue'
 		
 		data() {
 			return{
-				personalInfo : store.state.user.userInfo
+				personalInfo : store.state.user.userInfo,
+				dialogVisible :false,//切换主题显示
+				themeValue: localStorage.getItem("themeValue") ? localStorage.getItem("themeValue") : 'blue'
 			}
 		},
 
@@ -93,6 +116,13 @@ import lv from './levelbar.vue'
 	    methods:{
 	    	editlogin:function(){
 	    		this.$router.push({ path: '/' });
+	    	},
+	    	//换肤
+	    	handleChangeTheme(){
+	    	    var vm = this;
+	    	    global.changeTheme(vm.themeValue);
+
+	    	    this.dialogVisible = false;
 	    	}	
 	    }
 	}
@@ -125,15 +155,16 @@ import lv from './levelbar.vue'
 		margin-top: 10px;
 		margin-right: 50px;
 	}
-	.nav{
+	/* .nav{
 	  position:fixed;
 	  top:50px;
 	  bottom: 10px;
 	  left:0;
 	  right: 0;
 	  width:200px;
-	  background-color: #324157;
-	}
+	} */
+	  /* background-color: #324157; */
+
 
 	.right{
 	  position:absolute;

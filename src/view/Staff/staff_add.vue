@@ -34,7 +34,7 @@
 	    <el-input type="textarea" v-model="form.rs_desc"></el-input>
 	  </el-form-item>
 
-	  <el-form-item>
+	  <el-form-item class="rs_addfooter">
 	    <el-button type="primary" @click="onSubmit">立即创建</el-button>
 	    <el-button>取消</el-button>
 	  </el-form-item>
@@ -76,9 +76,7 @@
 	        padding:20px;
 	        margin: auto;
 	    }
-	  .el-button--primary {
-   		  margin-left: 70px;
-   }
+	.rs_addfooter{text-align: center}
    p{
    	font-size: 20px;
    	font-weight:bold;

@@ -19,6 +19,9 @@ const getters = {
 	},
 	costIn:state=>{
     	return state.staffCost.staffCostState
+    },
+    costlistIn :state=>{
+    	return state.cost.costlist
     }
 };
 export default getters

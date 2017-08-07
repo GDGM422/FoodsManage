@@ -55,7 +55,7 @@
 		</div>
 	</div>
 	<!-- 添加会员弹窗 -->
-	<el-dialog :visible.sync="v_dialogFormVisible" title="添加会员" custom-class="addvip" @close="v_dialogClose">
+	<el-dialog :visible.sync="v_dialogFormVisible" title="添加会员" size="622px" @close="v_dialogClose">
 		<el-form :model="addnewV" label-width="83px">
 			<el-form-item label="会员编号：">
 				<el-input v-model="addnewV.vipID" style="width: 220px"></el-input>
@@ -89,7 +89,7 @@
 		</div>
 	</el-dialog>
 	<!-- 编辑会员弹窗 -->
-	<el-dialog :visible.sync="v_dialogEdit" title="修改会员信息" custom-class="addvip">
+	<el-dialog :visible.sync="v_dialogEdit" title="修改会员信息" size="622px">
 		<el-form :model="editV" label-width="83px">
 			<el-form-item label="会员编号：">
 				<el-input v-model="editV.vipID" style="width: 220px"></el-input>
@@ -117,7 +117,7 @@
 				<el-input v-model="editV.vipDiscount" style="width: 220px"></el-input>
 			</el-form-item>
 		</el-form>
-		<div slot="footer" class="dialog-footer">
+		<div slot="footer" class="v_dialogEditXG">
 			<el-button @click="v_dialogEdit = false">取 消</el-button>
 			<el-button type="primary" @click="v_EditSubmit">修 改</el-button>
 		</div>
@@ -276,7 +276,7 @@ export default {
 		vipEdit(index, row) {
 			this.v_dialogEdit = true;
 			// 获取点击行的数据显示到弹出框里
-				// 写法一
+				// 写法一：浅拷贝
 				/*this.editV.vipID = row.vipID;
 				this.editV.vipName = row.vipName;
 				this.editV.vipPhone = row.vipPhone;
@@ -284,7 +284,9 @@ export default {
 				this.editV.vipScore = row.vipScore;
 				this.editV.vipGrade = row.vipGrade;
 				this.editV.vipDiscount = row.vipDiscount;*/
-				// 写法二：把对象转为字符串 再 转为对象，借此解决vue双向绑定问题
+				// 写法二：浅拷贝
+				/*this.editV = row*/
+				// 写法三：把对象转为字符串 再 转为对象，借此解决vue双向绑定问题
 				this.editV = JSON.parse(JSON.stringify(row))
 			// 赋予下标值
 			this.editIndexV = index;
@@ -334,13 +336,12 @@ export default {
 		float: right;
 		margin: 12px 36px;
 	}
-	.addvip{
-		width: 420px;
-		padding: 35px;
-		border-radius: 6px;
-	}
+	
 	.showE{
 		width: 228px;
 		line-height: 12px;
+	}
+	.v_dialogEditXG{
+		text-align: center;
 	}
 </style>
