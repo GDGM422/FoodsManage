@@ -11,12 +11,13 @@
 		<div class="stock_content">
 			<el-table
 			    ref="multipleTable"
+			    class="tb-edit"
 			    :data="stockData1.stockData"
 			    border
 			    tooltip-effect="dark"
 			    style="width: 100%"
 			     :default-sort = "{prop: 'operatingTime', order: 'descending',prop: 'stockNum',order:'ascending'}"
-			    @selection-change="handleSelectionChange">
+			      highlight-current-row>
 			    <el-table-column
 			      type="selection"
 			      width="55">
@@ -25,7 +26,8 @@
 			      label="库存编号"
 			      sortable prop="stockNum"
 			      width="120"
-			      header-align="center">
+			      header-align="center"
+			      >
 			      <template scope="scope">{{ scope.row.stockNum }}</template>
 			    </el-table-column>
 			    <el-table-column
@@ -34,28 +36,41 @@
 			      sortable
 			      width="120"
 			      header-align="center">
-			      <template scope="scope">{{ scope.row.stockType }}</template>
+			      <template scope="scope">
+			       <el-input size="small" v-model="scope.row.stockType" placeholder="请输入内容"></el-input>
+			      <span>{{ scope.row.stockType }}</span>
+			      </template>
 			    </el-table-column>
 			    <el-table-column
 			      prop="stockName"
 			      label="货物名称"
 			      width="120"
 			      header-align="center">
-			      <template scope="scope">{{ scope.row.stockName }}</template>
+			      <template scope="scope">
+			       <el-input size="small" v-model="scope.row.stockName" placeholder="请输入内容"></el-input>
+			      <span>{{ scope.row.stockName }}</span>
+			      </template>
 			    </el-table-column>
 			    <el-table-column
 			      prop="Poh"
 			      label="现有库存量"
 			      width="120"
 			      header-align="center">
-			      <template scope="scope">{{ scope.row.Poh }}</template>
+			      <template scope="scope">
+			      <el-input size="small" v-model="scope.row.Poh" placeholder="请输入内容"></el-input>
+			      <span>{{ scope.row.Poh }}</span>
+			      </template>
 			    </el-table-column>
 				<el-table-column
 			      prop="unit"
 			      label="单位"
 			      width="120"
 			      header-align="center">
-			      <template scope="scope">{{ scope.row.unit }}</template>
+			      <template scope="scope">
+			      <el-input size="small" v-model="scope.row.Poh" placeholder="请输入内容"></el-input>
+			      
+			      <span>{{ scope.row.unit }}</span>
+			      </template>
 			    </el-table-column>
 			    <el-table-column
 			      label="操作时间"
@@ -63,8 +78,8 @@
 			      sortable prop="operatingTime"
 			      header-align="center">
 			        <template scope="scope">
-	        			<el-icon name="time"></el-icon>
-	        			<span style="margin-left: 10px">{{ scope.row.operatingTime }}</span>
+			        <el-input size="small" v-model="scope.row.operatingTime" placeholder="请输入内容"></el-input>	        			
+	        		<span style="margin-left: 10px"><el-icon name="time"></el-icon>{{ scope.row.operatingTime }}</span>
 	        	    </template>
 			    </el-table-column>
 			    <el-table-column
@@ -72,28 +87,31 @@
 			      label="操作人"		      
 			      width="120"
 			      header-align="center">
-			      <template scope="scope">{{ scope.row.operator }}</template>
+			      <template scope="scope">
+			      <el-input size="small" v-model="scope.row.operator" placeholder="请输入内容"></el-input>
+			      <span>{{ scope.row.operator }}</span>
+			      </template>
 			    </el-table-column>
 			    <el-table-column		      
 			      label="操作"		      
 			      show-overflow-tooltip
 			      header-align="center">
-			      <template scope="scope">
-	        		<el-button size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>        		
+			      <template scope="scope">			      
+	        		<el-button size="small" @row-click="handleCurrentChange">编辑</el-button>        
+	        		<el-button size="small" @change="handleEdit(scope.$index, scope.row)">提交</el-button> 		
 	        	  </template>
 			    </el-table-column>
 			</el-table>
 		
 		</div>	
 		<!-- 添加库存记录弹出框 -->
-
 		<el-dialog title="添加库存记录" :visible.sync="dialogFormVisible">
 		  <el-form :model="form">
 		    <el-form-item label="库存编号">
 		      <el-input v-model="form.stockNum" auto-complete="off"></el-input>
 		    </el-form-item>
 		    <el-form-item label="类型">
-		      <el-input v-model="form.stockType" auto-complete="off"></el-input>
+		      <el-input v-model="form.stockType" auto-complete="off" ></el-input>
 		    </el-form-item>
 		    <el-form-item label="货物名称">
 		      <el-input v-model="form.stockName" auto-complete="off"></el-input>
@@ -104,19 +122,10 @@
 		    <el-form-item label="单位">
 		      <el-input v-model="form.unit" auto-complete="off"></el-input>
 		    </el-form-item>
-			<el-form-item label="操作时间">
-				<el-input v-model="form.unit" auto-complete="off"></el-input>
-					<template>
-			  			<datepicker placeholder="European Format ('d-m-Y')" :config="{ dateFormat: 'd-m-Y', static: true }" @change="dateChange"> 						
-			  			</datepicker>
-				</template>
-			</el-form-item>
-			
-			
+		     <el-form-item label="操作时间">
+		      <el-input v-model="form.operatingTime" auto-complete="off"></el-input>
+		    </el-form-item>
 		  </el-form>
-			
-
-
 		  <div slot="footer" class="dialog-footer">
 		    <el-button @click="dialogFormVisible = false">取 消</el-button>
 		    <el-button type="primary" @click="AddStockData">确定添加</el-button>
@@ -132,17 +141,6 @@
 .search_stock{
 	width: 180px;
 }
-/* .formWidth{
-	width: 400px;
-	text-align: center;
-}
-.formLabelWidth{
-	width: 100px;
-} 
-.formInputWidth{
-	width:90px;
- 
-}*/
 
 /* //暂时性解决diolag 问题 https://github.com/ElemeFE/element/issues/2461 */
 .el-dialog {
@@ -151,17 +149,29 @@
   position: relative;
   margin: 0 auto;
 }
+.tb-edit .el-input  {
+    display: none
+}
+
+.tb-edit .current-row .el-input  {
+    display: block
+}
+
+.tb-edit .current-row .el-input+span {
+    display: none
+}
 </style>
 <script>
 /*import Datepicker from 'vue-bulma-datepicker'*/
 export default {
-	name:'stock',
-  	data() {
+  	data: function() {
     	return {
       		input_stock_name: '',
       		stockData1:{
       			stockData:[]
       		},
+      		editEable:false,
+      		editedTodo:null,
       		dialogFormVisible: false,
       		
 			//一条库存新纪录数据
@@ -183,6 +193,7 @@ export default {
     	Datepicker
   	},*/
   	mounted:function(){
+
   		this.getList();
   	},
 
@@ -192,12 +203,32 @@ export default {
       	console.log(ev);
     	},
     	// 编辑事件
-    	handleEdit(index, row) {
-        	console.log(index, row);
-      	},
+    	// handleEdit(index, row) {
+    	// 	var rowItem=row;
+    	//  	var rStockNum=rowItem.stockNum;
+    		
+     //  	},
+  //     	editTodo:function(stockNum){
+  //     		console.log(this);
+		// 	stockNum.beforeEditCache=rowItem.text;
+		// 	stockNum.editedTodo=rowItem;
+		// },
       	/*dialogFormVisible(index, row) {
         	console.log(index, row);
       	},*/
+
+
+ 		handleCurrentChange(row, event, column) {
+ 			console.log("a");
+            console.log(row, event, column, event.currentTarget)
+            },
+            handleEdit(index, row) {
+                console.log(index, row);
+            },
+            handleDelete(index, row) {
+                console.log(index, row);
+            },
+
       	// 切换选中状态
 		toggleSelection(rows) {
         	if (rows) {

@@ -186,14 +186,13 @@
     .rs_btn{width:400px; margin-bottom: 10px;}
     .rs_inp{width:200px;float: left;margin-right:5px;}
     .rs_query{margin-right: 20px;}
-	.el-dialog__header{ background: lightslategray;}
+	
+	.el-dialog__body{text-align:left;margin-bottom: -20px;}
 
-	.el-dialog__body{background: lightslategray;text-align:left;margin-bottom: -20px;}
+	.el-dialog__footer{text-align: center;} 
 
-	.el-dialog__footer{background: lightslategray;text-align: center;}
-
-	.el-form-item__label { text-align: start; color: #000;}
-
+	/* .el-form-item__label { text-align: start; color: #000;}
+ */
 	.el-textarea__inner {height: 100px;}
    
 </style>

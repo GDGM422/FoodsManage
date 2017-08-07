@@ -6,7 +6,7 @@
      
 		<div class="login">
       <h2>餐饮后台管理系统</h2>
-      <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" v-loading.fullscreen.lock="fullscreenLoading">
+      <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" >
           
           <el-form-item label="用户名" prop="username" >
             <el-input v-model="ruleForm.username"></el-input>
@@ -16,7 +16,7 @@
             <el-input type="password" v-model="ruleForm.pass" @keyup.enter.native="submitForm('ruleForm')"></el-input>
           </el-form-item>
           <el-form-item>
-              <el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
+              <el-button type="primary" @click="submitForm('ruleForm')" v-loading.fullscreen.lock="fullscreenLoading">登录</el-button>
               <el-button @click="resetForm('ruleForm')">重置</el-button>
           </el-form-item>
 
@@ -42,6 +42,8 @@
           
           if(value==='123456'){
             callback();
+          }else{
+            callback(new Error('密码错误!'));
           } 
         }
       };
@@ -51,49 +53,59 @@
         } else {
           if(value==='admin'){  
             callback();   
+          }else{
+            callback(new Error('用户名错误!'));
           }
         }
       };
-      return {
-       
-        ruleForm: {
-          username:store.state.user.userInfo.username ,
-          pass: ''
-        },
-        fullscreenLoading: false,
-        personalInfo:store.state.user.userInfo,
-        rules: {
-          username: [
-            { required: true,validator: validateUsername , trigger: 'blur' },
-            
-          ],
-          pass:[
-            { required:true,validator: validatePass,trigger:'blur' }
-          ]
-        }
+      return { 
+          ruleForm: {
+            username:store.state.user.userInfo.username ,
+            pass: ''
+          },
+          fullscreenLoading: false,
+          personalInfo:store.state.user.userInfo,
+          rules: {
+            username: [
+              { required: true,validator: validateUsername , trigger: 'blur' },
+              
+            ],
+            pass:[
+              { required:true,validator: validatePass,trigger:'blur' }
+            ]
+          }
       };
     },  
     methods: {
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           this.fullscreenLoading = true;
-                
-          if (valid) {
-            var  par = JSON.parse(JSON.stringify(this.ruleForm)) ;
-                console.log('登陆成功即将跳转--------')
-                store.dispatch('setUserInfo',par);//vuex传参数据
-                // if(window.localStorage){
-                //   localStorage.setItem('user','par');
-                // }
-                setTimeout(() => {
-                  this.fullscreenLoading = false;
-                  this.$router.push({ path: '/index/readme' });
-                }, 3000);
-          } else {
-            // this.$message.error('登录失败!用户名或密码错误!');
-            console.log('登录失败!用户名或密码错误!!');
-            return false;
-          }
+          
+            if (valid) {
+
+              var  par = JSON.parse(JSON.stringify(this.ruleForm)) ;
+              //vuex传参数据
+              store.dispatch('setUserInfo',par).then(() => {
+                    console.log('登陆成功即将跳转--------')
+                    // this.$router.push({ path: '/' });
+                   if(this.ruleForm.username!=''&&this.ruleForm.pass!=''){
+                      setTimeout(() => {
+                        this.fullscreenLoading = false;
+                        this.$router.push({ path: '/index/readme' });
+                      }, 1000);
+                    }
+                  }).catch(err => {
+                    this.$message.error(err);     
+              });                          
+            } else {
+              // this.$message.error('登录失败!用户名或密码错误!');
+              this.fullscreenLoading = false;
+              this.$message.error('登录失败!用户名或密码错误!!');
+              console.log('登录失败!用户名或密码错误!!');
+              return false;
+            }
+          
+          
         });
       },
       resetForm(formName) {
@@ -135,7 +147,12 @@
     padding-left: 50px;
     color:#fff;
   }
- 
+  .el-form-item__label {
+    color: #fff;
+ }
+ .el-form-item__content {
+     width: 300px;
+ }
   
    
 </style>

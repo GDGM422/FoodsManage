@@ -14,6 +14,8 @@ import './assets/css/cssreset.css'
 import './assets/css/goods.css'
 import './assets/icon/iconfont.css'
 
+import {global} from './global/global';
+
 Vue.config.silent = true
 Vue.config.productionTip = false
 Vue.use(Vuex);
