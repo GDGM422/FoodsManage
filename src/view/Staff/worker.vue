@@ -24,19 +24,19 @@
 		    <el-table-column prop="rs_id" label="工号" width="100" >
 		    	<template scope="scope">{{scope.row.rs_id}}</template>
 		    </el-table-column>
-		    <el-table-column prop="rs_post" label="职位" width="150" >
+		    <el-table-column prop="rs_post" label="职位" width="130" >
 		    	<template scope="scope">{{scope.row.rs_post}}</template>
 		    </el-table-column>
-		    <el-table-column prop="rs_limit" label="权限" width="150">
+		    <el-table-column prop="rs_limit" label="权限" width="130">
 		    	<template scope="scope">{{scope.row.rs_limit}}</template>
 		    </el-table-column>
 		    <el-table-column label="月薪" width="150">
 		    	<template scope="scope">{{scope.row.rs_price}}</template>
 		    </el-table-column>
-		    <el-table-column prop="rs_desc" label="备注" width="180">
+		    <el-table-column prop="rs_desc" label="备注" width="160">
 		    	<template scope="scope">{{scope.row.rs_desc}}</template>
 		    </el-table-column>
-		    <el-table-column label="操作">
+		    <el-table-column label="操作" width="160">
 	        <template scope="scope">
           	<!-- <router-link to="/staff_edit"></router-link> -->
             <el-button  size="small" @click="handleEdit(scope.$index, scope.row)" class="rs_query">编辑</el-button> 
@@ -46,12 +46,12 @@
 		</el-table>
 
 			<!-- 编辑弹出框 -->
-		 <el-dialog title="修改员工信息" :visible.sync="dialogFormVisible"  style="width:100%">
-		   <el-form v-model="form">
+		 <el-dialog title="修改员工信息" :visible.sync="dialogFormVisible" custom-class="rs_dialog">
+		   <el-form v-model="form" class="rs_dialogbody">
 		      <el-form-item label="姓名" :label-width="formLabelWidth">
 		         <el-input v-model="form.rs_name" auto-complete="off"></el-input>
 		      </el-form-item>
-			  <el-form-item label="性别"> 
+			  <el-form-item label="性别" :label-width="formLabelWidth"> 
 			     <el-radio-group v-model="form.rs_sex">
 			        <el-radio label="男"></el-radio>
 			        <el-radio label="女"></el-radio>
@@ -79,16 +79,17 @@
 		       <el-form-item label="月薪" :label-width="formLabelWidth">
 		          <el-input v-model="form.rs_price" auto-complete="off"></el-input>
 		      </el-form-item>
-		      <el-form-item label="备注">
+		      <el-form-item label="备注" :label-width="formLabelWidth">
 		        <el-input type="textarea" v-model="form.rs_desc"></el-input>
 		      </el-form-item>
 		    </el-form>
 		    
-		   <div slot="footer" class="dialog-footer">
+		   <div slot="footer" class="rs_dialogfooter">
 		     <el-button @click="dialogFormVisible = false">取 消</el-button>
 		     <el-button type="primary" @click="ediSure">确 定</el-button>
 		   </div>
 		 </el-dialog>
+		
 		  <!-- <p>员工信息：{{s}}</p> -->
 	</div>
 </template>
@@ -181,18 +182,12 @@
 	  }
 </script>
 <style>
-	.el-table th>.cell { text-align: center;}
-
-    .rs_btn{width:400px; margin-bottom: 10px;}
-    .rs_inp{width:200px;float: left;margin-right:5px;}
-    .rs_query{margin-right: 20px;}
 	
-	.el-dialog__body{text-align:left;margin-bottom: -20px;}
+	    .rs_btn{width:400px; margin-bottom: 10px;}
+	    .rs_inp{width:200px;float:left;margin-right:5px;}
+	    .rs_dialog{width:400px;}
+	    .rs_dialogbody{text-align:left;}
+	    .rs_dialogfooter{text-align: center}
 
-	.el-dialog__footer{text-align: center;} 
-
-	/* .el-form-item__label { text-align: start; color: #000;}
- */
-	.el-textarea__inner {height: 100px;}
-   
+	   
 </style>

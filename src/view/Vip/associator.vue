@@ -331,7 +331,7 @@ export default {
 		margin: 12px 32px;
 	}
 	.v .page{
-		float: right;
+		float: left;
 		margin: 12px 36px;
 	}
 	.addvip{
