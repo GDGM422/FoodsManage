@@ -1,9 +1,5 @@
 <template>
-	<div id="login">
-   
-     
-    
-     
+	<div id="login">    
 		<div class="login">
       <h2>餐饮后台管理系统</h2>
       <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" >
@@ -147,9 +143,6 @@
     padding-left: 50px;
     color:#fff;
   }
- /*  .el-form-item__label  {
-    color: #fff;
- } */
  .el-form-item__content {
      width: 300px;
  }
