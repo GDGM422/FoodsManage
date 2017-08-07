@@ -55,7 +55,7 @@
 		</div>
 	</div>
 	<!-- 添加会员弹窗 -->
-	<el-dialog :visible.sync="v_dialogFormVisible" title="添加会员" custom-class="addvip" @close="v_dialogClose">
+	<el-dialog :visible.sync="v_dialogFormVisible" title="添加会员"  size="455px" @close="v_dialogClose">
 		<el-form :model="addnewV" label-width="83px">
 			<el-form-item label="会员编号：">
 				<el-input v-model="addnewV.vipID" style="width: 220px"></el-input>
@@ -89,7 +89,7 @@
 		</div>
 	</el-dialog>
 	<!-- 编辑会员弹窗 -->
-	<el-dialog :visible.sync="v_dialogEdit" title="修改会员信息" custom-class="addvip">
+	<el-dialog :visible.sync="v_dialogEdit" title="修改会员信息"  size="455px">
 		<el-form :model="editV" label-width="83px">
 			<el-form-item label="会员编号：">
 				<el-input v-model="editV.vipID" style="width: 220px"></el-input>
@@ -334,11 +334,7 @@ export default {
 		float: left;
 		margin: 12px 36px;
 	}
-	.addvip{
-		width: 420px;
-		padding: 35px;
-		border-radius: 6px;
-	}
+	
 	.showE{
 		width: 228px;
 		line-height: 12px;

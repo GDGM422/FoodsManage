@@ -143,12 +143,12 @@
 }
 
 /* //暂时性解决diolag 问题 https://github.com/ElemeFE/element/issues/2461 */
-.el-dialog {
+/* .el-dialog {
   transform: none;
   left: 0;
   position: relative;
   margin: 0 auto;
-}
+} */
 .tb-edit .el-input  {
     display: none
 }

@@ -12,31 +12,31 @@
 		    border
 		    highlight-current-row
 		    style="width: 100%">
-		    <el-table-column type="selection" width="60"> </el-table-column>
+		    <el-table-column type="selection" header-align="center" width="60" > </el-table-column>
 		    <!-- <el-table-column prop="rs_number" label="序号" width="100"></el-table-column> -->
-		    <el-table-column type="index" width="70" label="序号"></el-table-column>  <!-- 自增 -->
-		    <el-table-column label="姓名" width="150">
+		    <el-table-column type="index" width="70" header-align="center" label="序号"></el-table-column>  <!-- 自增 -->
+		    <el-table-column label="姓名" header-align="center" width="150">
 		    	<template scope="scope">{{scope.row.rs_name}}</template>
 		    </el-table-column>
-		    <el-table-column prop="rs_sex" label="性别" width="100" >
+		    <el-table-column prop="rs_sex" label="性别" header-align="center" width="100" >
 		    	<template scope="scope">{{scope.row.rs_sex}}</template>
 		    </el-table-column>
-		    <el-table-column prop="rs_id" label="工号" width="100" >
+		    <el-table-column prop="rs_id" label="工号" header-align="center" width="100" >
 		    	<template scope="scope">{{scope.row.rs_id}}</template>
 		    </el-table-column>
-		    <el-table-column prop="rs_post" label="职位" width="130" >
+		    <el-table-column prop="rs_post" label="职位" header-align="center" width="130" >
 		    	<template scope="scope">{{scope.row.rs_post}}</template>
 		    </el-table-column>
-		    <el-table-column prop="rs_limit" label="权限" width="130">
+		    <el-table-column prop="rs_limit" label="权限" header-align="center" width="130">
 		    	<template scope="scope">{{scope.row.rs_limit}}</template>
 		    </el-table-column>
-		    <el-table-column label="月薪" width="150">
+		    <el-table-column label="月薪" header-align="center" width="150">
 		    	<template scope="scope">{{scope.row.rs_price}}</template>
 		    </el-table-column>
-		    <el-table-column prop="rs_desc" label="备注" width="160">
+		    <el-table-column prop="rs_desc" header-align="center" label="备注" width="160">
 		    	<template scope="scope">{{scope.row.rs_desc}}</template>
 		    </el-table-column>
-		    <el-table-column label="操作" width="160">
+		    <el-table-column label="操作"  width="160" header-align="center">
 	        <template scope="scope">
           	<!-- <router-link to="/staff_edit"></router-link> -->
             <el-button  size="small" @click="handleEdit(scope.$index, scope.row)" class="rs_query">编辑</el-button> 
@@ -46,7 +46,7 @@
 		</el-table>
 
 			<!-- 编辑弹出框 -->
-		 <el-dialog title="修改员工信息" :visible.sync="dialogFormVisible" custom-class="rs_dialog">
+		 <el-dialog title="修改员工信息" :visible.sync="dialogFormVisible" size="420px">
 		   <el-form v-model="form" class="rs_dialogbody">
 		      <el-form-item label="姓名" :label-width="formLabelWidth">
 		         <el-input v-model="form.rs_name" auto-complete="off"></el-input>

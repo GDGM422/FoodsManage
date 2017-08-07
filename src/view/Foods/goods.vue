@@ -21,12 +21,12 @@
 			<el-table
 			    ref="multipleTable" :data="tableData3.cp" border tooltip-effect="dark" style="width: 100%"
 			    @selection-change="handleSelectionChange">
-			    <el-table-column type="selection" width="55"></el-table-column>
-			    <el-table-column prop="cp_num" label="菜品编号"></el-table-column>
-				<el-table-column prop="cp_name" label="菜品名称"></el-table-column>
-				<el-table-column prop="cp_type" label="菜品类别"></el-table-column>
-				<el-table-column prop="cp_price" sortable label="菜品单价"></el-table-column>
-			    <el-table-column label="操作">
+			    <el-table-column type="selection" width="55" header-align="center"></el-table-column>
+			    <el-table-column prop="cp_num" label="菜品编号" header-align="center"></el-table-column>
+				<el-table-column prop="cp_name" label="菜品名称" header-align="center"></el-table-column>
+				<el-table-column prop="cp_type" label="菜品类别" header-align="center"></el-table-column>
+				<el-table-column prop="cp_price" sortable label="菜品单价" header-align="center"></el-table-column>
+			    <el-table-column label="操作" header-align="center">
 			          <template scope="scope">
 			            <el-button
 			              size="small"
