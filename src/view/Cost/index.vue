@@ -232,7 +232,7 @@
 
   <!-- 把绑定都移到template中 -->
   <el-collapse-item title="测试项" name="5">
-    <el-table :data="form0.other">  
+    <el-table :data="form0.test">  
 
             <el-table-column align="center" label='其他' width="100" > <!-- prop="thing" -->
 
@@ -244,38 +244,73 @@
             </el-table-column>        
             <el-table-column align="center" label="金额" width="" >
 
-            <!-- 这波操作只是添加了template============================== -->
-                <template scope="scope">
-                  <el-input v-show="scope.row.edit" size="small" v-model="scope.row.money"></el-input>
-                  <span v-show="!scope.row.edit">{{ scope.row.money }}</span>
-                </template>
+            <!-- 添加了template============================== -->
+                <!-- <template scope="scope">
+                  <el-input v-show="scope.row.edit" size="small" v-model="scope.row.money" ></el-input>
+                  <span v-show="!scope.row.edit" >{{ scope.row.money }}</span>
+                </template> -->
             <!-- 操作完毕============================== -->
-
+    
+        <!-- 这是v-if编辑的板子==================================================================== -->
+            <template scope="scope">
+                  <span v-if="editIndex !== scope.$index">{{ scope.row.money }}</span>
+                  <el-input class="Einput" size="small" v-model="scope.row.money" v-else></el-input>
+            </template>  
+        <!-- 结束板子=============================================================================== -->
             </el-table-column>
             <el-table-column align="center"  label="操作" >
                 
                 <!-- 删除了自己的编辑按钮，使用它写的====== -->
                   <template scope="scope">
-                  <el-button v-show='!scope.row.edit' type="primary" v-on:click="scope.row.edit=true" size="small" icon="edit">编辑</el-button>
-                  <el-button v-show='scope.row.edit' type="success" @click="scope.row.edit=false" size="small" icon="check">完成</el-button>
+                  <!-- <el-button v-show='!scope.row.edit' type="primary" v-on:click="scope.row.edit=true" size="small" icon="edit">编辑</el-button>
+                  <el-button v-show='scope.row.edit' type="success" @click="scope.row.edit=false" size="small" icon="check">完成</el-button> -->
                 <!-- 操作完毕============================== -->
 
-                     <el-button icon="delete" size="small" type="danger" @click="Delete4(other.$index, other.row)">删除</el-button><!--  -->
+        <!-- 这是v-if编辑的板子==================================================================== -->
+            <el-button  type="primary" @click="edit(scope.$index)" size="small" icon="edit" v-if="editIndex !== scope.$index">编辑</el-button>
+            <el-button type="success" @click="editIndex=null" size="small" icon="check" v-else>完成</el-button>
+         <!-- 结束板子=============================================================================== -->
+
+                     <el-button icon="delete" size="small" type="danger" @click="Delete5(scope.$index, scope.row)">删除</el-button>
                   </template>
             </el-table-column>
     </el-table> 
-        
-      
-    <el-button class="filter-item" type="primary" @click="dialogFormVisible4 = true"  icon="edit" >新增其他</el-button>
-      <p>总支出：{{ totalother }}</p>
+
+        <!-- 新增弹框==================================================================== -->
+          <el-dialog title="新增其他" :visible.sync="dialogFormVisible5">
+            <el-form :model="form5" class="small-space" label-position="left" label-width="70px" style='width: 400px; margin-left:50px;'>
+              <el-form-item label="其他">
+                <el-input v-model="form5.thing"></el-input><!-- v-model="roleTemp.roleName" -->
+              </el-form-item>       
+        <el-form-item label="金额">
+                <el-input v-model="form5.money"></el-input>
+              </el-form-item>
+            </el-form>
+
+            <div slot="footer" class="dialog-footer">
+              <el-button @click="dialogFormVisible5 = false">取 消</el-button><!--  -->            
+              <el-button type="primary" @click="Submit5">确 定</el-button>
+            </div>
+      </el-dialog>
+       <!--  新增弹框结束====================================================================== -->
+    
+    <el-button class="filter-item" type="primary" @click="dialogFormVisible5 = true"  icon="edit" >新增其他</el-button>
+      <p>总支出：{{ totaltest }}</p>
   </el-collapse-item>
+
 <!-- 测试区============================================================================================ -->
 
 </el-collapse>
-                <p>本月总支出：{{ totalstaff+totalpay+totalkitchen+totalother }}</p>
+                <p class="font">本月总支出：{{ totalstaff+totalpay+totalkitchen+totalother+totaltest }}</p>
+                              <div class="block">
+                                <span class="wrapper">
+                                  <el-button type="warning" @click="reset">重新记录</el-button>
+                                </span>
+                              </div>
 </div>
 </template>
 <script>
+
   export default {
     name: 'index',
     data() {
@@ -285,8 +320,10 @@
     		staff:[],
     		pay:[],
     		kitchen:[],
-    		other:[]
+    		other:[],
+        test:[]
 			},
+      editIndex:null,
         //折叠属性       	
         activeNames: ['1'],
         //新增弹框条件
@@ -321,6 +358,13 @@
           thing: '',
           money: ''
         },
+        //测试弹框
+        dialogTableVisible5: false,
+        dialogFormVisible5: false,
+        form5: {
+          thing: '',
+          money: ''
+        },
         //编辑弹框条件
         editVisible1:false,
         editVisible2:false,
@@ -335,6 +379,7 @@
         editIndex:'',
       };
     },
+    
     mounted:function(){
     	this.getData();
         this.add;
@@ -352,16 +397,16 @@
             return staff
         },
         //计算支出金额
-    	totalpay:function(){
-    		let pay=0;
-    		for(let i=0;i<this.form0.pay.length;i++){
-    			let m=this.form0.pay[i].money;
-    			let m2=parseInt(m)
-    			pay+=m2;
-    			//console.log(this.form0.pay[i].money)
-    		} 
-    		return pay
-    	},
+      	totalpay:function(){
+      		let pay=0;
+      		for(let i=0;i<this.form0.pay.length;i++){
+      			let m=this.form0.pay[i].money;
+      			let m2=parseInt(m)
+      			pay+=m2;
+      			//console.log(this.form0.pay[i].money)
+      		} 
+      		return pay
+      	},
         //计算厨房用品金额
         totalkitchen:function(){
             let kitchen=0;
@@ -398,7 +443,17 @@
                 //console.log(this.form0.staff[i].pay)
             } 
             return other
-        }
+        },
+        totaltest:function(){
+            let test=0;
+            for(let i=0;i<this.form0.test.length;i++){
+                let t=this.form0.test[i].money;
+                let t2=parseInt(t)
+                test+=t2;
+                //console.log(this.form0.staff[i].pay)
+            } 
+            return test
+        },
     },
     methods:{
         //第一行的新增
@@ -452,6 +507,18 @@
               	money: ''
             }
         },
+        //测试新增
+        Submit5(){
+            var that = this;
+            console.log('新增入参：',that.form5)
+            that.form0.test.push(that.form5)
+            console.log('新增后',that.form5)             
+            that.dialogFormVisible5 = false;
+            that.form5={
+              thing: '',
+                money: ''
+            }
+        },
         //删除，数字代表第几行
         Delete1(index,row){
             var that = this;
@@ -480,6 +547,18 @@
             //前端删除。
             console.log()
             that.form0.other.splice(index,1)
+        },
+        //测试删除
+        Delete5(index,row){
+            var that = this;
+            console.log('单个删除选择的row：',index,'-----',row);
+            //前端删除。
+            console.log()
+            that.form0.test.splice(index,1)
+        },
+        //编辑测试
+        edit(index){
+          this.editIndex=index;
         },
         //编辑员工
         editStaff(index,row){
@@ -541,6 +620,13 @@
             console.log("添加",that.edit4);            
             that.editVisible4=false;
         },
+        //重置
+        reset(){
+          this.form5={
+            thing:"",
+            money:"",
+          }
+        },
         //获取json
         getData:function(){
         	let that = this;
@@ -561,4 +647,13 @@
   .fs{
     font-size: 18px;
   }
+  .Einput{
+    width: 50%;
+  }
+  .font{
+    margin: 20px 0;
+    font-size: 24px;
+    color: #20a0ff;
+  }
+  
 </style>
