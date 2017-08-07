@@ -117,7 +117,7 @@
 				<el-input v-model="editV.vipDiscount" style="width: 220px"></el-input>
 			</el-form-item>
 		</el-form>
-		<div slot="footer" class="dialog-footer">
+		<div slot="footer" class="v_dialogEditXG">
 			<el-button @click="v_dialogEdit = false">取 消</el-button>
 			<el-button type="primary" @click="v_EditSubmit">修 改</el-button>
 		</div>
@@ -276,7 +276,7 @@ export default {
 		vipEdit(index, row) {
 			this.v_dialogEdit = true;
 			// 获取点击行的数据显示到弹出框里
-				// 写法一
+				// 写法一：浅拷贝
 				/*this.editV.vipID = row.vipID;
 				this.editV.vipName = row.vipName;
 				this.editV.vipPhone = row.vipPhone;
@@ -284,7 +284,9 @@ export default {
 				this.editV.vipScore = row.vipScore;
 				this.editV.vipGrade = row.vipGrade;
 				this.editV.vipDiscount = row.vipDiscount;*/
-				// 写法二：把对象转为字符串 再 转为对象，借此解决vue双向绑定问题
+				// 写法二：浅拷贝
+				/*this.editV = row*/
+				// 写法三：把对象转为字符串 再 转为对象，借此解决vue双向绑定问题
 				this.editV = JSON.parse(JSON.stringify(row))
 			// 赋予下标值
 			this.editIndexV = index;
@@ -342,5 +344,8 @@ export default {
 	.showE{
 		width: 228px;
 		line-height: 12px;
+	}
+	.v_dialogEditXG{
+		text-align: center;
 	}
 </style>
