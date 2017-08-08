@@ -103,7 +103,7 @@
 		</div>	
 
 		<!-- 添加库存记录弹出框 -->
-		<el-dialog title="添加库存记录" :visible.sync="dialogFormVisible" size="700px">
+		<el-dialog title="添加库存记录" :visible.sync="dialogFormVisible" >
 		  <el-form :model="form">
 		    <el-form-item label="库存编号">
 		      <el-input v-model="form.stockNum" auto-complete="off"></el-input>
@@ -132,7 +132,7 @@
 		</el-dialog>
 
 		<!-- 编辑库存记录弹窗 -->
-		<el-dialog :visible.sync="stockEditDialogVisible" title="修改库存信息" size="800px">
+		<el-dialog :visible.sync="stockEditDialogVisible" title="修改库存信息" >
 			<el-form :model="stockEditData">
 		    	<el-form-item label="库存编号">
 		      		<el-input v-model="stockEditData.stockNum" auto-complete="off"></el-input>
