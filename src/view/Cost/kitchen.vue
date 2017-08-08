@@ -51,7 +51,7 @@
 
 		            <div slot="footer" class="dialog-footer">
 		              <el-button @click="dialogFormVisible = false">取 消</el-button><!--  -->
-		              <el-button type="primary" @click="Submit">确 定</el-button>
+		              <el-button :plain="true" type="primary" @click="Submit">确 定</el-button>
 		            </div>
 		      </el-dialog>
 		        <el-button class="filter-item" type="primary" @click="dialogFormVisible = true" icon="edit" >新增用品</el-button>
@@ -133,15 +133,21 @@ import store from '../../store/index'
         //第三行的新增
         Submit(){
             var that = this;
-            console.log('新增入参：',that.form)
-            that.form0.kitchen.push(that.form)
-            console.log('新增后',that.form)            
-            that.dialogFormVisible = false;
-            that.form={
-            	thing: '',
-              	count: '',
-              	price: '',
-              	money: ''
+            if(that.form.price==''||that.form.count==''||isNaN(that.form.count)||isNaN(that.form.price)){
+                that.$message.error("新增失败！")
+                that.dialogFormVisible = false;
+                return
+            }else{
+                console.log('新增入参：',that.form)
+                that.form0.kitchen.push(that.form)
+                console.log('新增后',that.form)            
+                that.dialogFormVisible = false;
+                that.form={
+                	thing: '',
+                  	count: '',
+                  	price: '',
+                  	money: ''
+                }
             }
         },
         Delete(index,row){

@@ -52,7 +52,7 @@
             </el-form>
             <div slot="footer" class="dialog-footer">
               <el-button @click="dialogFormVisible = false">取 消</el-button><!--  -->            
-              <el-button type="primary" @click="Submit">确 定</el-button>
+              <el-button :plain="true" type="primary" @click="Submit">确 定</el-button>
             </div>
       </el-dialog>
        <!--  新增弹框结束====================================================================== -->
@@ -109,15 +109,22 @@
 	    methods:{
 	        //测试新增
 	        Submit(){
-	            var that = this;
-	            console.log('新增入参：',that.form5)
-	            that.form0.test.push(that.form5)
-	            console.log('新增后',that.form5)             
-	            that.dialogFormVisible = false;
-	            that.form5={
-	              thing: '',
-	              money: ''
+	        	var that = this;
+	            if(that.form5.money==''||isNaN(that.form5.money)){             
+	            	that.$message.error("新增失败！")
+	            	that.dialogFormVisible = false;
+	            	return
+	            }else{
+	            	console.log('新增入参：',that.form5)
+	            	that.form0.test.push(that.form5)
+	            	console.log('新增后',that.form5)
+	            	that.dialogFormVisible = false;
+	            	that.form5={
+	              		thing: '',
+	              		money: ''
+	            	}
 	            }
+	            
 	        },
 	        //测试删除
 	        Delete(index,row){

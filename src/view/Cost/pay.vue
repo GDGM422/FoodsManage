@@ -37,7 +37,7 @@
 
 		            <div slot="footer" class="dialog-footer">
 		              <el-button @click="dialogFormVisible = false">取 消</el-button>             
-		              <el-button type="primary" @click="Submit">确 定</el-button>
+		              <el-button :plain="true" type="primary" @click="Submit">确 定</el-button>
 		            </div>
 		      </el-dialog>
 		      <el-button class="filter-item" type="primary" @click="dialogFormVisible = true" icon="edit" >新增支出</el-button>
@@ -59,7 +59,6 @@
         },
       storecostlist:store.state.cost.costlist,
         //折叠属性        
-        activeNames: ['1'],
         //新增弹框条件
         dialogFormVisible: false,
         //第二行
@@ -99,13 +98,19 @@
         //第二行的新增      
         Submit(){
             var that = this;
-            console.log('新增入参：',that.form)
-            that.form0.pay.push(that.form)
-            console.log('新增后',that.form)            
-            that.dialogFormVisible = false;
-            that.form={
-              thing: '',
-              money: ''
+            if(that.form.money==''||that.form.thing==''||isNaN(that.form.money)){
+              that.$message.error("新增失败！")
+              that.dialogFormVisible = false;
+              return
+            }else{
+              console.log('新增入参：',that.form)
+              that.form0.pay.push(that.form)
+              console.log('新增后',that.form)            
+              that.dialogFormVisible = false;
+              that.form={
+                thing: '',
+                money: ''
+              }
             }
         },
         Delete(index,row){

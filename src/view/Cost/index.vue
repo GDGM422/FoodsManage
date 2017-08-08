@@ -19,7 +19,7 @@
   export default {
     name: 'index',
     components:{
-        //test,
+        test,
         other,
         kitchen,
         pay,

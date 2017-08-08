@@ -1,6 +1,6 @@
 <template>
 	<div>
-	 <el-collapse >
+	 <el-collapse v-model="activeNames">
     <el-collapse-item title="员工薪水" name="1">
         <el-table :data="form0.staff" >
               <el-table-column align="center" label='工号' width="100" prop="id">
