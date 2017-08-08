@@ -46,12 +46,9 @@
 			            	<el-menu-item index="5"><i class="el-icon-document"></i>订单管理</el-menu-item>
 			            </router-link>	
 			                 
-			            
-			            <el-submenu index="6">
-			                <template slot="title"><i class="el-icon-menu"></i>库存管理</template>
-			                  <router-link to="/stock/stock"><el-menu-item index="6-1">查看库存</el-menu-item></router-link>	
-			                  <router-link to="/stock/operatingStock"><el-menu-item index="6-2">操作库存</el-menu-item></router-link>	
-			            </el-submenu>
+			            <router-link to="/stock/stock">
+		              		<el-menu-item index="6"><i class="el-icon-menu"></i>库存管理</el-menu-item>
+		                </router-link>
 
 		              	<router-link to="/Cost/index">
 		              		<el-menu-item index="7"><i class="el-icon-date"></i>成本管理</el-menu-item>

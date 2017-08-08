@@ -22,6 +22,9 @@ const getters = {
     },
     costlistIn :state=>{
     	return state.cost.costlist
+    },
+    stockIn:state=>{
+    	return state.stock.stockData
     }
 };
 export default getters

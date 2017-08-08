@@ -8,6 +8,7 @@ import vip from './modules/vip';
 import staffCost from './modules/staffCost';
 import getters from './getters';
 import cost from './modules/cost';
+import stock from './modules/stock'
 
 // import getters from './getters';
 
@@ -15,7 +16,7 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
 	modules: {
-    	user,staff,person,goods,vip,staffCost,cost
+    	user,staff,person,goods,vip,staffCost,cost,stock
     },
     getters
 })
