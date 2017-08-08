@@ -1,7 +1,7 @@
 <template>
 	<div class="rs_bor">
 	<p>新增员工</p>
-	<el-form ref="form" :model="form" label-width="50px" style="text-align:left">
+	<el-form ref="form" :model="form" label-width="50px" style="text-align:left;">
 	  <el-form-item label="姓名">
 	    <el-input v-model="form.rs_name"></el-input>
 	  </el-form-item>
@@ -65,7 +65,6 @@
 	        store.dispatch('setstaff',this.add);//分发action
 	         store.dispatch('commitCost',this.add);
 	        //校验
-
 	        this.$router.push({path:'/renshi/worker'})
 	      }
 	    }
@@ -79,7 +78,7 @@
 	        padding:20px;
 	        margin: auto;
 	    }
-	.rs_addfooter{text-align: center}
+	.rs_addfooter{text-align: center;}
    p{
    	font-size: 20px;
    	font-weight:bold;

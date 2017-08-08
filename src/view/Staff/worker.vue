@@ -46,7 +46,7 @@
 		</el-table>
 
 			<!-- 编辑弹出框 -->
-		 <el-dialog title="修改员工信息" :visible.sync="dialogFormVisible" size="420px">
+		 <el-dialog title="修改员工信息" :visible.sync="dialogFormVisible" size="tiny">
 		   <el-form v-model="form" class="rs_dialogbody">
 		      <el-form-item label="姓名" :label-width="formLabelWidth">
 		         <el-input v-model="form.rs_name" auto-complete="off"></el-input>
@@ -98,13 +98,13 @@
   import store from '../../store/index';
 	export default {
 	    data() {
+	    	
 	      return {
 	        tableData3:{
 	        	worker:[]  //引入json数据对象
 	        },
 	        input: '',//搜索框
 	        s:store.state.staff.staffManagment,
-	        stafflist:store.state.staffCost.staffCostState,
 	        dialogFormVisible: false,
 	        form: {
 	                 rs_name: "", 
@@ -117,7 +117,6 @@
 	               },
 	         formLabelWidth: '50px',
 	         index0:null,
-	         // afterEdit:store.state.staffCost.staffCostState
 	        }
 
 	   },
@@ -126,6 +125,7 @@
 	   		console.log("生命周期："+store.state.staff.staffManagment)
 	   },
 	    methods: {
+	    
          //编辑
          handleEdit(index, row){
          	this.dialogFormVisible = true;
@@ -136,11 +136,25 @@
          	this.index0=index;
          },
          ediSure(){
-         	this.tableData3.worker.splice(this.index0,1,this.form);
+         	// this.tableData3.worker.splice(this.index0,1,this.form);
          	console.log(">>>>>"+this.form);
          	console.log(this.tableData3.worker);
          	store.dispatch('commitCost',this.tableData3.worker);//将数据传出去
-         	this.dialogFormVisible = false;
+
+         	//编辑校验
+             var arr0=[];
+         	 var ediLen=this.tableData3.worker.length;
+         	 for(let i=0;i<ediLen;i++){
+         	 	arr0.push(this.tableData3.worker[i].rs_id) ;
+         	 }
+         	 var a=this.form.rs_id;
+         	 if(arr0.indexOf(a)==-1){
+         	 	 this.tableData3.worker.splice(this.index0,1,this.form);
+         	 	 this.dialogFormVisible = false;
+         	}else{
+         	 	 alert("工号已存在");
+         	 	 this.dialogFormVisible = false;
+         	}
          },
          handleDelete(index, row) {  //单个删除
          	var rs_sure=this;
@@ -161,13 +175,13 @@
                  });
          },
          handleMutiDel(){
-         	var l=this.tableData3.worker.length;
+         	 var l=this.tableData3.worker.length;
          	for(var i=0;i<l;i++){
          		this.worker.rs_id
          	}
          	console.log(this.tableData3.worker[i].rs_id)
          },
-         
+           
          getData:function(){  //请求json
             let staff=this;
          	this.$http.get("../../static/dataJson/workerData.json").then(function(response){
@@ -177,14 +191,11 @@
 
          	 this.worker=response.data.worker;
          	 console.log("--------------------",this.worker);
-
-         	 this.tableData3.worker=this.stafflist
          	 console.log("arr>>>>>>>>",arr)
          	 for(let i=0;i<arr.length;i++){  //新增数据
          	  	staff.tableData3.worker.push(arr[i])
          	 }
 
-         	 // staff.tableData3.worker=this.afterEdit;//跳转页面再跳回来修改的数据不变
          	 },function(response){
          	  alter("抱歉，请求失败了 T_T ")
          	});
@@ -198,9 +209,8 @@
 <style>
 	
 	    .rs_btn{width:100%; margin-bottom: 10px; text-align: left;}
-	    .rs_inp{width:200px;float:left;margin-right:5px;}
-	    .rs_dialog{width:400px;}
-	    .rs_dialogbody{text-align:left;margin-bottom:-30px}
+	    .rs_inp{width:300px;float:left;margin-right:5px;}
+	    .rs_dialogbody{text-align:left;margin-bottom:-30px;}
 	    .rs_dialogfooter{text-align: center}
 	   
 </style>
