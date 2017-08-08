@@ -59,10 +59,6 @@
 			
 		</div>
 
-		
-
-		{{ detailsData.goodsinfo}}
-
 		<el-dialog title="订单详情"  :visible.sync="dialogTableVisible">
 			<span></span>
 			  <el-table border :data="detailsData.goodsinfo" >
@@ -83,7 +79,6 @@
 			      </el-pagination>
 		    </div>
 		</div>
-		{{goodslist}}
 		
 	
 	</div>
