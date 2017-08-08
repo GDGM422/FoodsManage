@@ -3,8 +3,8 @@
 	  <div class="rs_btn">
 	  <div class="rs_inp"><el-input v-model="input" placeholder="请输入内容"></el-input></div>
 	  	 <!-- 搜索框 -->
-        <el-button class="rs_query">搜索</el-button>
-		<el-button>批量删除</el-button>
+        <el-button type="primary" icon="search">搜索</el-button>
+		<el-button type="primary" icon="delete" @click="handleMutiDel">批量删除</el-button>
 	  </div>
 	  
 		<el-table
@@ -33,14 +33,14 @@
 		    <el-table-column label="月薪" header-align="center">
 		    	<template scope="scope">{{scope.row.rs_price}}</template>
 		    </el-table-column>
-		    <el-table-column prop="rs_desc" header-align="center" label="备注">
+		    <el-table-column prop="rs_desc" header-align="center" label="备注" width="180">
 		    	<template scope="scope">{{scope.row.rs_desc}}</template>
 		    </el-table-column>
-		    <el-table-column label="操作" header-align="center" width="160" >
+		    <el-table-column label="操作" header-align="center" width="180" >
 	        <template scope="scope">
           	<!-- <router-link to="/staff_edit"></router-link> -->
-            <el-button  size="small" @click="handleEdit(scope.$index, scope.row)" class="rs_query">编辑</el-button> 
-            <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+            <el-button  size="small" @click="handleEdit(scope.$index, scope.row)" class="rs_query" type="primary" icon="edit">编辑</el-button> 
+            <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)" icon="delete">删除</el-button>
             </template>
 	       </el-table-column>
 		</el-table>
@@ -104,6 +104,7 @@
 	        },
 	        input: '',//搜索框
 	        s:store.state.staff.staffManagment,
+	        stafflist:store.state.staffCost.staffCostState,
 	        dialogFormVisible: false,
 	        form: {
 	                 rs_name: "", 
@@ -116,7 +117,7 @@
 	               },
 	         formLabelWidth: '50px',
 	         index0:null,
-	         afterEdit:store.state.staffCost.staffCostState
+	         // afterEdit:store.state.staffCost.staffCostState
 	        }
 
 	   },
@@ -159,18 +160,31 @@
                  });          
                  });
          },
+         handleMutiDel(){
+         	var l=this.tableData3.worker.length;
+         	for(var i=0;i<l;i++){
+         		this.worker.rs_id
+         	}
+         	console.log(this.tableData3.worker[i].rs_id)
+         },
          
          getData:function(){  //请求json
             let staff=this;
          	this.$http.get("../../static/dataJson/workerData.json").then(function(response){
             //当请求成功，将返回的数据赋值给列表
          	 staff.tableData3=response.data;//让请求回来的json数据赋值到表格tableData3
-         	 var arr=staff.s;  //每新增一条数据，arr的长度就会加一
+         	 var arr=staff.s;  //每新增一条数据，arr的长度就会加一/
+
+         	 this.worker=response.data.worker;
+         	 console.log("--------------------",this.worker);
+
+         	 this.tableData3.worker=this.stafflist
          	 console.log("arr>>>>>>>>",arr)
          	 for(let i=0;i<arr.length;i++){  //新增数据
          	  	staff.tableData3.worker.push(arr[i])
          	 }
-         	 staff.tableData3.worker=this.afterEdit;//跳转页面再跳回来修改的数据不变
+
+         	 // staff.tableData3.worker=this.afterEdit;//跳转页面再跳回来修改的数据不变
          	 },function(response){
          	  alter("抱歉，请求失败了 T_T ")
          	});
@@ -183,11 +197,10 @@
 </script>
 <style>
 	
-	    .rs_btn{width:400px; margin-bottom: 10px;}
+	    .rs_btn{width:100%; margin-bottom: 10px; text-align: left;}
 	    .rs_inp{width:200px;float:left;margin-right:5px;}
 	    .rs_dialog{width:400px;}
 	    .rs_dialogbody{text-align:left;margin-bottom:-30px}
 	    .rs_dialogfooter{text-align: center}
-
 	   
 </style>

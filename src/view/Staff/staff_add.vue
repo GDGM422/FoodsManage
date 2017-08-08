@@ -18,6 +18,7 @@
 	    <el-select v-model="form.rs_post" placeholder="请选择职位">
 	      <el-option label="经理" value="经理"></el-option>
 	      <el-option label="店长" value="店长"></el-option>
+	      <el-option label="厨师" value="厨师"></el-option>
 	      <el-option label="收银员" value="收银员"></el-option>
 	      <el-option label="服务员" value="服务员"></el-option>
 	      <el-option label="保洁员" value="保洁员"></el-option>
@@ -62,7 +63,9 @@
 	      	var s=JSON.parse(JSON.stringify(this.form));
 	        this.add.push(s);
 	        store.dispatch('setstaff',this.add);//分发action
-	        store.dispatch('commitCost',this.add);
+	         store.dispatch('commitCost',this.add);
+	        //校验
+
 	        this.$router.push({path:'/renshi/worker'})
 	      }
 	    }

@@ -143,12 +143,6 @@
     padding-left: 50px;
     color:#fff;
   }
-<<<<<<< HEAD
- /*  .el-form-item__label  {
-    color: #fff;
- } */
-=======
->>>>>>> 44a7276aa8c490d7192e4f493d120ce349e8eaf1
  .el-form-item__content {
      width: 300px;
  }

@@ -20,7 +20,6 @@ import Goods from '@/view/Foods/goods'
 import Cost from '@/view/Cost/index'
 // 库存管理
 import Stock from '@/view/Stock/stock'
-import OperatingStock from '@/view/Stock/operatingStock'
 
 
 Vue.use(Router)
@@ -129,21 +128,14 @@ export default new Router({
     {
       path:'/stock',component:Index,
       meta: {
-          breadcrumbName: "库存管理"
+          breadcrumbName: "首页"
       },
       children:[
         {
           path:'stock',
           component:Stock,
           meta: {
-            breadcrumbName: "查看库存"
-          }
-        },
-        {
-          path:'operatingStock',
-          component:OperatingStock,
-          meta: {
-            breadcrumbName: "操作库存"
+            breadcrumbName: "库存管理"
           }
         }
       ]

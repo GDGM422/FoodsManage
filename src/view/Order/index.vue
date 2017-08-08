@@ -1,5 +1,6 @@
 <template>
 	<div id="index">
+		<!-- 查询搜索 -->
 		<div class="dd-search">
 			<div class="dd_input_name">
     			<el-input v-model="ddlistQuery.id" placeholder="订单编号"></el-input>
@@ -9,9 +10,7 @@
     		</div>
     		<div class="dd_btn_search">
     			<el-button type="primary" icon="search">搜索</el-button>
-    		</div>
-    		
-    		
+    		</div>	
   		</div> 
 
 		<div class="dd_table">
@@ -59,10 +58,6 @@
 			
 		</div>
 
-		
-
-		{{ detailsData.goodsinfo}}
-
 		<el-dialog title="订单详情"  :visible.sync="dialogTableVisible">
 			<span></span>
 			  <el-table border :data="detailsData.goodsinfo" >
@@ -83,7 +78,6 @@
 			      </el-pagination>
 		    </div>
 		</div>
-		{{goodslist}}
 		
 	
 	</div>
@@ -150,14 +144,13 @@ export default {
 	        	let iDD=this.detailsData.goodsinfo;
 	        	let jGoods=this.goodslist;
 	        	for(let j=0;j<jGoods.length;j++){
-	        		if(jGoods[j].cp_num==iDD[i].goodsid){
+	        		
+        			if(jGoods[j].cp_num==iDD[i].goodsid){
 	        			iDD[i].goodsname = jGoods[j].cp_name
-	        			
 	        			iDD[i].gPrice = jGoods[j].cp_price
-	        			
 	        			iDD[i].sumprice=iDD[i].gPrice * iDD[i].count;
 	        			console.log("1",iDD[i].sumprice)
-	        		}
+        			}	
 	        	}
 	        }
 	    },

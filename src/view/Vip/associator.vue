@@ -271,6 +271,8 @@ export default {
 				"vipGrade": "铜",
 				"vipDiscount": "9折"
 			};
+			this.showEroll_v1 = false
+			this.showEroll_v2 = false
 	    },
 		// 跳转编辑修改
 		vipEdit(index, row) {
