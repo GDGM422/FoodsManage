@@ -13,9 +13,10 @@
     		</div>	
   		</div> 
 
+		<!-- 表格数据 -->
 		<div class="dd_table">
 			<el-table :data="tableData1.order" border style="width: 100%" :default-sort = "{prop: 'id', order: 'descending'}" >
-			  		
+
 				    <el-table-column label="订单编号"  width="140" header-align="center">
 				    	<template scope="scope">
 				    	    <span>{{ scope.row.id }}</span>
@@ -33,21 +34,25 @@
 				    	    <span>{{ scope.row.buytel }}</span>
 				    	</template>
 					</el-table-column>
+
 					<el-table-column label="下单时间" prop="orderdate" width="160"  sortable header-align="center">
 						<template scope="scope">
 				    	    <span>{{ scope.row.orderdate }}</span>
 				    	</template>
 					</el-table-column>
+
 				    <el-table-column label="订单总价"  sortable width="140" prop="orderprice" header-align="center">
 				    	<template scope="scope">
 				    	    <span>{{ scope.row.orderprice }}</span>
 				    	</template>
 				    </el-table-column>
+
 				    <el-table-column label="实际支付"  sortable width="140" prop="shiji"  header-align="center"> 
 				    	<template scope="scope">
 				    	    <span>{{ scope.row.shiji }}</span>
 				    	</template>
 				    </el-table-column>
+
 			      	<el-table-column label="操作" header-align="center" >
 				        <template scope="scope">
 				          	<el-button @click="handleClick(scope.$index, scope.row)" type="primary" size="small">查看</el-button>
@@ -58,6 +63,8 @@
 			
 		</div>
 
+
+		<!-- 订单详情 -->
 		<el-dialog title="订单详情"  :visible.sync="dialogTableVisible">
 			<span></span>
 			  <el-table border :data="detailsData.goodsinfo" >

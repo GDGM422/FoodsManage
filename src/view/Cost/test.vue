@@ -110,7 +110,6 @@
 	        //测试新增
 	        Submit(){
 	        	var that = this;
-<<<<<<< HEAD
 	            if(that.form5.money==''||isNaN(that.form5.money)){             
 	            	that.$message.error("新增失败！")
 	            	that.dialogFormVisible = false;
@@ -125,20 +124,15 @@
 	              		money: ''
 	            	}
 	            }
-=======
 	        	that.form5={
 	              thing: '',
 	              money: ''
 	            }
-	           
 	            	
             	console.log('新增入参：',that.form5)
             	that.form0.test.push(that.form5)
             	console.log('新增后',that.form5)             
             	that.dialogFormVisible = false;
-	           
-	            
->>>>>>> eb096d7faa4542339eda4907be8c961698e44b18
 	            
 	        },
 	        //测试删除

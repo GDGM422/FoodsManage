@@ -1,8 +1,8 @@
 <template style="width: 100%;height: 100%;">
 	<div id="index">
 		<div class="app-top">
-	      <div style="float:left;margin-left:5px;"><img src="../../assets/images/logo.jpg"/></div>
-	      <div style="float:left;margin:10px;font-size:18px;color:#896044;">
+	      <div style="float:left;margin-left:5px;"><img src="../../assets/images/logo.png"/></div>
+	      <div style="float:left;margin:10px;font-size:18px;color:#F08733;">
 	        餐饮后台管理系统
 	      </div>
 	      <div class="content-right">
