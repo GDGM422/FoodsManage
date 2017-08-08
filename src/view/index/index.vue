@@ -6,13 +6,28 @@
 	        餐饮后台管理系统
 	      </div>
 	      <div class="content-right">
-	      	<el-button type="text" @click="dialogVisible = true">切换主题</el-button>
+
 	      	<i class="fa fa-user-o" aria-hidden="true" style="font-size:25px"></i>
 	      	<span v-if="">
 	      		{{ personalInfo.username}}
 	      	</span>
+
+			<el-dropdown>
+			  <el-button type="text">
+			    <i class="el-icon-caret-bottom el-icon--right"></i>
+			  </el-button>
+			  <el-dropdown-menu slot="dropdown">
+			    <el-dropdown-item  ><span  @click="dialogVisible = true">切换主题</span></el-dropdown-item>
+			    <el-dropdown-item  ><span @click="editlogin" >退出登录</span></el-dropdown-item>
+			  </el-dropdown-menu>
+			</el-dropdown>
+
+
+
+	      	<!-- <el-button type="text" @click="dialogVisible = true">切换主题</el-button>
 	      	
-	      	<el-button type="text" @click="editlogin">退出登录</el-button>
+	      	
+	      	<el-button type="text" @click="editlogin">退出登录</el-button> -->
 	      </div>
     	</div>
 		<div class="content-wrapper">
