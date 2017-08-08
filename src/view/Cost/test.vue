@@ -109,15 +109,20 @@
 	    methods:{
 	        //测试新增
 	        Submit(){
-	            var that = this;
-	            console.log('新增入参：',that.form5)
-	            that.form0.test.push(that.form5)
-	            console.log('新增后',that.form5)             
-	            that.dialogFormVisible = false;
-	            that.form5={
+	        	var that = this;
+	        	that.form5={
 	              thing: '',
 	              money: ''
 	            }
+	           
+	            	
+            	console.log('新增入参：',that.form5)
+            	that.form0.test.push(that.form5)
+            	console.log('新增后',that.form5)             
+            	that.dialogFormVisible = false;
+	           
+	            
+	            
 	        },
 	        //测试删除
 	        Delete(index,row){
@@ -151,7 +156,7 @@
 	        		alert("请求失败")
 	        	})
 	        },    
-	  }
+	  	}
 	  }
 </script>
 <style>

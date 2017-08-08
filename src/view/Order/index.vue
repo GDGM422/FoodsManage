@@ -1,5 +1,6 @@
 <template>
 	<div id="index">
+		<!-- 查询搜索 -->
 		<div class="dd-search">
 			<div class="dd_input_name">
     			<el-input v-model="ddlistQuery.id" placeholder="订单编号"></el-input>
@@ -9,9 +10,7 @@
     		</div>
     		<div class="dd_btn_search">
     			<el-button type="primary" icon="search">搜索</el-button>
-    		</div>
-    		
-    		
+    		</div>	
   		</div> 
 
 		<div class="dd_table">
