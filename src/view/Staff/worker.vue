@@ -104,6 +104,7 @@
 	        },
 	        input: '',//搜索框
 	        s:store.state.staff.staffManagment,
+	        stafflist:store.state.staffCost.staffCostState,
 	        dialogFormVisible: false,
 	        form: {
 	                 rs_name: "", 
@@ -177,10 +178,12 @@
          	 this.worker=response.data.worker;
          	 console.log("--------------------",this.worker);
 
+         	 this.tableData3.worker=this.stafflist
          	 console.log("arr>>>>>>>>",arr)
          	 for(let i=0;i<arr.length;i++){  //新增数据
          	  	staff.tableData3.worker.push(arr[i])
          	 }
+
          	 // staff.tableData3.worker=this.afterEdit;//跳转页面再跳回来修改的数据不变
          	 },function(response){
          	  alter("抱歉，请求失败了 T_T ")

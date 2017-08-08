@@ -150,14 +150,13 @@ export default {
 	        	let iDD=this.detailsData.goodsinfo;
 	        	let jGoods=this.goodslist;
 	        	for(let j=0;j<jGoods.length;j++){
-	        		if(jGoods[j].cp_num==iDD[i].goodsid){
+	        		
+        			if(jGoods[j].cp_num==iDD[i].goodsid){
 	        			iDD[i].goodsname = jGoods[j].cp_name
-	        			
 	        			iDD[i].gPrice = jGoods[j].cp_price
-	        			
 	        			iDD[i].sumprice=iDD[i].gPrice * iDD[i].count;
 	        			console.log("1",iDD[i].sumprice)
-	        		}
+        			}	
 	        	}
 	        }
 	    },
