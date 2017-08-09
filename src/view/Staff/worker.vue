@@ -202,17 +202,19 @@
          	   console.log("111111111111",idarr)
          	   console.log("length>>>>",arr.length)
          	for(var j=0;j<arr.length;j++){
-         	 	var add0=arr[j].rs_id   					  //取到输入的工号
+         	   var add0=arr[j].rs_id   					  //取到输入的工号
 				console.log("000000002",add0)
 
-         	if(idarr.indexOf(add0)==-1){  				//indexOf():某个指定的字符串在字符串中首次出现的位置
-         	 	 staff.tableData3.worker.push(arr[j])
-            }else{
-            	 console.log(add0)
-         	 	 alert("该工号已存在！！")
-         	 	 break;
-          	}     
- 
+	         	if(idarr.indexOf(add0)==-1){  				//indexOf():某个指定的字符串在字符串中首次出现的位置
+	         	 	 staff.tableData3.worker.push(arr[j])
+	         	 	 this.$message.success('添加成功！！');
+	            }else{
+	            	 console.log(add0)
+	         	 	 console.log("该工号已存在！！")
+	         	 	 this.$message.error('添加失败，该工号已存在！！');
+	         	 	 // break;
+	          	}     
+	 
    		}
 
          	 },function(response){
