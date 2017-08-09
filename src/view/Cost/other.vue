@@ -45,6 +45,9 @@
   </el-collapse-item>
 
   </el-collapse>
+      <div class="charts">
+        <div id="myChart" style="width: 1200px; height: 500px;"></div>
+      </div>
   </div>
 </template>
 
@@ -83,6 +86,63 @@ import { api } from '../../global/api'
     mounted:function(){
       this.getData();
       this.add; 
+      //Echarts
+      //引入基本模板
+      let echarts = require('echarts/lib/echarts')
+      let chartBox = document.getElementsByClassName('charts')[0]
+      let myChart = document.getElementById('myChart')
+      function resizeCharts(){
+        myChart.style.width = chartBox.style.width+'px'
+        myChart.style.height = chartBox.style.height+'px'
+      }
+      let mainChart = echarts.init(myChart)//初始化echarts实例
+      var option = null
+      option = {
+        tooltip:{
+          trigger:'item',
+          formatter:"{a}<br>{b}:{c}({d}%)"
+        },
+        legend:{
+          x:'center',
+          y:'top',
+          data:["员工薪水","各大支出","厨房用品","其他"]
+        },
+        series:[
+          {
+            name:"支出金额",
+            type:"pie",
+            radius:['45%','70%'],
+            avoidLabelOverlap:false,
+            label:{
+              normal:{
+                show:false,
+                position:'center'
+              },
+              emphasis:{
+                show:true,
+                textStyle:{
+                  fontSize:'20',
+                  fontWeight:'bold'
+                }
+              }
+            },
+            labelLine:{
+              normal:{
+                show:false
+              }
+            },
+            data:[
+              {value:66800,name:'员工薪水'},
+              {value:11300,name:'各大支出'},
+              {value:7645,name:'厨房用品'},
+              {value:20000,name:'其他'}
+            ]
+          }
+        ]
+      };
+      if(option && typeof option ==="object" ) {
+        mainChart.setOption(option,true)
+      }
     },
     computed:{ 
         //计算其他金额
