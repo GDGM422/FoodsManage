@@ -128,7 +128,7 @@
 
 <script>
 import store from '../../store/index';
-
+import { api } from '../../global/api'
 export default {
     data() {
     	return {
@@ -172,7 +172,7 @@ export default {
 		//获取数据的方法
 		getData: function(){
 			let that = this;
-			this.$http.get('../../static/dataJson/vipData.json').then(function(response){
+			this.$http.get(api.vipData).then(function(response){
 				that.vipTableData = response.data
 				that.vipTableData.vipData = that.viplist
 			},function(response){
@@ -182,7 +182,7 @@ export default {
 		//获取 订单管理 数据的方法,再根据 订单数 跟新 积分数,之间用电话号码链接
 		getddData: function(){
 			let that = this;
-			this.$http.get('../../static/dataJson/OrderData.json').then(function(response){
+			this.$http.get(api.OrderData).then(function(response){
 				that.OrderDataArray = response.data.order
 				for(let i=0 ; i < that.vipTableData.vipData.length ; i++){
 					let iVP = that.vipTableData.vipData[i].vipPhone;

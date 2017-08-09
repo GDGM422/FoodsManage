@@ -5,8 +5,8 @@
     <kitchen></kitchen>
     <other></other>
     <test></test>
-
-<!--   <p class="font">本月总支出：{{ totalstaff+totalpay+totalkitchen+totalother+totaltest }}</p> -->
+<!-- totalstaff+totalpay+totalkitchen+totalother+totaltest -->
+  <!-- <p class="font">本月总支出：{{ all }}</p> -->
 </div>
 </template>
 <script>

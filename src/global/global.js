@@ -3,8 +3,10 @@ import VueResource from 'vue-resource';
 Vue.use(VueResource);
 import { Loading } from 'element-ui';
 const {themeArray} = require('./themeArray');
+const config = require('../../config');
 
 export  const global = {
+        staticPath: process.env.NODE_ENV !== 'development' ?  config.build.staticPath: config.dev.staticPath,//静态资源路径
         /**
          * 切换主题函数
          */
@@ -13,7 +15,7 @@ export  const global = {
             var cssArray = themeArray;
 
             for (let i = 0 ,len = cssArray.length; i < len; i++) {
-                var itemPath = '/static/'+'/theme/'+themeValue+'/'+cssArray[i].toLowerCase()+'.css';
+                var itemPath = that.staticPath+'/theme/'+themeValue+'/'+cssArray[i].toLowerCase()+'.css';
                 loadCss(itemPath)
             };
             

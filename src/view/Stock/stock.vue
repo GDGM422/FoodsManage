@@ -173,6 +173,7 @@
 </style>
 <script>
 import store from '../../store/index'
+import { api } from '../../global/api'
 export default {
   	data: function() {
     	return {
@@ -258,7 +259,7 @@ export default {
 		// 获取列表动态数据
     	getList:function(){
 		    var me = this;
-			this.$http.get('../../static/dataJson/stock.json').then(function(response){
+			this.$http.get(api.stock).then(function(response){
 					console.log(response);
 					console.log("这是stock(库存管理)的json数据",response.data);
 					me.stockData1 = response.data;

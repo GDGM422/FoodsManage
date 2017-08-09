@@ -96,6 +96,7 @@
 
 <script>
   import store from '../../store/index';
+  import { api } from '../../global/api'
 	export default {
 	    data() {
 	    	
@@ -184,12 +185,13 @@
            
          getData:function(){  //请求json
             let staff=this;
-         	this.$http.get("../../static/dataJson/workerData.json").then(function(response){
+         	this.$http.get(api.workerData).then(function(response){
             //当请求成功，将返回的数据赋值给列表
          	 staff.tableData3=response.data;//让请求回来的json数据赋值到表格tableData3
          	 var arr=staff.s;  //每新增一条数据，arr的长度就会加一
          	 // this.worker=response.data.worker;
          	 console.log("--------------------",this.worker);
+<<<<<<< HEAD
          	 console.log("arr>>>>>>>>",staff)
 
 
@@ -198,6 +200,12 @@
          	 var l=staff.tableData3.worker.length;
          	 for(let i=0;i<l;i++){
          	    idarr.push(staff.tableData3.worker[i].rs_id)  //将表格中的所有ID放进一个数组
+=======
+
+         	 console.log("arr>>>>>>>>",arr)
+         	 for(let i=0;i<arr.length;i++){  //新增数据
+         	  	staff.tableData3.worker.push(arr[i])
+>>>>>>> af1eee80fdf7d072757caa130af62153ccc32284
          	 }
          	    console.log("kkkkkkkkkkkkkkk",idarr)
          	 for(var j=0;j<arr.length;j++){

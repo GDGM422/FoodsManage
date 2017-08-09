@@ -91,6 +91,7 @@
 </template>
 <script>
 import store from '../../store/index'
+import { api } from '../../global/api'
 export default {
 	name: 'index',
 	data() {
@@ -119,7 +120,7 @@ export default {
  		//获取列表数据
 	    getlistData:function(){
 	    	let me = this;
-	    	this.$http.get('../../static/dataJson/OrderData.json').then(function(response){
+	    	this.$http.get(api.OrderData).then(function(response){
 	    		// alert("请求成功!")
 	    		console.log(response)
 				console.log("这是我们需要的json数据",response.data)

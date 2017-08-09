@@ -90,6 +90,7 @@
 
 <script>
 import store from '../../store/index'
+import { api } from '../../global/api'
 	export default {
 	    data() {
 	    	return {
@@ -127,7 +128,7 @@ import store from '../../store/index'
 	  	methods: {
 	        getData:function(){
 	            let _this=this;
-	            this.$http.get('../../static/dataJson/cp.json').then(function(response){
+	            this.$http.get(api.cp).then(function(response){
 	                _this.tableData3=response.data;
 	                this.tableData3.cp=this.xiugailist
 	                // store.dispatch('setGoods',_this.tableData3);
