@@ -18,7 +18,7 @@
 
       </el-form>
       <br>
-      <div>用户信息:{{ personalInfo }}</div>
+      
       <div>测试帐号为:admin 密码：123456</div>
 		</div>
 	</div>
