@@ -64,7 +64,7 @@
 	        this.add.push(s);
 	        store.dispatch('setstaff',this.add);//分发action
 	         store.dispatch('commitCost',this.add);
-	        //校验
+	         
 	        this.$router.push({path:'/renshi/worker'})
 	      }
 	    }
