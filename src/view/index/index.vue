@@ -7,14 +7,14 @@
 	      </div>
 	      <div class="content-right">
 
-	      	<i class="fa fa-user-o" aria-hidden="true" style="font-size:25px"></i>
+	      	<!-- <i class="fa fa-user-o" aria-hidden="true" style="font-size:25px"></i> -->
 	      	<span v-if="">
 	      		{{ personalInfo.username}}
 	      	</span>
 
 			<el-dropdown>
 			  <el-button type="text">
-			    <i class="el-icon-caret-bottom el-icon--right"></i>
+			    <i class="fa fa-user-o" aria-hidden="true" style="font-size:25px"></i><i class="el-icon-caret-bottom el-icon--right"></i>
 			  </el-button>
 			  <el-dropdown-menu slot="dropdown">
 			    <el-dropdown-item  ><span  @click="dialogVisible = true">切换主题</span></el-dropdown-item>

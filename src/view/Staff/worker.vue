@@ -191,6 +191,10 @@
 
          	 this.worker=response.data.worker;
          	 console.log("--------------------",this.worker);
+<<<<<<< HEAD
+=======
+
+>>>>>>> fd84acfa57364d81662dc67aca070c337a8198dc
          	 console.log("arr>>>>>>>>",arr)
          	 for(let i=0;i<arr.length;i++){  //新增数据
          	  	staff.tableData3.worker.push(arr[i])
