@@ -148,7 +148,8 @@
          	 for(let i=0;i<ediLen;i++){
          	 	arr0.push(this.tableData3.worker[i].rs_id) ;
          	 }
-         	 var a=this.form.rs_id;
+         	 arr0.splice(this.index0,1)//在所有的工号里删掉当前这个
+         	 var a=this.form.rs_id;    //填入的工号
          	 if(arr0.indexOf(a)==-1){
          	 	 this.tableData3.worker.splice(this.index0,1,this.form);
          	 	 this.dialogFormVisible = false;
@@ -189,42 +190,30 @@
             //当请求成功，将返回的数据赋值给列表
          	 staff.tableData3=response.data;//让请求回来的json数据赋值到表格tableData3
          	 var arr=staff.s;  //每新增一条数据，arr的长度就会加一
-         	 // this.worker=response.data.worker;
-         	 console.log("--------------------",this.worker);
 
          	 console.log("arr>>>>>>>>",staff)
-
-
+         	 
          	 //校验新增的工号唯一
          	 var idarr=[];
          	 var l=staff.tableData3.worker.length;
          	 for(let i=0;i<l;i++){
          	    idarr.push(staff.tableData3.worker[i].rs_id)  //将表格中的所有ID放进一个数组
-
-
-         	 console.log("arr>>>>>>>>",arr)
-         	 for(let i=0;i<arr.length;i++){  //新增数据
-         	  	staff.tableData3.worker.push(arr[i])
-         	 }
-         	    console.log("kkkkkkkkkkkkkkk",idarr)
+         	}
+         	   console.log("111111111111",idarr)
+         	   console.log("length>>>>",arr.length)
          	for(var j=0;j<arr.length;j++){
          	 	var add0=arr[j].rs_id   					  //取到输入的工号
-				console.log("000000002",arr[j])
+				console.log("000000002",add0)
 
-	         	if(idarr.indexOf(add0)==-1){  			//indexOf():某个指定的字符串在字符串中首次出现的位置
-	         	 	 staff.tableData3.worker.push(arr[j])
-	         	 	 console.log("hhhhhhhhhhh",arr[j])
-	            }else{
-	         	 	 alert("该工号已存在！！")
-	         	 	 console.log("hjksdhlf")
-	          	}     
-     
-       		}
-         } 
-         	 
-         	/* for(let i=0;i<arr.length;i++){  //新增数据
-         	  	staff.tableData3.worker.push(arr[i])
-         	 }*/
+         	if(idarr.indexOf(add0)==-1){  				//indexOf():某个指定的字符串在字符串中首次出现的位置
+         	 	 staff.tableData3.worker.push(arr[j])
+            }else{
+            	 console.log(add0)
+         	 	 alert("该工号已存在！！")
+         	 	 break;
+          	}     
+ 
+   		}
 
          	 },function(response){
          	  alter("抱歉，请求失败了 T_T ")
