@@ -1,10 +1,10 @@
 <template>
 	<div class="stock_wrap">
 		<!-- 按货物名称查询 -->
-		<div class="stock_top">
-			<el-input placeholder="按货物名称查询" icon="search" :on-icon-click="handleIconClick" class="search_stock">
+		<div class="stock_top" style="margin:10px;height:35px;">
+			<el-input placeholder="按货物名称查询" icon="search" :on-icon-click="handleIconClick" style="float:left;width:200px;margin-right:10px;">
 			</el-input>
-			<el-button type="primary"  @click="dialogFormVisible = true">添加库存记录</el-button>
+			<el-button type="primary"  @click="dialogFormVisible = true"  style="float:left;width:150px;">添加库存记录</el-button>
 		</div>	
 
 		<div class="stock_content">
@@ -103,26 +103,29 @@
 		</div>	
 
 		<!-- 添加库存记录弹出框 -->
-		<el-dialog title="添加库存记录" :visible.sync="dialogFormVisible" >
-		  <el-form :model="form">
+		<el-dialog title="添加库存记录" :visible.sync="dialogFormVisible" size="622px">
+		  <el-form :model="form"  label-width="83px">
 		    <el-form-item label="库存编号">
-		      <el-input v-model="form.stockNum" auto-complete="off"></el-input>
+		      <el-input v-model="form.stockNum" auto-complete="off" style="width: 220px"></el-input>
 		    </el-form-item>
 		    <el-form-item label="类型">
-		      <el-input v-model="form.stockType" auto-complete="off" ></el-input>
+		      <el-input v-model="form.stockType" auto-complete="off" style="width: 220px"></el-input>
 		    </el-form-item>
 		    <el-form-item label="货物名称">
-		      <el-input v-model="form.stockName" auto-complete="off"></el-input>
+		      <el-input v-model="form.stockName" auto-complete="off"   style="width: 220px"></el-input>
 		    </el-form-item>
 		    <el-form-item label="现有库存量">
-		      <el-input v-model="form.Poh" auto-complete="off"></el-input>
+		      <el-input v-model="form.Poh" auto-complete="off"  style="width: 220px"></el-input>
 		    </el-form-item>
 		    <el-form-item label="单位">
-		      <el-input v-model="form.unit" auto-complete="off"></el-input>
+		      <el-input v-model="form.unit" auto-complete="off"  style="width: 220px"></el-input>
 		    </el-form-item>
 		     <el-form-item label="操作时间">
 		      <el-date-picker type="date" placeholder="选择时间" v-model="form.operatingTime"  style="width: 220px">
 			  </el-date-picker>
+		    </el-form-item>
+		    <el-form-item label="操作人">
+		      <el-input v-model="form.operator" auto-complete="off"  style="width: 220px"></el-input>
 		    </el-form-item>
 		  </el-form>
 		  <div slot="footer" class="dialog-footer">
@@ -132,26 +135,26 @@
 		</el-dialog>
 
 		<!-- 编辑库存记录弹窗 -->
-		<el-dialog :visible.sync="stockEditDialogVisible" title="修改库存信息" >
-			<el-form :model="stockEditData">
-		    	<el-form-item label="库存编号">
-		      		<el-input v-model="stockEditData.stockNum" auto-complete="off"></el-input>
-		    	</el-form-item>
+		<el-dialog :visible.sync="stockEditDialogVisible" title="修改库存信息" size="622px" >
+			<el-form :model="stockEditData" label-width="83px">
 		    	<el-form-item label="类型">
-		      		<el-input v-model="stockEditData.stockType" auto-complete="off" ></el-input>
+		      		<el-input v-model="stockEditData.stockType" auto-complete="off" style="width: 220px" ></el-input>
 		    	</el-form-item>
 		    	<el-form-item label="货物名称">
-		      		<el-input v-model="stockEditData.stockName" auto-complete="off"></el-input>
+		      		<el-input v-model="stockEditData.stockName" auto-complete="off" style="width: 220px"></el-input>
 		    	</el-form-item>
 		    	<el-form-item label="现有库存量">
-		      		<el-input v-model="stockEditData.Poh" auto-complete="off"></el-input>
+		      		<el-input v-model="stockEditData.Poh" auto-complete="off" style="width: 220px"></el-input>
 		    	</el-form-item>
 		    	<el-form-item label="单位">
-		      		<el-input v-model="stockEditData.unit" auto-complete="off"></el-input>
+		      		<el-input v-model="stockEditData.unit" auto-complete="off" style="width: 220px"></el-input>
 		    	</el-form-item>
 		     	<el-form-item label="操作时间">
 		      		<el-date-picker type="date" placeholder="选择修改时间" v-model="stockEditData.operatingTime"  style="width: 220px">
 				</el-date-picker>
+		    	</el-form-item>
+		    	<el-form-item label="操作人">
+		      		<el-input v-model="stockEditData.operator" auto-complete="off"  style="width: 220px"></el-input>
 		    	</el-form-item>
 		  	</el-form>
 		  	<div slot="footer" class="dialog-footer">
@@ -163,12 +166,7 @@
 </template>
 
 <style>
-.stock_top {
-	margin: 10px;
-}
-.search_stock{
-	width: 180px;
-}
+
 .page{
 	margin: 10px;
 } 
