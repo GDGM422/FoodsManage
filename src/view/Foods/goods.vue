@@ -41,19 +41,19 @@
 		</div>
 
 		<!-- 添加菜品 -->
-		<el-dialog title="添加菜品" :visible.sync="dialogFormVisible">
-		    <el-form :model="formAdd">
+		<el-dialog title="添加菜品" :visible.sync="dialogFormVisible" size="622px">
+		    <el-form :model="formAdd" label-width="85px">
 		    	<el-form-item label="菜品编号" :label-width="formLabelWidth">
-			      	<el-input v-model="formAdd.cp_num" auto-complete="off" ></el-input>
+			      	<el-input v-model="formAdd.cp_num" auto-complete="off" style="width: 220px"></el-input>
 			    </el-form-item>
 			    <el-form-item label="菜品名称" :label-width="formLabelWidth">
-			      	<el-input v-model="formAdd.cp_name" auto-complete="off" ></el-input>
+			      	<el-input v-model="formAdd.cp_name" auto-complete="off" style="width: 220px"></el-input>
 			    </el-form-item>
 			    <el-form-item label="菜品类别" :label-width="formLabelWidth">
-			      	<el-input v-model="formAdd.cp_type" auto-complete="off" ></el-input>
+			      	<el-input v-model="formAdd.cp_type" auto-complete="off" style="width: 220px"></el-input>
 			    </el-form-item>
 			    <el-form-item label="菜品单价" :label-width="formLabelWidth">
-			      	<el-input v-model="formAdd.cp_price" auto-complete="off" ></el-input>
+			      	<el-input v-model="formAdd.cp_price" auto-complete="off" style="width: 220px"></el-input>
 			    </el-form-item>		    
 		  	</el-form>
 		    <div slot="footer" class="dialog-footer">
@@ -63,19 +63,19 @@
 		</el-dialog>
 
 		<!-- 编辑菜品 -->
-		<el-dialog title="编辑菜品" :visible.sync="dialogEditVisible">
-		    <el-form :model="formEdit">
+		<el-dialog title="编辑菜品" :visible.sync="dialogEditVisible" size="622px">
+		    <el-form :model="formEdit" label-width="85px">
 		    	<el-form-item label="菜品编号" :label-width="formLabelWidth">
-			      	<el-input v-model="formEdit.cp_num" auto-complete="off" ></el-input>
+			      	<el-input v-model="formEdit.cp_num" auto-complete="off" style="width: 220px"></el-input>
 			    </el-form-item>
 			    <el-form-item label="菜品名称" :label-width="formLabelWidth">
-			      	<el-input v-model="formEdit.cp_name" auto-complete="off" ></el-input>
+			      	<el-input v-model="formEdit.cp_name" auto-complete="off" style="width: 220px"></el-input>
 			    </el-form-item>
 			    <el-form-item label="菜品类别" :label-width="formLabelWidth">
-			      	<el-input v-model="formEdit.cp_type" auto-complete="off" ></el-input>
+			      	<el-input v-model="formEdit.cp_type" auto-complete="off" style="width: 220px"></el-input>
 			    </el-form-item>
 			    <el-form-item label="菜品单价" :label-width="formLabelWidth">
-			      	<el-input v-model="formEdit.cp_price" auto-complete="off" ></el-input>
+			      	<el-input v-model="formEdit.cp_price" auto-complete="off" style="width: 220px"></el-input>
 			    </el-form-item>		    
 		  	</el-form>
 		    <div slot="footer" class="dialog-footer">
