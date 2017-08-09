@@ -124,9 +124,16 @@
 		      <el-date-picker type="date" placeholder="选择时间" v-model="form.operatingTime"  style="width: 220px">
 			  </el-date-picker>
 		    </el-form-item>
+<<<<<<< HEAD
 		    <el-form-item label="操作人">
 		      <el-input v-model="form.operator" auto-complete="off"  style="width: 220px"></el-input>
 		    </el-form-item>
+=======
+			<el-form-item label="操作人">
+		      <el-input v-model="form.operator" auto-complete="off"></el-input>
+		    </el-form-item>
+		    
+>>>>>>> aa0a24e010dfc28df9a3423bfb4fab912e59568f
 		  </el-form>
 		  <div slot="footer" class="dialog-footer">
 		    <el-button @click="dialogFormVisible = false">取 消</el-button>
@@ -153,9 +160,15 @@
 		      		<el-date-picker type="date" placeholder="选择修改时间" v-model="stockEditData.operatingTime"  style="width: 220px">
 				</el-date-picker>
 		    	</el-form-item>
+<<<<<<< HEAD
 		    	<el-form-item label="操作人">
 		      		<el-input v-model="stockEditData.operator" auto-complete="off"  style="width: 220px"></el-input>
 		    	</el-form-item>
+=======
+	    		<el-form-item label="操作人">
+	    	      <el-input v-model="stockEditData.operator" auto-complete="off"></el-input>
+	    	    </el-form-item>
+>>>>>>> aa0a24e010dfc28df9a3423bfb4fab912e59568f
 		  	</el-form>
 		  	<div slot="footer" class="dialog-footer">
 		    	<el-button @click="stockEditDialogVisible = false">取 消</el-button>
