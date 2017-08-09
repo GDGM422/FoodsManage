@@ -191,7 +191,7 @@
          	 var arr=staff.s;  //每新增一条数据，arr的长度就会加一
          	 // this.worker=response.data.worker;
          	 console.log("--------------------",this.worker);
-<<<<<<< HEAD
+
          	 console.log("arr>>>>>>>>",staff)
 
 
@@ -200,28 +200,27 @@
          	 var l=staff.tableData3.worker.length;
          	 for(let i=0;i<l;i++){
          	    idarr.push(staff.tableData3.worker[i].rs_id)  //将表格中的所有ID放进一个数组
-=======
+
 
          	 console.log("arr>>>>>>>>",arr)
          	 for(let i=0;i<arr.length;i++){  //新增数据
          	  	staff.tableData3.worker.push(arr[i])
->>>>>>> af1eee80fdf7d072757caa130af62153ccc32284
          	 }
          	    console.log("kkkkkkkkkkkkkkk",idarr)
-         	 for(var j=0;j<arr.length;j++){
-         	 	 var add0=arr[j].rs_id   					  //取到输入的工号
+         	for(var j=0;j<arr.length;j++){
+         	 	var add0=arr[j].rs_id   					  //取到输入的工号
 				console.log("000000002",arr[j])
 
-         	 if(idarr.indexOf(add0)==-1){  			//indexOf():某个指定的字符串在字符串中首次出现的位置
-         	 	 staff.tableData3.worker.push(arr[j])
-         	 	 console.log("hhhhhhhhhhh",arr[j])
-            }else{
-         	 	 alert("该工号已存在！！")
-         	 	 console.log("hjksdhlf")
-          }     
+	         	if(idarr.indexOf(add0)==-1){  			//indexOf():某个指定的字符串在字符串中首次出现的位置
+	         	 	 staff.tableData3.worker.push(arr[j])
+	         	 	 console.log("hhhhhhhhhhh",arr[j])
+	            }else{
+	         	 	 alert("该工号已存在！！")
+	         	 	 console.log("hjksdhlf")
+	          	}     
      
-       }
-         	  
+       		}
+         } 
          	 
          	/* for(let i=0;i<arr.length;i++){  //新增数据
          	  	staff.tableData3.worker.push(arr[i])

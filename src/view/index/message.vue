@@ -1,6 +1,6 @@
 <template>
 <div id="message">
-	<el-col class="qx" >
+	<el-col class="qx">
 		<p class="title">你的权限</p>
 		<hr>
 		<p class="name">{{ roles.username }}</p>
