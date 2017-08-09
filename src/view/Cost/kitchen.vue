@@ -55,7 +55,7 @@
 		            </div>
 		      </el-dialog>
 		        <el-button class="filter-item" type="primary" @click="dialogFormVisible = true" icon="edit" >新增用品</el-button>
-		            <p>总支出：{{ totalkitchen }}</p>
+		            <p>总支出：{{ totalkitchen }}  </p>
 		  </el-collapse-item>
 		</el-collapse>
 	</div>
@@ -63,6 +63,7 @@
 
 <script>
 import store from '../../store/index'
+import { api } from '../../global/api'
   export default {
     name: 'index',
     data() {
@@ -93,7 +94,8 @@ import store from '../../store/index'
             count:"",
             price:"",
             money:""
-        }
+        },
+        
       };
     },    
     mounted:function(){
@@ -171,7 +173,7 @@ import store from '../../store/index'
         //获取json
         getData:function(){
         	let that = this;
-        	that.$http.get('../../static/dataJson/Cost.json').then(
+        	that.$http.get(api.Cost).then(
         	function(response){
         		console.log(response);
                 // alert("请求成功！")

@@ -1,14 +1,14 @@
 <template>
 <div id="message">
-	<el-col class="user_qx" >
-		<p class="user_title">你的权限</p>
+	<el-col class="qx" >
+		<p class="title">你的权限</p>
 		<hr>
-		<p class="usern">{{ roles.username }}</p>
+		<p class="name">{{ roles.username }}</p>
 	</el-col>
 
 	<el-row>
-		<el-col class="user_info">
-			<p class="user_title">个人信息</p>
+		<el-col class="info">
+			<p class="title">个人信息</p>
 			<hr>
 			<div class="user_info_form" v-if="editable">
 				<el-form label-position="right" label-width="100px" :model="personalInfo">
@@ -117,8 +117,8 @@
 	}
 </script>
 
-<style>
-	.user_qx{
+<style scope>
+	.qx{
 		width: 30%;
 		margin: 5%;
 		padding: 20px;
@@ -126,19 +126,19 @@
 		border: 1px solid #324157;
 		border-radius: 6px;
 	}
-	.user_qx .usern{
+	.qx .name{
 		font-size: 32px;
 		color: #8b5d30;
 		margin-top: 12px;
 	}
-	.user_info{
+	.info{
 		width: 50%;
 		padding: 20px 32px;
 		text-align: center;
 		border: 1px solid #324157;
 		border-radius: 6px;     
 	}
-	.user_title{
+	.title{
 		font-size: 32px;
 		color: #324157;
 		margin-bottom: 12px;

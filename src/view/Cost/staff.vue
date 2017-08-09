@@ -42,6 +42,7 @@
 
 <script>
   import store from '../../store/index'
+  import { api } from '../../global/api'
   export default {
     name: 'index',
     data() {
@@ -106,7 +107,7 @@
         //获取json
         getData:function(){
           let that = this;
-          that.$http.get('../../static/dataJson/Cost.json').then(
+          that.$http.get(api.Cost).then(
           function(response){
             console.log(response);
                 // alert("请求成功！")

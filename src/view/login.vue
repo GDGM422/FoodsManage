@@ -117,7 +117,7 @@
 <style>
  #login{
     position: fixed;  
-    background: url('../assets/images/sky.jpg');
+    background: url('./../assets/img/sky.jpg');
     background-size: 100% 110%;
     width: 100%;
     height: 100%;  
