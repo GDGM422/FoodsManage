@@ -132,7 +132,7 @@ import { api } from '../../global/api'
               }
             },
             data:[
-              {value:66800,name:'员工薪水'},
+              {value:79100,name:'员工薪水'},
               {value:11300,name:'各大支出'},
               {value:7645,name:'厨房用品'},
               {value:20000,name:'其他'}
