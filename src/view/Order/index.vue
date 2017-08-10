@@ -9,12 +9,13 @@
     			<el-input v-model="ddlistQuery.buyname" placeholder="买家姓名"></el-input>
     		</div>
     		<div class="dd_btn_search">
-    			<el-button type="primary" icon="search">搜索</el-button>
-    		</div>	
-  		</div> 
+    			<el-button type="primary" icon="search" @click="handleQuery()" >查询</el-button>
+    		</div>
+    	</div>
 
 		<!-- 表格数据 -->
 		<div class="dd_table">
+
 			<el-table :data="tableData1.order" border style="width: 100%" :default-sort = "{prop: 'id', order: 'descending'}" >
 
 				    <el-table-column label="订单编号"  width="140" header-align="center">
@@ -66,7 +67,6 @@
 
 		<!-- 订单详情 -->
 		<el-dialog title="订单详情"  :visible.sync="dialogTableVisible">
-			<span></span>
 			  <el-table border :data="detailsData.goodsinfo" >
 					<el-table-column property="goodsid" label="商品编号" width="100" header-align="center"></el-table-column>
 					<el-table-column property="goodsname" label="商品名称" width="150" header-align="center"></el-table-column>
@@ -80,8 +80,8 @@
 		<div class="dd_page">
 			<!-- 分页 -->
 		    <div class="pagination-container">
-			      <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="ddlistQuery.currPage"
-			        :page-sizes="[10,20,30, 50]" :page-size="ddlistQuery.pageSize" layout="total, sizes, prev, pager, next, jumper" :total="total">
+			      <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="page.currPage"
+			        :page-sizes="[10,20,30, 50]" :page-size="page.pageSize" layout="total, sizes, prev, pager, next, jumper" :total="total">
 			      </el-pagination>
 		    </div>
 		</div>
@@ -96,11 +96,14 @@ export default {
 	name: 'index',
 	data() {
 		return {
-			// 分页
-			ddlistQuery:{
-				currPage:1,
+			// 查询
+			ddlistQuery:{	
 				id:"",
-				buyname:"",
+				buyname:""
+			},
+			//分页
+			page:{
+				currPage:1,
 				pageSize:10
 			},
 			// 存放json数据
@@ -165,6 +168,57 @@ export default {
 	        	}
 	        }
 	    },
+	    // 查询
+	    handleQuery(){
+	    	let me = this;
+	    	this.$http.get(api.OrderData,{params:{"id":me.ddlistQuery.id,"buyname":me.ddlistQuery.buyname}}).then(function(response){
+	    		// alert("请求成功!")
+	    		console.log(response)
+				console.log("这是我们需要的json数据",response.data)
+				me.tableData1=response.data;
+				console.log("查询成功!!")
+				var idarr=[];//id数组存放表格所有id
+				var namearr=[];//name数组存放表格所有buyname
+				var queryarr=[];//query数组存放所在id或所在buyname的某个对像
+	         	var l=me.tableData1.order.length;
+	         	for(let i=0;i<l;i++){
+	         	    idarr.push(me.tableData1.order[i].id)  //将表格中的所有ID放进一个数组
+	         	    namearr.push(me.tableData1.order[i].buyname)//将表格中的买家姓名所有放进一个数组
+	         	}
+	         	console.log("111111111111",idarr)
+	         	var idexist=idarr.indexOf(me.ddlistQuery.id);//idexist存放id数组返回回来的下标值
+	         	var nameexist=namearr.indexOf(me.ddlistQuery.buyname);//nameexist存放name数组返回回来的下标值
+	         	//判断id或name值的各种情况
+	         	if(idexist==-1&&idexist!==''){
+	         		if(nameexist!==-1){
+	         			let index=nameexist;
+	         			this.$message.success('查询姓名成功！！');
+	         			queryarr.push(me.tableData1.order[index])
+	         			me.tableData1.order=queryarr;	
+	         		}else{
+	         			this.$message.error('该编号不存在！！');
+	         		}
+
+	         	}else if(nameexist==-1&&nameexist!==''){
+
+	         		if(idexist!==-1){
+	         			let index=idexist
+		         		queryarr.push(me.tableData1.order[index])
+		         		me.tableData1.order=queryarr;
+		         		this.$message.success('查询编号成功！！');
+	         		}
+
+	         	}else{
+	         		let idindex=idexist        		
+	         		queryarr.push(me.tableData1.order[idindex])
+	         		me.tableData1.order=queryarr;
+	         		this.$message.success('查询编号成功！！');
+	         	}
+	         	         		
+	    	},function(response){
+	    		alert("请求失败!")
+	    	});
+	    }
 	    
 	   
 	}
