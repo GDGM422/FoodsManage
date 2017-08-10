@@ -22,12 +22,6 @@
 			  </el-dropdown-menu>
 			</el-dropdown>
 
-
-
-	      	<!-- <el-button type="text" @click="dialogVisible = true">切换主题</el-button>
-	      	
-	      	
-	      	<el-button type="text" @click="editlogin">退出登录</el-button> -->
 	      </div>
     	</div>
 		<div class="content-wrapper">
@@ -35,10 +29,10 @@
 		       <el-row class="tac">
 		        <el-col :span="26">
 		            <el-menu default-active="2" class="el-menu-vertical-demo"  theme="dark" style="position:fixed;top:50px; bottom: 0px;left:0;right: 0;width:200px;">
+
 		            	<router-link to="/index/message">
 		            		<el-menu-item index="1"><i class="fa fa-home" aria-hidden="true" style="font-size:20px;margin-right: 5px; "></i>首页</el-menu-item>
 		            	</router-link>
-
 		            	
 			            <el-submenu index="2">
         	                <template slot="title"><i class="el-icon-message"></i>人事管理</template>
@@ -55,7 +49,6 @@
 		              		<el-menu-item index="4"><i class="el-icon-setting"></i>商品管理
 		              		</el-menu-item>
 		              	</router-link>	
-			           
 			           
 			            <router-link to="/order/index">
 			            	<el-menu-item index="5"><i class="el-icon-document"></i>订单管理</el-menu-item>
@@ -167,17 +160,6 @@ import lv from './levelbar.vue'
 		margin-top: 10px;
 		margin-right: 50px;
 	}
-	/* .nav{
-	  position:fixed;
-	  top:50px;
-	  bottom: 10px;
-	  left:0;
-	  right: 0;
-	  width:200px;
-	} */
-	  /* background-color: #324157; */
-
-
 	.right{
 	  position:absolute;
 	  top:0;
