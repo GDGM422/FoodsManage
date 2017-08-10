@@ -225,6 +225,8 @@ export default {
 		viphandleDelete(index, row) {
 			// 前端删除
 			this.vipTableData.vipData.splice(index,1)
+ 		    this.$message.success('你已经成功删除一条数据！！');
+
 		},
 		//新增
 	    vipCreate() {

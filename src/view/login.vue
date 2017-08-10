@@ -134,9 +134,6 @@
     padding-left: 50px;
     color:#fff;
   }
-.el-button--primary {
-    margin-left: -25px;
-}
  
    
 </style>

@@ -2,7 +2,7 @@
 	<div class="stock_wrap">
 		<!-- 按货物名称查询 -->
 		<div class="stock_top" style="margin:10px;height:35px;">
-			<el-input placeholder="按货物名称查询" icon="search" :on-icon-click="handleIconClick" style="float:left;width:200px;margin-right:10px;">
+			<el-input placeholder="按货物名称查询" icon="search" :on-icon-click="handleIconClick" style="float:left;width:200px;margin-right:10px;" v-model="stockQueryData.stockName" @click="handleQuery()">
 			</el-input>
 			<el-button type="primary"  @click="dialogFormVisible = true"  style="float:left;width:150px;">添加库存记录</el-button>
 		</div>	
@@ -185,6 +185,10 @@ export default {
       		stockcurrentPage:1,
       		dialogFormVisible: false,
       		stockEditDialogVisible: false,
+      		// 查询
+			stockQueryData:{	
+				stockName:""
+			},
 			//一条库存新纪录数据
 	  		form: { 				
 				stockNum: '',
@@ -239,6 +243,40 @@ export default {
 		// 分页-currentPage 改变时触发
 		stockCurrentChange(val) {
 			console.log(`当前页: ${val}`);
+		},
+		// 按货物名称查询
+		handleQuery(){
+			let me = this;
+			this.$http.get(api.stock,{params:{"stockName":me.stockQueryData.stockName}}).then(function(response){
+					console.log(response)
+					console.log("这是我们需要的json数据",response.data)
+					me.stockData1=response.data;
+					console.log("查询成功!!");
+					var stockNameArr=[];//货物名称stockName的数组用于存放列表中的所有stockName
+					var queryarr=[];// 存放查询结果的对象
+					var stockDataLen=me.stockData1.stockData.length;// 列表数据的长度
+					for(let i=0;i<stockDataLen;i++){
+	         	    	stockNameArr.push(me.stockData1.stockData[i].stockName)  //遍历stockName
+	         		}
+	         		console.log("stockName的数组为",stockNameArr);
+	         		var stockNameIndex=stockNameArr.indexOf(me.stockQueryData.stockName);//返回货物名称数组的下标值
+	         		// 如果货物名称数组的下标值为-1时则该记录不存在，反之则成功
+	         		if(stockNameIndex!==-1){
+	         			let stockNameIndex=stockNameIndex;
+	         			this.$message.success('通过货物名称查询记录成功！');
+	         			let j;
+	         			for(j=0;j<stockDataLen;j++){
+	         				if(me.stockData1.stockData[j].stockName==me.stockQueryData.stockName){
+	         					queryarr.push(me.stockData1.stockData[j])
+	         				}
+	         				me.stockData1.stockData=queryarr;
+	         			}
+	         		}else{
+	         			this.$message.error('该记录不存在！');
+	         		}
+			},function(response){
+	    		alert("请求失败!")
+	    	});
 		},
 
       	// 添加事件

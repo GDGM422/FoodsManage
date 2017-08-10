@@ -1,7 +1,7 @@
 <template>
 	<div id="shangping">            
     	<div class="sp-search">
-			<div class="sp_input_name">
+			<!-- <div class="sp_input_name">
     			<el-input v-model="input" placeholder="菜品名称"></el-input>
     		</div>
     		<div class="sp_input_type">
@@ -9,7 +9,7 @@
     		</div>
     		<div class="sp_btn_search">
     			<el-button type="primary" icon="search">搜索</el-button>
-    		</div>
+    		</div> -->
     		<div class="sp_btn_add">
     			<el-button type="primary" @click="dialogFormVisible=true">
     				<i class="el-icon-plus">添加</i>
