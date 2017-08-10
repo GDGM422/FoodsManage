@@ -133,7 +133,6 @@ import { api } from '../../global/api'
 	            this.$http.get(api.cp).then(function(response){
 	                _this.tableData3=response.data;
 	                this.tableData3.cp=this.xiugailist
-	                store.dispatch('setGoods',_this.tableData3);
 	            },function(response){
 	            	alert("出现错误！")
 	            });

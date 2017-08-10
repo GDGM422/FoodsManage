@@ -25,6 +25,9 @@ const getters = {
     },
     stockIn:state=>{
     	return state.stock.stockData
+    },
+    ordergoodsIn:state=>{
+    	return state.ordergoods.ordergoodslist
     }
 };
 export default getters

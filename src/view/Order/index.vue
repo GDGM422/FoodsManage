@@ -96,20 +96,25 @@ export default {
 	name: 'index',
 	data() {
 		return {
+			// 分页
 			ddlistQuery:{
 				currPage:1,
 				id:"",
 				buyname:"",
 				pageSize:10
 			},
+			// 存放json数据
    			tableData1:{
    				order:[],
    				goodsinfo:[]
    			},
+   			// 查看弹出框的显示状态
    			dialogTableVisible: false,
+   			// 查看弹出框的表格数据
    			detailsData: {
    				goodsinfo :[]
    			},
+   			// 从商品管理获取数据
    			goodslist:store.state.goods.goodslist
 	    }	
 	},
@@ -147,12 +152,10 @@ export default {
 	    	this.dialogTableVisible=true;
 	    	this.detailsData = row;
 	        console.log(index, row);
-	        // let that=this;
 	        for(let i=0;i<this.detailsData.goodsinfo.length;i++){
 	        	let iDD=this.detailsData.goodsinfo;
 	        	let jGoods=this.goodslist;
 	        	for(let j=0;j<jGoods.length;j++){
-	        		
         			if(jGoods[j].cp_num==iDD[i].goodsid){
 	        			iDD[i].goodsname = jGoods[j].cp_name
 	        			iDD[i].gPrice = jGoods[j].cp_price
