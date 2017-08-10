@@ -1,9 +1,9 @@
 <template>
 	<div>
 	  <div class="rs_btn">
-	  <div class="rs_inp"><el-input v-model="input" placeholder="请输入内容"></el-input></div>
+	  <div class="rs_inp"><el-input v-model="input" placeholder="请输入职位"></el-input></div>
 	  	 <!-- 搜索框 -->
-        <el-button type="primary" icon="search">搜索</el-button>
+        <el-button type="primary" icon="search" @click="handleSearch">搜索</el-button>
 		<el-button type="primary" icon="delete" @click="handleMutiDel">批量删除</el-button>
 	  </div>
 	  
@@ -165,7 +165,7 @@
          	 var n=this.form.rs_name;
          	 if(arr0.indexOf(a)==-1 && a!="" && n!=""){
          	 	 this.tableData3.worker.splice(this.index0,1,this.form);
-         	 	   this.$message.success('修改成功！！');
+         	 	 this.$message.success('修改成功！！');
          	 	 this.dialogFormVisible = false;
          	}else if(a==""){
          		 this.$message.error("员工工号不能为空");
@@ -195,12 +195,52 @@
                  });          
                  });
          },
-         handleMutiDel(){
+         handleSearch(){  //搜索
+         	 //用工号搜索
+         	/* let searchIdarr=[];
+         	 let idNeed=[];
+         	 let x=0;
+   			for(x;x<this.tableData3.worker.length;x++){
+   				searchIdarr.push(this.tableData3.worker[x].rs_id);
+   				if(this.tableData3.worker[x].rs_id==this.input){
+   			  }	
+   		    }
+   		   		if(searchIdarr.indexOf(this.input)!=-1) {
+   		    	//searchArr.indexOf(this.input)为输入的工号的索引值
+   		    	console.log("搜索出的对象为：",this.tableData3.worker[searchIdarr.indexOf(this.input)])
+   		    	 idNeed.push(this.tableData3.worker[searchIdarr.indexOf(this.input)]);
+   		    } 
+   		        console.log(idNeed)
+   		        this.tableData3.worker=idNeed;
+   		    },*/
+
+			//用职位搜索
+   		    this.$http.get(api.workerData).then(function(response){
+   		       let rsSearch=this;
+   		       let searchPoarr=[];
+   		       let postNeed=[];
+   		       let i=0;
+   		       for(i;i<rsSearch.tableData3.worker.length;i++){
+   				  searchPoarr.push(rsSearch.tableData3.worker[i].rs_post);
+   			}
+   			   for(let a=0;a<searchPoarr.length;a++){
+   			   	  if(rsSearch.tableData3.worker[a].rs_post==rsSearch.input){
+   			   	  	  console.log("相同的职位为：",rsSearch.tableData3.worker[a]);
+   			   	  	  postNeed.push(rsSearch.tableData3.worker[a]);
+   			   }else{}
+   		    }rsSearch.tableData3.worker=postNeed;	
+   			},function(response){
+         	  alter("抱歉，请求失败了 T_T ")
+         	});
+   		   
+   			 
+         },
+         handleMutiDel(){   //批量删除
          	 var delLen=this.tableData3.worker.length;
          	 for(var q=0;q<delLen;q++){
-         		this.worker.rs_id
+         		 this.worker.rs_id
          	}
-         	console.log(this.tableData3.worker[q].rs_id)
+         	 console.log(this.tableData3.worker[q].rs_id)
          },
            
          getData:function(){  //请求json
@@ -220,7 +260,7 @@
          	}
          	    console.log("111111111111",idarr)
          	    console.log("length>>>>",arr.length)
-         	 for(var j=0;j<arr.length;j++){
+         	 for(var j=0;j<arr.length;j++){ 
          	    var addid=arr[j].rs_id;   					  //取到输入的工号
          	    var addN=arr[j].rs_name;
 				console.log("000000002",addid)
@@ -260,7 +300,7 @@
 <style>
 	
 	    .rs_btn{width:100%; margin-bottom: 10px; text-align: left;}
-	    .rs_inp{width:300px;float:left;margin-right:5px;}
+	    .rs_inp{width:250px;float:left;margin-right:10px;}
 	    .rs_dialogbody{text-align:left;margin-bottom:-30px;}
 	    .rs_dialogfooter{text-align: center}
 	   
