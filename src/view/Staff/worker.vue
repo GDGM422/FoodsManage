@@ -11,17 +11,20 @@
 		    :data="tableData3.worker"  
 		    border
 		    highlight-current-row
+		    
 		    style="width: 100%">
 		    <el-table-column type="selection" header-align="center" width="60" > </el-table-column>
-		    <!-- <el-table-column prop="rs_number" label="序号" width="100"></el-table-column> -->
 		    <el-table-column type="index"header-align="center" label="序号" width="70"></el-table-column>  <!-- 自增 -->
 		    <el-table-column label="姓名" header-align="center" >
 		    	<template scope="scope">{{scope.row.rs_name}}</template>
 		    </el-table-column>
-		    <el-table-column prop="rs_sex" label="性别" header-align="center">
-		    	<template scope="scope">{{scope.row.rs_sex}}</template>
-		    </el-table-column>
-		    <el-table-column prop="rs_id" label="工号" header-align="center">
+			<el-table-column prop="rs_sex" header-align="center" label="性别" :filters="[{ text: '男', value: '男' }, { text: '女', value: '女' }]" :filter-method="filterSex" filter-placement="bottom-end">
+			      <template scope="scope">
+			        <el-tag :type="scope.row.rs_sex === '男' ? 'primary' : 'success'" close-transition>{{scope.row.rs_sex}}</el-tag>
+			      </template>
+			</el-table-column>
+
+		    <el-table-column prop="rs_id" label="工号" header-align="center" sortable>
 		    	<template scope="scope">{{scope.row.rs_id}}</template>
 		    </el-table-column>
 		    <el-table-column prop="rs_post" label="职位" header-align="center">
@@ -30,7 +33,7 @@
 		    <el-table-column prop="rs_limit" label="权限" header-align="center">
 		    	<template scope="scope">{{scope.row.rs_limit}}</template>
 		    </el-table-column>
-		    <el-table-column label="月薪" header-align="center">
+		    <el-table-column label="月薪" header-align="center" prop="rs_price">
 		    	<template scope="scope">{{scope.row.rs_price}}</template>
 		    </el-table-column>
 		    <el-table-column prop="rs_desc" header-align="center" label="备注" width="180">
@@ -46,21 +49,21 @@
 		</el-table>
 
 			<!-- 编辑弹出框 -->
-		 <el-dialog title="修改员工信息" :visible.sync="dialogFormVisible" size="tiny">
-		   <el-form v-model="form" class="rs_dialogbody">
-		      <el-form-item label="姓名" :label-width="formLabelWidth">
+		    <el-dialog title="修改员工信息" :visible.sync="dialogFormVisible" size="tiny" >
+		      <el-form v-model="form" class="rs_dialogbody" :rules="rules">
+		      <el-form-item label="姓名" :label-width="formLabelWidth" prop="rs_name">
 		         <el-input v-model="form.rs_name" auto-complete="off"></el-input>
 		      </el-form-item>
-			  <el-form-item label="性别" :label-width="formLabelWidth"> 
-			     <el-radio-group v-model="form.rs_sex">
-			        <el-radio label="男"></el-radio>
-			        <el-radio label="女"></el-radio>
-			     </el-radio-group>
+			 <el-form-item label="性别" :label-width="formLabelWidth" prop="rs_sex"> 
+			   <el-radio-group v-model="form.rs_sex">
+			      <el-radio label="男"></el-radio>
+			      <el-radio label="女"></el-radio>
+			   </el-radio-group>
+			</el-form-item>
+			  <el-form-item label="工号" :label-width="formLabelWidth" prop="rs_id" p>
+				  <el-input v-model="form.rs_id" placeholder="纯数字" type="number"></el-input>
 			  </el-form-item>
-			  <el-form-item label="工号" :label-width="formLabelWidth">
-				  <el-input v-model="form.rs_id"></el-input>
-			  </el-form-item>
-		      <el-form-item label="职位" :label-width="formLabelWidth">
+		      <el-form-item label="职位" :label-width="formLabelWidth" prop="rs_post">
 		        <el-select v-model="form.rs_post" placeholder="请选择职位">
 		           <el-option label="经理" value="经理"></el-option>
 	         	        <el-option label="店长" value="店长"></el-option>
@@ -69,17 +72,17 @@
 	         	        <el-option label="保洁员" value="保洁员"></el-option>
 		        </el-select>
 		      </el-form-item>
-		       <el-form-item label="权限" :label-width="formLabelWidth">
+		       <el-form-item label="权限" :label-width="formLabelWidth" prop="rs_limit">
 		        <el-select v-model="form.rs_limit" placeholder="请选择权限" >
 		          <el-option label="高级" value="高级"></el-option>
 		          <el-option label="中级" value="中级"></el-option>
 		          <el-option label="初级" value="初级"></el-option>
 		        </el-select>
 		      </el-form-item>
-		       <el-form-item label="月薪" :label-width="formLabelWidth">
+		       <el-form-item label="月薪" :label-width="formLabelWidth" prop="rs_price">
 		          <el-input v-model="form.rs_price" auto-complete="off"></el-input>
 		      </el-form-item>
-		      <el-form-item label="备注" :label-width="formLabelWidth">
+		      <el-form-item label="备注" :label-width="formLabelWidth" prop="rs_desc">
 		        <el-input type="textarea" v-model="form.rs_desc"></el-input>
 		      </el-form-item>
 		    </el-form>
@@ -99,7 +102,6 @@
   import { api } from '../../global/api'
 	export default {
 	    data() {
-	    	
 	      return {
 	        tableData3:{
 	        	worker:[]  //引入json数据对象
@@ -116,16 +118,26 @@
          		     rs_limit:"",
          		     rs_desc:""
 	               },
-	         formLabelWidth: '50px',
-	         index0:null,
-	        }
-
+	        formLabelWidth: '50px',
+	        index0:null,
+	         
+	        rules:{
+	    	   rs_name: [
+	    	            { required: true, message: '请输入员工名称', trigger: 'blur' },
+	    	            { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+	    	          ],
 	   },
+	};
+},
 	    mounted:function(){   //生命周期
 	   		this.getData();
 	   		console.log("生命周期：",store.state.staff.staffManagment)
 	   },
 	    methods: {
+	    //性别分类
+	    filterSex(value, row) {
+	            return row.rs_sex === value;
+	    },	
 	    
          //编辑
          handleEdit(index, row){
@@ -142,19 +154,26 @@
          	console.log(this.tableData3.worker);
          	store.dispatch('commitCost',this.tableData3.worker);//将数据传出去
 
-         	//编辑校验
+         	//编辑校验（员工id）
              var arr0=[];
          	 var ediLen=this.tableData3.worker.length;
          	 for(let i=0;i<ediLen;i++){
          	 	arr0.push(this.tableData3.worker[i].rs_id) ;
          	 }
-         	 arr0.splice(this.index0,1)//在所有的工号里删掉当前这个
+         	 arr0.splice(this.index0,1);//在所有的工号里删掉当前这个
          	 var a=this.form.rs_id;    //填入的工号
-         	 if(arr0.indexOf(a)==-1){
+         	 var n=this.form.rs_name;
+         	 if(arr0.indexOf(a)==-1 && a!="" && n!=""){
          	 	 this.tableData3.worker.splice(this.index0,1,this.form);
+         	 	   this.$message.success('修改成功！！');
          	 	 this.dialogFormVisible = false;
-         	}else{
-         	 	 alert("工号已存在");
+         	}else if(a==""){
+         		 this.$message.error("员工工号不能为空");
+         	}else if(this.form.rs_name==""){
+         		 // this.$message.error("员工姓名不能为空");
+         	}
+         	else{
+         	 	 this.$message.error("工号已存在");
          	 	 this.dialogFormVisible = false;
          	}
          },
@@ -199,23 +218,34 @@
          	 for(let i=0;i<l;i++){
          	    idarr.push(staff.tableData3.worker[i].rs_id)  //将表格中的所有ID放进一个数组
          	}
-         	   console.log("111111111111",idarr)
-         	   console.log("length>>>>",arr.length)
-         	for(var j=0;j<arr.length;j++){
-         	   var add0=arr[j].rs_id   					  //取到输入的工号
-				console.log("000000002",add0)
+         	    console.log("111111111111",idarr)
+         	    console.log("length>>>>",arr.length)
+         	 for(var j=0;j<arr.length;j++){
+         	    var addid=arr[j].rs_id;   					  //取到输入的工号
+         	    var addN=arr[j].rs_name;
+				console.log("000000002",addid)
 
-	         	if(idarr.indexOf(add0)==-1){  				//indexOf():某个指定的字符串在字符串中首次出现的位置
+	            if(idarr.indexOf(addid)==-1 && addid!="" && addN!=""){  				//indexOf():某个指定的字符串在字符串中首次出现的位置
 	         	 	 staff.tableData3.worker.push(arr[j])
 	         	 	 this.$message.success('添加成功！！');
+	            }else if(addid==""){
+	            	this.$message.error('添加失败，工号不能为空！！');
+	            }else if(addN==""){
+	            	this.$message.error('添加失败，姓名不能为空！！');
 	            }else{
-	            	 console.log(add0)
+	            	 console.log(addid)
 	         	 	 console.log("该工号已存在！！")
 	         	 	 this.$message.error('添加失败，该工号已存在！！');
 	         	 	 // break;
-	          	}     
+          	}     
 	 
    		}
+   		 /*   for(var j=0;j<arr.length;j++){
+   		       if(isEmptyObject(arr[j])){
+   		       	alert(1111111111)
+   		       }	
+   		    }*/
+
 
          	 },function(response){
          	  alter("抱歉，请求失败了 T_T ")

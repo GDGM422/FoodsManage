@@ -12,7 +12,7 @@
 	    </el-radio-group>
 	  </el-form-item>
 	  <el-form-item label="工号">
-	    <el-input v-model="form.rs_id"></el-input>
+	    <el-input v-model="form.rs_id" placeholder="纯数字" type="number"></el-input>
 	  </el-form-item>
 	  <el-form-item label="职位">
 	    <el-select v-model="form.rs_post" placeholder="请选择职位">
