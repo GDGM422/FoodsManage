@@ -24,7 +24,7 @@
 				    	</template>
 				    </el-table-column>
 
-					<el-table-column label="买家姓名" width="120"  header-align="center">
+					<el-table-column label="买家姓名" width="180"  header-align="center">
 						<template scope="scope">
 				    	    <span>{{ scope.row.buyname }}</span>
 				    	</template>
@@ -36,8 +36,9 @@
 				    	</template>
 					</el-table-column>
 
-					<el-table-column label="下单时间" prop="orderdate" width="160"  sortable header-align="center">
+					<el-table-column label="下单时间" prop="orderdate" width="180"  sortable header-align="center">
 						<template scope="scope">
+							<el-icon name="time"></el-icon>
 				    	    <span>{{ scope.row.orderdate }}</span>
 				    	</template>
 					</el-table-column>
@@ -48,13 +49,13 @@
 				    	</template>
 				    </el-table-column>
 
-				    <el-table-column label="实际支付"  sortable width="140" prop="shiji"  header-align="center"> 
+				    <el-table-column label="实际支付"  sortable  prop="shiji"  header-align="center"> 
 				    	<template scope="scope">
 				    	    <span>{{ scope.row.shiji }}</span>
 				    	</template>
 				    </el-table-column>
 
-			      	<el-table-column label="操作" header-align="center" >
+			      	<el-table-column label="操作" header-align="center"  width="140">
 				        <template scope="scope">
 				          	<el-button @click="handleClick(scope.$index, scope.row)" type="primary" size="small">查看</el-button>
 				        </template>
@@ -193,7 +194,15 @@ export default {
 	         		if(nameexist!==-1){
 	         			let index=nameexist;
 	         			this.$message.success('查询姓名成功！！');
-	         			queryarr.push(me.tableData1.order[index])
+	         			let j;
+	         			for(j=0;j<l;j++){
+	         				if(me.tableData1.order[j].buyname==me.ddlistQuery.buyname){
+	         					queryarr.push(me.tableData1.order[j])
+	         				}else{
+	         					
+	         				}
+	         			}
+	         			
 	         			me.tableData1.order=queryarr;	
 	         		}else{
 	         			this.$message.error('该编号不存在！！');

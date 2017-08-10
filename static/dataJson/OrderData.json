@@ -1,6 +1,6 @@
 ﻿{
    "order":[
-   		{"id":"1100001","buyname":"李小虎","buytel":"13716515156","orderdate":"2017-07-01","orderprice":"210","shiji":"123","goodsinfo":[{"goodsid":"3","count":"2","goodsname":"","gPrice":"","sumprice":""},
+   		{"id":"1100001","buyname":"王小虎","buytel":"13716515156","orderdate":"2017-07-01","orderprice":"210","shiji":"123","goodsinfo":[{"goodsid":"3","count":"2","goodsname":"","gPrice":"","sumprice":""},
 			   {"goodsid":"2","count":"1","goodsname":"","gPrice":"","sumprice":""}]	
 		   },
    		{"id":"1100002","buyname":"王小虎","buytel":"13826468745","orderdate":"2017-07-02","orderprice":"220","shiji":"103","goodsinfo":[{"goodsid":"5","count":"2","goodsname":"","gPrice":"","sumprice":""},

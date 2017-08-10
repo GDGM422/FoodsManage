@@ -4,11 +4,11 @@
       <h2>餐饮后台管理系统</h2>
       <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" >
           
-          <el-form-item label="用户名" prop="username" style="color:#fff;" >
+          <el-form-item label="用户名" prop="username">
             <el-input v-model="ruleForm.username"></el-input>
           </el-form-item>
          
-          <el-form-item label="密码" prop="pass"  style="color:#fff;">
+          <el-form-item label="密码" prop="pass">
             <el-input type="password" v-model="ruleForm.pass" @keyup.enter.native="submitForm('ruleForm')"></el-input>
           </el-form-item>
           <el-form-item>
@@ -137,8 +137,6 @@
 .el-button--primary {
     margin-left: -25px;
 }
- .el-form-item__label {
-  color:#fff;
- } 
+ 
    
 </style>
