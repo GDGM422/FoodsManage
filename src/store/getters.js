@@ -25,6 +25,7 @@ const getters = {
     },
     stockIn:state=>{
     	return state.stock.stockData
-    }
+    },
+    
 };
 export default getters

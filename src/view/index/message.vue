@@ -1,13 +1,17 @@
 <template>
 <div id="message">
-	<el-col class="qx">
-		<p class="title">你的权限</p>
-		<hr>
-		<p class="name">{{ roles.username }}</p>
-	</el-col>
+	<el-row :gutter="20" type="flex">
 
-	<el-row>
-		<el-col class="info">
+		<el-col class="qx" :span="6">
+			<p class="title">你的权限</p>
+			<hr>
+			<p class="name">{{ roles.username }}</p>
+			<br>
+			<i class="fa fa-user-o" aria-hidden="true" style="font-size:200px"></i>
+		</el-col>
+
+	
+		<el-col class="info" :span="12" >
 			<p class="title">个人信息</p>
 			<hr>
 			<div class="user_info_form" v-if="editable">
@@ -81,7 +85,8 @@
 				// personalInfo : store.state.person.personInfo,
 				editable:false,
 				personalInfo:{},
-				roles: store.state.user.userInfo
+				roles: store.state.user.userInfo,
+				newImageUrl: '',
 			}
 		},
 
@@ -104,16 +109,11 @@
 			resetPersonForm:function(){
 				this.editable=false;
 				this.personalInfo=JSON.parse(JSON.stringify(store.state.person.personInfo))
-			}
+			},
+
 		},
 
-		// watch: {
-		//   role(val) {
-		//     this.$store.dispatch('ChangeRole', val).then(() => {
-		//       this.$router.push({ path: '/permission/index?' + +new Date() });
-		//     })
-		//   }
-		// }
+		
 	}
 </script>
 
@@ -130,6 +130,7 @@
 		font-size: 32px;
 		color: #8b5d30;
 		margin-top: 12px;
+
 	}
 	.info{
 		width: 50%;
