@@ -13,7 +13,10 @@ const cost= {
               {"id":"09","name":"","job":"","pay":"","overtime":"300","award":"100"},
               {"id":"10","name":"","job":"","pay":"","overtime":"300","award":"100"},
               {"id":"11","name":"","job":"","pay":"","overtime":"300","award":"100"},
-              {"id":"12","name":"","job":"","pay":"","overtime":"800","award":"500"}
+              {"id":"12","name":"","job":"","pay":"","overtime":"800","award":"500"},
+              {"id":"13","name":"","job":"","pay":"","overtime":"300","award":"100"},
+              {"id":"14","name":"","job":"","pay":"","overtime":"300","award":"100"},
+              {"id":"15","name":"","job":"","pay":"","overtime":"0","award":"0"},
             ],
             "pay":[
               {"thing":"水费","money":"500"},
