@@ -34,7 +34,7 @@ export  const global = {
                     link.rel = 'stylesheet';
                     link.type = 'text/css';
                     head.appendChild(link);//appendChild在列表中添加项目
-                    console.log("head打印",head);
+                    //console.log("head打印",head);
               
             }
         }        
