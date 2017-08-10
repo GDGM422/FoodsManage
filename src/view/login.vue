@@ -114,11 +114,11 @@
     
   }
 </script>
-<style>
+<style scope>
 	.login{
     position: relative;
     width: 400px;
-    height: 230px;
+    height: 250px;
     left: 50%;
     top: 25%;
     margin-left: -200px;
@@ -134,9 +134,11 @@
     padding-left: 50px;
     color:#fff;
   }
- .el-form-item__content {
-     width: 300px;
- }
-  
+.el-button--primary {
+    margin-left: -25px;
+}
+ .el-form-item__label {
+  color:#fff;
+ } 
    
 </style>
