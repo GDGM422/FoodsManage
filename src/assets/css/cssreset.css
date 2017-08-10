@@ -9,7 +9,7 @@ http://yuilibrary.com/license/
 html{
 	color:#000;
 	background:#FFF;
-}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,footer,article,aside,header,section,nav,figure,figcaption,hgroup{
+}body,div,dl,dt,dd,ul,ol,li,h1,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,footer,article,aside,header,section,nav,figure,figcaption,hgroup{
 	margin:0;
 	padding:0;
 }table{
@@ -23,10 +23,7 @@ html{
 }ol,ul{
 	list-style:none;
 }caption,th{
-	text-align:left;
-}h1,h2,h3,h4,h5,h6{
-	font-size:100%;
-	font-weight:normal;
+	text-align:left;	
 }q:before,q:after{
 	content:'';
 }abbr,acronym{
@@ -45,3 +42,13 @@ html{
 	color:#000;
 }#yui3-css-stamp.cssreset{ display:none}
 a{text-decoration: none;}
+
+#login{
+    position: fixed;  
+    background: url('./../img/sky.jpg');
+    background-size: 100% 110%;
+    width: 100%;
+    height: 100%;  
+    margin: 0px;
+    padding: 0px;
+  }

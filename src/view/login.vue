@@ -1,6 +1,6 @@
 <template>
 	<div id="login">    
-		<div class="login">
+		<div class="login" >
       <h2>餐饮后台管理系统</h2>
       <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" >
           
@@ -115,15 +115,6 @@
   }
 </script>
 <style>
- #login{
-    position: fixed;  
-    background: url('./../assets/img/sky.jpg');
-    background-size: 100% 110%;
-    width: 100%;
-    height: 100%;  
-    margin: 0px;
-    padding: 0px;
-  }
 	.login{
     position: relative;
     width: 400px;
@@ -134,11 +125,11 @@
     border-radius: 6px;
     background:#1d2f47;
     padding-right: 50px;
-    padding-top: 20px;	
+    padding-top: 6px;	
 	}
   h2{
     font-size: 1.5em;
-    padding-bottom: 20px;
+    padding-bottom: 6px;
     font-family: "宋体";
     padding-left: 50px;
     color:#fff;
