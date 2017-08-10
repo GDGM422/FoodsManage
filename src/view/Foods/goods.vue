@@ -100,16 +100,18 @@ import { api } from '../../global/api'
 		      	},
 		      	multipleSelection: [],
 		            dialogFormVisible: false, //添加对话框的显示状态
-		            addLoading: false,
-		            dialogEditVisible:false,
-		            editLoading:false,
-		            editSelected:-1,
+		            addLoading: false,//显示添加加载中样式
+		            dialogEditVisible:false,//编辑对话框的显示状态
+		            editLoading:false,//显示编辑加载中样式
+		            editSelected:-1,//默认位置为-1
+		            //添加表单
 		            formAdd: {	
 		            	cp_num:'',	
 		                cp_name: '',
 		                cp_type: '',
 		                cp_price: ''
 		            },
+		            //编辑表单
 		            formEdit: {	
 		            	cp_num:'',	
 		                cp_name: '',
@@ -131,11 +133,12 @@ import { api } from '../../global/api'
 	            this.$http.get(api.cp).then(function(response){
 	                _this.tableData3=response.data;
 	                this.tableData3.cp=this.xiugailist
-	                // store.dispatch('setGoods',_this.tableData3);
+	                store.dispatch('setGoods',_this.tableData3);
 	            },function(response){
 	            	alert("出现错误！")
 	            });
 	        },
+	        //添加菜单
 	        addCP(){
 	        	let this_add=this;
 	        	this_add.tableData3.cp.push(this_add.formAdd);
@@ -143,11 +146,13 @@ import { api } from '../../global/api'
 	        	store.dispatch('setGoods',this_add.tableData3.cp);
 
 	        },
+	        //删除菜单
 	        handleDelete($index){
 	        	let this_del=this;
 	        	this_del.tableData3.cp.splice($index,1);
 	        	store.dispatch('setGoods',this_del.tableData3.cp);
 	        },
+	        //编辑菜单
 	        handleEdit($index){
 	        	let this_edit=this;
 	        	this_edit.dialogEditVisible=true;//弹框是否显示
@@ -163,7 +168,6 @@ import { api } from '../../global/api'
 	        editCP(){
 	        	let this_edit=this;
 	        	//数据保存到index位置上
-	        	// this_edit.tableData3.cp.$set(this_edit.tableData3.cp,this_edit.editSelected,this_edit.formEdit);//data,key,value
 	        	this_edit.tableData3.cp.splice(this_edit.editSelected, 1, this_edit.formEdit)
 	        	this_edit.dialogEditVisible = false;
 	        	store.dispatch('setGoods',this_edit.tableData3.cp);
