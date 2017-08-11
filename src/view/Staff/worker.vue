@@ -11,7 +11,6 @@
 		    :data="tableData3.worker"  
 		    border
 		    highlight-current-row
-		    
 		    style="width: 100%">
 		    <el-table-column type="selection" header-align="center" width="60" > </el-table-column>
 		    <el-table-column type="index"header-align="center" label="序号" width="70"></el-table-column>  <!-- 自增 -->
@@ -49,7 +48,7 @@
 		</el-table>
 
 			<!-- 编辑弹出框 -->
-		    <el-dialog title="修改员工信息" :visible.sync="dialogFormVisible" size="tiny" >
+		    <el-dialog title="修改员工信息" :visible.sync="dialogFormVisible" size="tiny" modal="false">
 		      <el-form v-model="form" class="rs_dialogbody" :rules="rules">
 		      <el-form-item label="姓名" :label-width="formLabelWidth" prop="rs_name">
 		         <el-input v-model="form.rs_name" auto-complete="off"></el-input>
@@ -155,7 +154,7 @@
          	store.dispatch('commitCost',this.tableData3.worker);//将数据传出去
 
          	//编辑校验（员工id）
-             var arr0=[];
+           var arr0=[];
          	 var ediLen=this.tableData3.worker.length;
          	 for(let i=0;i<ediLen;i++){
          	 	arr0.push(this.tableData3.worker[i].rs_id) ;
@@ -263,7 +262,7 @@
          	 for(var j=0;j<arr.length;j++){ 
          	    var addid=arr[j].rs_id;   					  //取到输入的工号
          	    var addN=arr[j].rs_name;
-				console.log("000000002",addid)
+		      		console.log("000000002",addid)
 
 	            if(idarr.indexOf(addid)==-1 && addid!="" && addN!=""){  				//indexOf():某个指定的字符串在字符串中首次出现的位置
 	         	 	 staff.tableData3.worker.push(arr[j])
@@ -280,12 +279,6 @@
           	}     
 	 
    		}
-   		 /*   for(var j=0;j<arr.length;j++){
-   		       if(isEmptyObject(arr[j])){
-   		       	alert(1111111111)
-   		       }	
-   		    }*/
-
 
          	 },function(response){
          	  alter("抱歉，请求失败了 T_T ")
@@ -298,10 +291,9 @@
 	  }
 </script>
 <style>
-	
 	    .rs_btn{width:100%; margin-bottom: 10px; text-align: left;}
 	    .rs_inp{width:250px;float:left;margin-right:10px;}
 	    .rs_dialogbody{text-align:left;margin-bottom:-30px;}
 	    .rs_dialogfooter{text-align: center}
-	   
+	     .v-modal {background: none;}
 </style>
