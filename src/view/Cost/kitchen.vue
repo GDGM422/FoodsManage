@@ -36,7 +36,7 @@
 		      </el-table> 
 		        
 		        <!-- 新增弹框==================================================================================== -->
-		      <el-dialog title="新增用品"  :visible.sync="dialogFormVisible">
+		      <el-dialog title="新增用品"  :visible.sync="dialogFormVisible" :modal-append-to-body="false">
 		            <el-form :model="form" class="small-space" label-position="left" label-width="70px" style='width: 400px; margin-left:50px;'>
 		              <el-form-item label="用品">
 		                <el-input v-model="form.thing"></el-input><!--  -->

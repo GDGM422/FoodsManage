@@ -25,7 +25,7 @@
 		      </el-table> 
 		        
 		        <!-- 新增弹框============================================================================== -->
-		      <el-dialog title="新增支出"  :visible.sync="dialogFormVisible">
+		      <el-dialog title="新增支出"  :visible.sync="dialogFormVisible" :modal-append-to-body="false">
 		            <el-form :model="form" class="small-space" label-position="left" label-width="70px" style='width: 400px; margin-left:50px;'>
 		              <el-form-item label="开销">
 		                <el-input v-model="form.thing"></el-input><!-- v-model="roleTemp.roleName" -->

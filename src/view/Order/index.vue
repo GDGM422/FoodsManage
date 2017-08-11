@@ -66,7 +66,7 @@
 
 
 		<!-- 订单详情 -->
-		<el-dialog title="订单详情"  :visible.sync="dialogTableVisible">
+		<el-dialog title="订单详情"  :visible.sync="dialogTableVisible" :modal-append-to-body="false">
 			  <el-table border :data="detailsData.goodsinfo" >
 					<el-table-column property="goodsid" label="商品编号" width="100" header-align="center"></el-table-column>
 					<el-table-column property="goodsname" label="商品名称" width="150" header-align="center"></el-table-column>

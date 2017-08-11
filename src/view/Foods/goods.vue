@@ -41,7 +41,7 @@
 		</div>
 
 		<!-- 添加菜品 -->
-		<el-dialog title="添加菜品" :visible.sync="dialogFormVisible" size="622px">
+		<el-dialog title="添加菜品" :visible.sync="dialogFormVisible" size="622px" :modal-append-to-body="false">
 		    <el-form :model="formAdd" label-width="85px">
 		    	<el-form-item label="菜品编号" :label-width="formLabelWidth">
 			      	<el-input v-model="formAdd.cp_num" auto-complete="off" style="width: 220px"></el-input>
@@ -63,7 +63,7 @@
 		</el-dialog>
 
 		<!-- 编辑菜品 -->
-		<el-dialog title="编辑菜品" :visible.sync="dialogEditVisible" size="622px">
+		<el-dialog title="编辑菜品" :visible.sync="dialogEditVisible" size="622px" :modal-append-to-body="false">
 		    <el-form :model="formEdit" label-width="85px">
 		    	<el-form-item label="菜品编号" :label-width="formLabelWidth">
 			      	<el-input v-model="formEdit.cp_num" auto-complete="off" style="width: 220px"></el-input>
