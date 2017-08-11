@@ -48,49 +48,49 @@
 		</el-table>
 
 			<!-- 编辑弹出框 -->
-		    <el-dialog title="修改员工信息" :visible.sync="dialogFormVisible" size="tiny" modal="false">
-		      <el-form v-model="form" class="rs_dialogbody" :rules="rules">
-		      <el-form-item label="姓名" :label-width="formLabelWidth" prop="rs_name">
-		         <el-input v-model="form.rs_name" auto-complete="off"></el-input>
-		      </el-form-item>
-			 <el-form-item label="性别" :label-width="formLabelWidth" prop="rs_sex"> 
-			   <el-radio-group v-model="form.rs_sex">
-			      <el-radio label="男"></el-radio>
-			      <el-radio label="女"></el-radio>
-			   </el-radio-group>
-			</el-form-item>
-			  <el-form-item label="工号" :label-width="formLabelWidth" prop="rs_id" p>
-				  <el-input v-model="form.rs_id" placeholder="纯数字" type="number"></el-input>
-			  </el-form-item>
-		      <el-form-item label="职位" :label-width="formLabelWidth" prop="rs_post">
-		        <el-select v-model="form.rs_post" placeholder="请选择职位">
-		           <el-option label="经理" value="经理"></el-option>
-	         	        <el-option label="店长" value="店长"></el-option>
-	         	        <el-option label="收银员" value="收银员"></el-option>
-	         	        <el-option label="服务员" value="服务员"></el-option>
-	         	        <el-option label="保洁员" value="保洁员"></el-option>
-		        </el-select>
-		      </el-form-item>
-		       <el-form-item label="权限" :label-width="formLabelWidth" prop="rs_limit">
-		        <el-select v-model="form.rs_limit" placeholder="请选择权限" >
-		          <el-option label="高级" value="高级"></el-option>
-		          <el-option label="中级" value="中级"></el-option>
-		          <el-option label="初级" value="初级"></el-option>
-		        </el-select>
-		      </el-form-item>
-		       <el-form-item label="月薪" :label-width="formLabelWidth" prop="rs_price">
-		          <el-input v-model="form.rs_price" auto-complete="off"></el-input>
-		      </el-form-item>
-		      <el-form-item label="备注" :label-width="formLabelWidth" prop="rs_desc">
-		        <el-input type="textarea" v-model="form.rs_desc"></el-input>
-		      </el-form-item>
-		    </el-form>
-		    
-		   <div slot="footer" class="rs_dialogfooter">
-		     <el-button @click="dialogFormVisible = false">取 消</el-button>
-		     <el-button type="primary" @click="ediSure">确 定</el-button>
-		   </div>
-		 </el-dialog>
+              <el-dialog title="修改员工信息" :visible.sync="dialogFormVisible" size="tiny" :modal-append-to-body="false">
+                <el-form v-model="form" class="rs_dialogbody" :rules="rules">
+                <el-form-item label="姓名" :label-width="formLabelWidth" prop="rs_name">
+                   <el-input v-model="form.rs_name" auto-complete="off"></el-input>
+                </el-form-item>
+             <el-form-item label="性别" :label-width="formLabelWidth" prop="rs_sex"> 
+               <el-radio-group v-model="form.rs_sex">
+                  <el-radio label="男"></el-radio>
+                  <el-radio label="女"></el-radio>
+               </el-radio-group>
+            </el-form-item>
+              <el-form-item label="工号" :label-width="formLabelWidth" prop="rs_id" p>
+                <el-input v-model="form.rs_id" placeholder="纯数字" type="number"></el-input>
+              </el-form-item>
+                <el-form-item label="职位" :label-width="formLabelWidth" prop="rs_post">
+                  <el-select v-model="form.rs_post" placeholder="请选择职位">
+                     <el-option label="经理" value="经理"></el-option>
+                          <el-option label="店长" value="店长"></el-option>
+                          <el-option label="收银员" value="收银员"></el-option>
+                          <el-option label="服务员" value="服务员"></el-option>
+                          <el-option label="保洁员" value="保洁员"></el-option>
+                  </el-select>
+                </el-form-item>
+                 <el-form-item label="权限" :label-width="formLabelWidth" prop="rs_limit">
+                  <el-select v-model="form.rs_limit" placeholder="请选择权限" >
+                    <el-option label="高级" value="高级"></el-option>
+                    <el-option label="中级" value="中级"></el-option>
+                    <el-option label="初级" value="初级"></el-option>
+                  </el-select>
+                </el-form-item>
+                 <el-form-item label="月薪" :label-width="formLabelWidth" prop="rs_price">
+                    <el-input v-model="form.rs_price" auto-complete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="备注" :label-width="formLabelWidth" prop="rs_desc">
+                  <el-input type="textarea" v-model="form.rs_desc"></el-input>
+                </el-form-item>
+              </el-form>
+              
+             <div slot="footer" class="rs_dialogfooter">
+               <el-button @click="dialogFormVisible = false">取 消</el-button>
+               <el-button type="primary" @click="ediSure">确 定</el-button>
+             </div>
+           </el-dialog>
 		
 		  <!-- <p>员工信息：{{s}}</p> -->
 	</div>
@@ -295,5 +295,4 @@
 	    .rs_inp{width:250px;float:left;margin-right:10px;}
 	    .rs_dialogbody{text-align:left;margin-bottom:-30px;}
 	    .rs_dialogfooter{text-align: center}
-	     .v-modal {background: none;}
 </style>
