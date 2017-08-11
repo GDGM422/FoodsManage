@@ -14,6 +14,7 @@
 			<el-dropdown>
 			  <el-button type="text">
 			    <i class="fa fa-user-o" aria-hidden="true" style="font-size:25px"></i>
+			    
 			    <i class="el-icon-caret-bottom el-icon--right"></i>
 			  </el-button>
 			  <el-dropdown-menu slot="dropdown">
