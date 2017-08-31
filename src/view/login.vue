@@ -114,7 +114,16 @@
     
   }
 </script>
-<style scope>
+<style >
+#login{
+    position: fixed;  
+    background: url('./../assets/img/sky.jpg');
+    background-size: 100% 110%;
+    width: 100%;
+    height: 100%;  
+    margin: 0px;
+    padding: 0px;
+  }
 	.login{
     position: relative;
     width: 400px;
@@ -135,5 +144,5 @@
     color:#fff;
   }
  
-   
+  
 </style>

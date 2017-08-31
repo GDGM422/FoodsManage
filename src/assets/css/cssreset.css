@@ -43,12 +43,4 @@ html{
 }#yui3-css-stamp.cssreset{ display:none}
 a{text-decoration: none;}
 
-#login{
-    position: fixed;  
-    background: url('./../img/sky.jpg');
-    background-size: 100% 110%;
-    width: 100%;
-    height: 100%;  
-    margin: 0px;
-    padding: 0px;
-  }
+ 
