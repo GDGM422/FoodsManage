@@ -63,6 +63,12 @@
 		              		<el-menu-item index="7"><i class="el-icon-date"></i>成本管理</el-menu-item>
 		                </router-link>
 
+		                <el-submenu index="8">
+        	                <template slot="title"><i class="el-icon-message"></i>图书管理</template>
+        	                <router-link to="/booksManage/booksList"><el-menu-item index="2-2">图书列表</el-menu-item></router-link>
+        	                <router-link to="/booksManage/bookAdd"><el-menu-item index="2-1" >添加图书</el-menu-item></router-link>
+			            </el-submenu>
+
 		            </el-menu>
 		          </el-col>
 		      </el-row>

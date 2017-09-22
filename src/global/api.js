@@ -1,8 +1,8 @@
 /*
 * @Author: admin
 * @Date:   2017-08-09 14:51:34
-* @Last Modified by:   admin
-* @Last Modified time: 2017-08-09 15:09:54
+* @Last Modified by:   Anni4031
+* @Last Modified time: 2017-09-22 20:12:11
 */
 
 'use strict';
@@ -22,6 +22,8 @@ let url = {
 
 //----------------请注意：如果正式环境，不需要本地json数据模拟，请删除以上代码和api中的模拟接口。----------------
 
+let nodeApiBaseUrl = 'http://localhost:3000';
+
 
 export const api = {
 
@@ -32,7 +34,12 @@ export const api = {
             'stock':url.staticPath+'/dataJson/stock.json',//表单模拟接口
             "vipData":url.staticPath+"/dataJson/vipData.json",  //获取角色和对应用户  
             "workerData":url.staticPath+"/dataJson/workerData.json",  //获取用户的 菜单和元素权限 
-            
+            //以下接口为实际接口，需要下载node项目源码 
+            "addBooks": nodeApiBaseUrl+"/api/addBooks",       //图书信息添加
+            "bookUpdate": nodeApiBaseUrl+"/api/bookUpdate",   //图书信息修改
+            "booksList": nodeApiBaseUrl+"/api/queryBooks",     //图书信息列表
+            "delBooks": nodeApiBaseUrl+"/api/delBooks",       //图书信息删除
+            "queryBooksItem": nodeApiBaseUrl+"/api/queryBooksItem",     //图书单条详情
 
             
     }
