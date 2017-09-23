@@ -1,10 +1,11 @@
 <template>
-<div v-cloak>
-    <h2 style="color:red">
-        注意：此页面使用了本地api接口，若想正常运行，请下载另外一个node项目（https://github.com/Anni4031/node_books），并且在本地启动该node项目。
-    </h2>
+	<div>
+		<p style="color:blue">
+			注意：此页面使用了本地api接口，若想正常运行，请下载另外一个node项目（https://github.com/Anni4031/node_books），并且在本地启动该node项目。
+		</p>
 
-    <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+	 <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+
       <el-form-item label="图书名称" prop="bookName">
             <el-col :span="6" >
                 <el-input v-model="ruleForm.bookName"></el-input>
@@ -50,7 +51,6 @@
 </div>
 </template>
 <script>
-    import { Message } from 'element-ui';
     import { api } from '../../global/api'
     export default {
         data() {
@@ -81,21 +81,33 @@
               let that = this;
               this.$refs[formName].validate((valid) => {
                 if (valid) {
-                      console.log('提交图书信息入参：',this.ruleForm);
-                      that.$http.post(api.addBooks,this.ruleForm,null,function(res){
-                          console.log('插入图书数据成功，接口返回的数据为：',res)
-                          //正式编程以下代码请放到接口成功回调函数中
-                          // Message({
-                          //     showClose: true,
-                          //     message: '提交成功，正在跳转页面……',
-                          //     type: 'success'
-                          // })
-                          // setTimeout(()=>{
+                    console.log('提交图书信息入参：',that.ruleForm);
+                    let date=new Date()
+                    console.log("时间:",date)
+                    let year=date.getFullYear(); 
+                    let month=date.getMonth();
+                    let day=date.getDate();
+                    let hours=date.getHours();
+                    let minutes=date.getMinutes();
+                    let seconds=date.getSeconds();
+                    let date1=""+year+"/"+month+"/"+day+" "+hours+":"+minutes+":"+seconds+"";
+                    that.ruleForm.recordDate=date1
+
+                    that.$http.post(api.addBooks,that.ruleForm,null).then(function(response){
+                          // alert("请求成功!")
+                          console.log('插入图书数据成功，接口返回的数据为：',response)
+                          that.$message({
+                              showClose: true,
+                              message: '提交成功，正在跳转页面……',
+                              type: 'success'
+                          })
+                          setTimeout(()=>{
                               that.$router.push('/booksManage/booksList')
-                          // },2000)
-                      },function(){                        
-                        console.log("图书信息添加失败")   
-                      })
+                          },2000)
+
+                    },function(response){
+                      alert("图书信息添加失败!")
+                    });
                       
                 } else {
                   console.log('error submit!!');
@@ -110,9 +122,6 @@
 </script>
 
 <style scoped>
-[v-cloak] {
-  display: none;
-}
 .component-item{
   margin-top: 100px;
 }
